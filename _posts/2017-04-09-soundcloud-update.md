@@ -6,7 +6,7 @@ summary:
 categories: music
 comments: true
 ---
-For me, It rolled out very tough, when it comes to sing with or without karoke. I tried a mix of both in these three beautiful songs.
+For me, It rolled out very tough, when it comes to sing with or without karaoke. I tried a mix of both in these three beautiful songs.
 
 
 
@@ -42,7 +42,7 @@ And again from a typical arijit fan, what can one expect. Another lovely song, N
 <iframe width="75%" height="100" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/316821464&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 <sub><sup><sub><sup>**An excerpt frpm this [song](https://goo.gl/oUsJJr)**</sup></sub></sup></sub>
 
-Probably the worst song I have ever sung and recorded too :D. This is the reason why I uploaded only 11 seconds for this one. But this trial was completely on Karoke.
+Probably the worst song I have ever sung and recorded too :D. This is the reason why I uploaded only 11 seconds for this one. But this trial was completely on Karaoke.
 
 
 
