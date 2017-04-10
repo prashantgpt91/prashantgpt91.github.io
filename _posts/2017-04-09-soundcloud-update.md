@@ -4,7 +4,7 @@ title:      Compiling my audio recordings
 date:       2017-04-09 06:30:45
 summary:   
 categories: music
-comments: false
+comments: true
 ---
 For me, It rolled out very tough, when it comes to sing with or without karoke. I tried a mix of both in these three beautiful songs.
 
