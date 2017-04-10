@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Compiling my audio recordings
+title:      Audio Recordings - Compilation #1
 date:       2017-04-09 06:30:45
 summary:   
 categories: music
