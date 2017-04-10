@@ -4,7 +4,8 @@ email:       contact@imprashant.com
 author:      Prashant Gupta
 description: "A brief About me"
 baseurl:     ""
-url:         "http://x0v.github.io/"
+url:          https://imprashant.com.
+enforce_ssl:  imprashant.com
 
 # Google analytics
 google_analytics:
