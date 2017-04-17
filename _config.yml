@@ -1,13 +1,10 @@
 safe: true
 lsi: false
 
-root_url: http://imprashant.com
+url: https://imprashant.com
+enforce_ssl:  imprashant.com
 author:
   name: Prashant Gupta
 title: Prashant Gupta - AI freak!
 permalink: /blog/:year/:month/:title/
 highlighter: rouge
-
-
-
-
