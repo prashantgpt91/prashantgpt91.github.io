@@ -1,19 +1,101 @@
-<!DOCTYPE html>
-<html>
-{% include head.html %}
-<body class="{% if site.animated %}animated fade-in-down{% endif %}">
-  <div class="site-wrap">
-    {% include header.html %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+  	<meta name="description" content="Code and Create" />
+    <title>{{ page.title }} - {{ site.title }}</title>
 
-    <div class="post p2 p-responsive wrap" role="main">
-      <div class="measure">
-        {{ content }}
-      </div>
+    <link rel="shortcut icon" href="/favicon-new.jpeg" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css?56465476" />
+    {% if layout.label == 'blog'%}
+    <link rel="stylesheet" href="/css/prism.css" />
+    {% endif %}
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700' rel='stylesheet' type='text/css'>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed/rss.xml">
+    <script>
+      /*var connectionCheckTimeout = setTimeout(function () {
+        window.isSlowConnection = true;
+        var style = document.createElement('style');
+        style.textContent = 'body{font: 17px/1.56 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"}';
+        document.head.appendChild(style);
+      }, 1000);
+      window.onload = function () {
+        console.log('fast connection');
+        clearTimeout(connectionCheckTimeout);
+      }*/
+    </script>
+
+  </head>
+
+  <body class="{% if page.label %}{{ page.label }}{% else %}{{ layout.label }}{% endif %}">
+
+    <a href="javascript:void(0)" title="or press '/' to search" onclick="toggleSearch()" class="search-btn">
+      <svg style="width:48px;height:48px" viewBox="0 0 24 24">
+      <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+      </svg>
+    </a>
+
+    <div class="search" id="js-search">
+      <a href="javascript:void(0)" onclick="toggleSearch()" class="search__close-btn">
+        <svg style="width:48px;height:48px" viewBox="0 0 24 24">
+        <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" />
+        </svg>
+      </a>
+      <input type="text" placeholder="Type here to search" class="search__input" id="js-search__input">
+      <ul class="search__results" id="js-search__results"></ul>
     </div>
-  </div>
 
-  {% include footer.html %}
-  {% include analytics.html %}
-</body>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+    <div id="outer-container">
+      <div id="main-container">
+
+        <header class="top-header {% if page.label == 'home' %}top-header--home{% endif %}">
+
+        <div id="me2" class="top-header__logo">
+          <div></div>
+        </div>
+        <a class="top-header__link" href="/"><h1>Prashant Gupta</h1></a>
+          <h2> Programmer | AI freak</h2>
+        </header>
+
+        {% include nav.html %}
+
+        {% if page.type != 'game' %}
+        <div id="content">
+          {{ content }}
+        </div>
+        {% endif %}
+
+      </div>
+
+
+    </div>
+
+    {% if page.type == 'game' %}
+    <div class="content  content--game">
+      {{ content }}
+    </div>
+    {% endif %}
+
+    {% include footer.html %}
+
+    {% include analytics.html %}
+
+    <!-- {{ post }} -->
+    {% if layout.label == 'blog' or page.label == 'blog' %}
+    <div class="fixed-link-box">
+    <!-- Icon made by Austin Andrews from Flaticon.com -->
+      <a href="/feed/rss.xml" class="rss-link" target="_blank"></a>
+    </div>
+    {% endif %}
+
+    {% if layout.label == 'blog'%}
+    <script type="text/javascript" src="/js/prism.js"></script>
+    {% endif %}
+
+    <script src="/js/script.js"></script>
+  </body>
+
+
 </html>

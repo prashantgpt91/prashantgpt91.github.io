@@ -1,58 +1,13 @@
-# Site settings
-title:       Prashant Gupta
-email:       contact@imprashant.com
-author:      Prashant Gupta
-description: "A brief About me"
-baseurl:     ""
-url:          https://imprashant.com.
-enforce_ssl:  imprashant.com
+safe: true
+lsi: false
 
-# Google analytics
-google_analytics:
+root_url: http://imprashant.com
+author:
+  name: Prashant Gupta
+title: Prashant Gupta - AI freak!
+permalink: /blog/:year/:month/:title/
+highlighter: rouge
 
-# Optional features
-animated:           true
-show_related_posts: false
-show_post_footers:  true
 
-# Disqus post comments
-# (leave blank to disable Disqus)
-disqus_shortname: x0v
 
-# Social icons
-show_social_icons: true
-github_username: 'x0v'	
-stackoverflow_id: 
-twitter_username: 'prashantgpt91'
-google_plus_id:
-linkedin_username: 'prashantgpt91'
-bitcoin_url:
-paypal_url:
-flattr_button:
 
-# Post sharing icons
-show_sharing_icons: true
-share_text: 'Share this post!'
-# Change to 'true' to enable individual icons
-share_facebook: true
-share_twitter: true
-share_googleplus: true
-share_linkedin: true
-share_digg: false
-share_tumblr: false
-share_reddit: false
-share_stumbleupon: false
-share_hackernews: false
-
-# Build settings
-markdown:     kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
-  extensions: ['smart', 'tables', 'with_toc_data', "highlight"]
-permalink:    pretty
-paginate:     5
-sass:
-  compressed: true
-
-gems: [jekyll-paginate]

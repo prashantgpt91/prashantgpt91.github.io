@@ -1,1 +1,0 @@
-Jekyll Source files for my gh-pages blog at http://x0v.github.io.
