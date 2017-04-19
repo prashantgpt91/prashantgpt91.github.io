@@ -261,11 +261,10 @@ figure h3 {
 	color: #FFF;
 	text-align: center;
 	font-weight: 100;
-	font-size: 32px;
+	font-size: 20px;
 	line-height: 32px;
 	letter-spacing: -3px;
 	padding: 0 14px 0 10px;
-	text-transform: uppercase;
 	transition: 200ms ease-out;
 }
 .color-block > a:hover {
