@@ -1,11 +1,11 @@
 {
-  "name": "kushagragour-website",
+  "name": "prashant-website",
   "version": "0.1.0",
   "description": "My personal website.",
-  "author": "Kushagra Gour <chinchang457@gmail.com>",
+  "author": "Prashant Gupta <prashantgpt91@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/chinchang/chinchang.github.com.git"
+    "url": "https://github.com/x0v/x0v.github.io.git"
   },
   "devDependencies": {
     "gulp": "~3.8.10",

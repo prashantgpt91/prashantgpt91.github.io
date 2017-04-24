@@ -8,7 +8,7 @@ comments: true
 ---
 For me, It rolled out very tough, when it comes to sing with or without karaoke. I tried a mix of both in these three beautiful songs.
 
-
+My first experience of singing with a recording? Out of key, out of time...Still, here are they.
 
 <iframe width="75%" height="100" scrolling="yes" frameborder="yes" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/316818564&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 
@@ -18,7 +18,7 @@ For me, It rolled out very tough, when it comes to sing with or without karaoke.
 
 
 
-The sensational romantic song from Bollywood Movie *Kuch Kuch Hota hai* was not an easy one to try. Although this song was originally sung by Udit Narayan, but I eventually got inspiration from [this performance of arijit singh](https://www.youtube.com/watch?v=GHkcGNCfjns). A special memory related to this song -  I usually record on my laptop multiple times for a particular song and probably it gets better after each recording (P.S - as far as it seems to me :P) 
+The sensational romantic song from Bollywood Movie *Kuch Kuch Hota hai* was not an easy one to try. Although this song was originally sung by Udit Narayan, but I eventually got inspiration from [this performance of arijit singh](https://www.youtube.com/watch?v=GHkcGNCfjns). A special memory related to this song -  I usually record on my laptop multiple times for a particular song and probably it gets better after each recording (P.S - as far as it seems to me :P)
 
 But surprisingly the version uploaded on soundcloud for this song was my first attempt to this song.
 
@@ -43,11 +43,3 @@ And again from a typical arijit fan, what can one expect. Another lovely song, N
 <sub><sup><sub><sup>**An excerpt frpm this [song](https://goo.gl/oUsJJr)**</sup></sub></sup></sub>
 
 Probably the worst song I have ever sung and recorded too :D. This is the reason why I uploaded only 11 seconds for this one. But this trial was completely on Karaoke.
-
-
-
-
-
-
-
-
