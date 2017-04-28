@@ -478,7 +478,7 @@ figure h3 {
 	font-family: Arial;
 	display: inline-block;
 	margin: 4px 2px;
-	background: #45B98A;
+	background: #6CC8C5;
 }
 .color-block > a {
 	box-sizing: border-box;
@@ -501,19 +501,19 @@ figure h3 {
 }
 
 .color-block:nth-child(2) {
-	background: #EA5954; /*  */
+	background: #6CC8C5; /*  */
 }
 .color-block:nth-child(3) {
 	background: #6CC8C5; /*  blue */
 }
 .color-block:nth-child(4) {
-	background: #F7D842;
+	background: #6CC8C5;
 }
 .color-block:nth-child(5) {
-	background: #45B98A;
+	background: #6CC8C5;
 }
 .color-block:nth-child(6) {
-	background: #EA5954;
+	background: #6CC8C5;
 }
 .color-block:nth-child(7) {
 	background: #6CC8C5;
