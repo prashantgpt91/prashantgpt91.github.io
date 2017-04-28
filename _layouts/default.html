@@ -76,15 +76,8 @@
 
 
     </div>
-
-    {% if page.type == 'game' %}
-    <div class="content  content--game">
-      {{ content }}
-    </div>
-    {% endif %}
-
+    {% include contactme.html %}
     {% include footer.html %}
-
     {% include analytics.html %}
 
     <!-- {{ post }} -->
