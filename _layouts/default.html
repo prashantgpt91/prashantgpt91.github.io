@@ -76,21 +76,11 @@
 
 
     </div>
-    {% include contactme.html %}
+    <center>{% include contactme.html %}</center>
     {% include footer.html %}
     {% include analytics.html %}
 
-    <!-- {{ post }} -->
-    {% if layout.label == 'blog' or page.label == 'blog' %}
-    <div class="fixed-link-box">
-    <!-- Icon made by Austin Andrews from Flaticon.com -->
-      <a href="/feed/rss.xml" class="rss-link" target="_blank"></a>
-    </div>
-    {% endif %}
 
-    {% if layout.label == 'blog'%}
-    <script type="text/javascript" src="/js/prism.js"></script>
-    {% endif %}
 
     <script src="/js/script.js"></script>
   </body>
