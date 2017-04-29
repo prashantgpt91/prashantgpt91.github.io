@@ -564,7 +564,7 @@ figure h3 {
 	font-family: Arial;
 	display: inline-block;
 	margin: 4px 2px;
-	background: #66b5a9;
+	background: #F5866F;
 }
 .color-block > a {
 	box-sizing: border-box;
@@ -587,22 +587,22 @@ figure h3 {
 }
 
 .color-block:nth-child(2) {
-	background: #66b5a9; /*  */
+	background: #26D9B5; /*  */
 }
 .color-block:nth-child(3) {
-	background: #66b5a9; /*  blue */
+	background: #F5866F; /*  blue */
 }
 .color-block:nth-child(4) {
-	background: #66b5a9;
+	background: #26D9B5;
 }
 .color-block:nth-child(5) {
-	background: #66b5a9;
+	background: #F5866F;
 }
 .color-block:nth-child(6) {
-	background: #66b5a9;
+	background: #26D9B5;
 }
 .color-block:nth-child(7) {
-	background: #66b5a9;
+	background: #F5866F;
 }
 
 .form-stacked label,
@@ -968,10 +968,10 @@ article p code {
 }
 
 .button {
-	background-color: #F2C45A;
+	background-color: #f5866f;
 	color: #FFF !important;
 	font-weight: bold;
-	padding: 6px 12px;
+	padding: 3px 6px;
 	text-align: center;
 	cursor: pointer;
 
