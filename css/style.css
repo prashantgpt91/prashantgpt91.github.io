@@ -547,7 +547,7 @@ figure h3 {
 .top-header h1 {
 	font-size: 50px;
 	color: #F5866F;
-	padding: 0;
+	padding-bottom:0;
 	margin: 0;
 }
 
@@ -559,6 +559,8 @@ figure h3 {
 	font-size: 18px;
 	color: #F5866F;
 	margin: 0;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 .color-block {
 	font-family: Arial;
@@ -1187,7 +1189,7 @@ SEARCH BAR
 	z-index: 1;
 	transition: 0.2s ease;
 	visibility: hidden;
-	opacity: 0;
+	opacity: 2;
 }
 .search__close-btn {
 	fill: #DDD;
