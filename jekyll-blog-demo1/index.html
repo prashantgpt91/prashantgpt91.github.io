@@ -1,0 +1,53 @@
+---
+layout: default
+top_nav: home
+pagination: true
+---
+
+
+<div class="inner-container padded">
+	<div class="-row">
+		<div class="-col8">
+			<div class="posts">
+				{{ paginator.posts }}
+			</div>
+		</div>
+		<div class="-col4">
+			<div class="sidebar media-padded">
+
+				<section>
+				<p><a href="{{ site.baseurl }}/subscribe/">Subscribe</a></p>
+				</section>
+
+				<section>
+				<div class="-row">
+					<div class="-col6"><h3 class="h6">Tags</h3></div>
+					<div class="-col6"></div>
+				</div>
+
+				{% for tag in paginator.top_tags limit:10 %}
+				<a href="{{ site.baseurl }}/tags/{{ tag.slug }}/"><span class="postTag">{{ tag.name }}</span></a>
+				{% endfor %}
+				</section>
+
+				<!--<section>
+				<div class="-row">
+					<div class="-col6"><h3 class="h6">Contributors</h3></div>
+					<div class="-col6 _textRight"><p><a href="{{ site.baseurl }}/authors/">See all</a></p></div>
+				</div>
+				{% include authors.html %}
+				</section>
+      				-->
+				<section>
+				<div class="-row">
+					<div class="-col6"><h3 class="h6">About Us</h3></div>
+					<div class="-col6"></div>
+				</div>
+
+				<p>Welcome! Cloudadic Inc. are experts in building cloud-scale infrastructure and applications. At cloud-scale automation, machine learning, real-time feedback and seamless experience of technology are important. We all want our businesses to run at the speed and scale of internet. Our vision is to build these technologies.</p>
+
+				<p>If you’d like to keep up with company initiatives and other happenings at Cloudadic, check out the Company News channel. If you want to learn about some of our coding projects, mishaps, and other tech details, explore the Engineering channel.</p>
+			</div>
+		</div>
+	</div>
+</div>

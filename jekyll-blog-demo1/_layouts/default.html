@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+    <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+
+    <meta name="author" content="{{ site.name }}" />
+    <meta name="description" content="{% if page.description %}{{ page.description | strip_html | strip_newlines }}{% else %}{% if page.excerpt %}{{ page.excerpt | markdownify | strip_html | strip_newlines }}{% else %}{{ site.description }}{% endif %}{% endif %}">
+
+    <!-- Facebook metadata -->
+    <meta property="fb:admins" content="" />
+    <meta property="og:image" content="{% if page.hero %}{{ page.hero }}{% else %}https://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png{% endif %}"/>
+    <meta property="og:title" content="{{ page.title }}"/>
+    <meta property="og:url" content="{{ page.url }}"/>
+    <meta property="og:site_name" content="Cloudadic Blog"/>
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:type" content="website"/>
+
+    <!-- Twitter metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@StackOverflow">
+    <meta name="twitter:creator" content="@StackOverflow">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description }}">
+    <meta name="twitter:image" content="{% if page.hero %}{{ page.hero }}{% else %}https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png{% endif %}">
+    <meta name="twitter:image:alt" content="{% if page.hero %}{{ page.title }}{% else %}Stack Overflow{% endif %}">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/all.css" />
+
+    <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed/" />
+  </head>
+
+  <body>
+    <div class="container">
+    <header>
+      <div class="inner-container -row">
+        <div class="-col4">
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+        </div>
+        <nav class="-col8">
+          <a class="home{% if page.top_nav == "home" %} active{% endif %}" href="{{ site.baseurl }}/">Business</a>
+         <!-- <a class="company{% if page.top_nav == "company" %} active{% endif %}" href="{{ site.baseurl }}/company/">Technology</a>-->
+          <a class="engineering{% if page.top_nav == "engineering" %} active{% endif %}" href="{{ site.baseurl }}/engineering/">Engineering</a>
+            <a class="engineering{% if page.top_nav == "trends" %} active{% endif %}" href="{{ site.baseurl }}/trends/">Trends</a>     
+          <!--<a class="speakers{% if page.top_nav == "technology" %} active{% endif %}" href="{{ site.baseurl }}/technology/">Technology</a>-->
+          <a class="authors{% if page.top_nav == "authors" %} active{% endif %}" href="{{ site.baseurl }}/subscribe/">Subscribe</a>
+        </nav>
+      </div>
+
+
+
+    </header>
+
+
+    <div id="main" role="main">
+      {{ content }}
+    </div>
+    {% if paginator %}
+    <div class="pagination">
+      <div class="inner-container">
+        <div class="-row">
+          <div class="-col2 _textLeft">
+          {% if paginator.next_page %}
+              <a class="page older" href="{{ paginator.next_page_path }}"><i class="blog-icon left-arrow"></i> Older Articles</a>
+          {% endif %}
+            </div>
+          <div class="-col2 _textRight">
+          {% if paginator.previous_page %}
+            <a class="page newer" href="{{ paginator.previous_page_path }}">Newer Articles <i class="blog-icon right-arrow"></i></a>
+          {% endif %}
+          </div>
+          <div class="-col8 _textRight">
+              <span class="page_number">Page <span class="page current_page">{{ paginator.page }}</span> of <span class="page total_pages">{{ paginator.total_pages }}</span></span>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <footer class="footer">
+      <div class="inner-container">
+        <div class="-row">
+          <div class="-col6">
+            <div class="about" style="visibility: hidden;">
+              <div class="-row">
+                <div class="-col3 _textCenter">
+                  <br/>
+                  <i class="blog-icon logo"></i>
+                </div>
+                <div class="-col9">
+                  <p>Stack Overflow is the home of a network of specialized communities that are created &amp; run by passionate experts and enthusiasts like you.</p>
+                  <p><a href="http://stackexchange.com/sites">Discover our network <i class="blog-icon read-more"></i></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+         <div class="-col2 media-padded">
+         </div>
+
+          <div class="-col2 media-padded">
+            <h4>The company</h4>
+            <p><a href="https://in.cloudadic.com/site/about">About us</a></p>
+            <p><a href="https://www.cloudadic.com/jobs">Work here</a></p>
+            <p><a href="https://in.cloudadic.com/contact">Any feedback?</a></p>
+          </div>
+          <div class="-col2 media-padded">
+            <h4>Connect with us</h4>
+            <p><a href="https://www.facebook.com/cloudadic/">Facebook</a></p>
+            <p><a href="https://twitter.com/cloudadic">Twitter</a></p>
+            <p><a href="https://plus.google.com/109006376721429735125">Google+</a></p>
+          </div>
+
+        </div>
+        <p style="color: #ccc; margin-top: 25px; font-size: 10px; text-align: right;">Last build {{ site.time | date: "%a, %d %b %Y %T +0000" }}</p>
+      </div>
+    </footer>
+    </div>
+    {% include analytics.html %}
+    {% include widget.js %}
+  </body>
+</html>
+

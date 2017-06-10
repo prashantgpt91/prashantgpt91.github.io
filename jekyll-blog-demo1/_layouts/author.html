@@ -1,0 +1,47 @@
+---
+layout: default
+top_nav: contributors
+---
+<article class="author">
+	<div class="inner-container">
+		<div class="-row">
+			<div class="-col12">
+				<div class="author-container large media-padded">
+				  	<img src="{{ page.author.avatar }}" class="avatar">
+				  	<div class="info">
+				  		<h2 class="h4 author-name">{{ page.author.name }}</h2>
+				  		<h3 class="h5">{{ page.author.job }}</h3>
+				  		<h3 class="h5 author-info">
+				  			{% if page.author.website %}
+				  				<a href="{{ page.author.website }}">Website</a>
+				  			{% endif %}
+				  			{% if page.author.twitter %}
+				  				{% if page.author.website %} • {% endif %}
+				  				<a href="https://twitter.com/{{ page.author.twitter }}">Twitter</a>
+				  			{% endif %}
+				  			{% if page.author.github %}
+				  				{% if page.author.twitter or page.author.website %} • {% endif %}
+				  				<a href="https://github.com/{{ page.author.github }}">GitHub</a>
+				  			{% endif %}
+				  			{% if page.author.stack %}
+				  				{% if page.author.twitter or page.author.website or page.author.github %} • {% endif %}
+				  				<a href="{{ page.author.stack }}">Stack Overflow</a>
+				  			{% endif %}
+				  			{% if page.author.youtube %}
+				  				{% if page.author.twitter or page.author.website or page.author.github or page.author.stack %} • {% endif %}
+				  				<a href="{{ page.author.youtube }}">YouTube</a>
+				  			{% endif %}
+				  		</h3>
+				  	</div>
+				</div>
+			</div>
+		</div>
+		<div class="-row author-content">
+			<div class="-col8">
+				<div class="posts">
+				{{ paginator.posts }}
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

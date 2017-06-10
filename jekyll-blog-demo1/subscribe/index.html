@@ -1,0 +1,87 @@
+---
+layout: default
+top_nav: authors
+---
+
+
+
+
+
+
+
+
+
+
+
+<!-- Begin MailChimp Signup Form -->
+<div id="mailchimp">
+<form action="//cloudadic.us14.list-manage.com/subscribe/post?u=94470f5de36475ca97b6868e9&amp;id=858878d5c8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll" style="margin: 100px auto; width:50%; text-align:center">
+	<h2>Subscribe to our mailing list</h2>
+<div class="mc-field-group">
+	
+	<input type="email" size="30" value="Enter your email address" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue; ">
+</div>
+<div class="mc-field-group">
+	<input type="text" size="30" value="Enter your name" name="FNAME" class="" id="mce-FNAME" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" >
+</div>
+
+
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_94470f5de36475ca97b6868e9_858878d5c8" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+
+<!--
+<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"94470f5de36475ca97b6868e9","lid":"858878d5c8"}) })</script>
+
+<div class="inner-container padded media-padded">
+	<h1 class="h3">Contributors</h1>
+	{% for author in site.people %}
+		{% unless author.author == false %}
+		{% unless author.inactive %}
+		{% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+		{% if thecycle == 'odd' %}
+		<div class="authors -row">
+		{% endif %}
+			<div class="author-container large -col6">
+			  	<a href="{{ site.baseurl}}/authors/{{ author.id }}/"><img src="{{ author.avatar }}" class="avatar"></a>
+			  	<div class="info">
+			  		<h2 class="h4 author-name"><a href="{{ site.baseurl}}/authors/{{ author.id }}/">{{ author.name }}</a></h2>
+			  		<h3 class="h5">{{ author.job }}</h3>
+			  		<h3 class="h5 author-info">
+			  			{% if author.website %}
+			  				<a href="{{ author.website }}">Website</a>
+			  			{% endif %}
+			  			{% if author.twitter %}
+			  				{% if author.website %} • {% endif %}
+			  				<a href="https://twitter.com/{{ author.twitter }}">Twitter</a>
+			  			{% endif %}
+			  			{% if author.github %}
+			  				{% if author.twitter or author.website %} • {% endif %}
+			  				<a href="https://github.com/{{ author.github }}">GitHub</a>
+			  			{% endif %}
+			  			{% if author.stack %}
+			  				{% if author.twitter or author.website or author.github %} • {% endif %}
+			  				<a href="{{ author.stack }}">Stack Overflow</a>
+			  			{% endif %}
+			  			{% if author.youtube %}
+			  				{% if author.twitter or author.website or author.github or author.stack %} • {% endif %}
+			  				<a href="{{ author.youtube }}">YouTube</a>
+			  			{% endif %}
+			  		</h3>
+			  	</div>
+			</div>
+		{% if thecycle == 'even' %}
+		</div>
+		{% endif %}
+		{% endunless %}
+		{% endunless %}
+	{% endfor %}
+</div>
+-->
