@@ -17,22 +17,22 @@
     </div>
     <div class="row features-block">
         <div class="wow zoomIn col-lg-6 col-lg-offset-3">
-            <canvas id="{{ site.data.index.skills.id }}" height="500" width="500"></canvas>
+            <canvas id="{{ site.data.index.skills.id }}" height="200" width="500"></canvas>
         </div>
         <div class="col-lg-1"></div>
         <script>
         var ctx = document.getElementById("{{ site.data.index.skills.id }}");
         var data = {
-            labels: ['GitHub', 'Motivation', 'HTML5', 'ReactJS', 'Machine Learing', 'Python', 'Sleeping'],
+            labels: ['Python', 'Java', 'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'MongoDB', 'MySQL','Sleeping'],
             datasets: [{
-                label: ['GitHub', 'Motivation', 'HTML5', 'ReactJS', 'Machine Learing', 'Python', 'Sleeping'],
+                label: ['Python', 'Java', 'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision','MongoDB', 'MySQL', 'Sleeping'],
                 backgroundColor: "rgba(179,181,198,0.2)",
                 borderColor: "#3385FF",
                 pointBackgroundColor: "#3385FF",
                 pointBorderColor: "#fff",
                 pointHoverBackgroundColor: "#3385FF",
                 pointHoverBorderColor: "#3385FF",
-								data: [100, 35, 65, 80, 70, 90, 50]
+								data: [95, 65, 95, 80, 75, 71, 95, 90, 100]
                 }]
         };
         var myRadarChart = new Chart(ctx, {
