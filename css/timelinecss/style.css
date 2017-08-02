@@ -22,7 +22,7 @@ body {
 }
 
 a {
-  color: #acb7c0;
+  color: #F5866F;
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
 }
@@ -36,6 +36,9 @@ h1, h2 {
   font-weight: bold;
 }
 
+h2 {
+    color: #000000;
+}
 /* --------------------------------
 
 Modules - reusable parts of our design
@@ -54,14 +57,15 @@ Modules - reusable parts of our design
   clear: both;
 }
 
+
 /* --------------------------------
 
 Main components
 
 -------------------------------- */
 header {
-  height: 200px;
-  line-height: 200px;
+  height: 150px;
+  line-height: 120px;
   text-align: center;
   background: #FFFFFF;
 }
@@ -72,8 +76,8 @@ header h1 {
 }
 @media only screen and (min-width: 1170px) {
   header {
-    height: 200px;
-    line-height: 100px;
+    height: 150px;
+    line-height: 120px;
   }
   header h1 {
     font-size: 24px;
@@ -261,6 +265,8 @@ header h1 {
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 13px;
   font-size: 0.8125rem;
+      color: #000000;
+
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
@@ -348,6 +354,7 @@ header h1 {
     left: auto;
     right: 122%;
     text-align: right;
+    color: #000000;
   }
   .cssanimations .cd-timeline-content.is-hidden {
     visibility: hidden;
