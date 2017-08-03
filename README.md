@@ -2,6 +2,9 @@
 
 > This is my personal website. To know more about my work & interests, please visit [this](https://imprashant.com)
 
+## Credits
+[Kushagra Gour](http://kushagragour.in/)
+
 ## Meta
 
 **License**
