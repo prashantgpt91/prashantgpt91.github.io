@@ -3,7 +3,7 @@
 > This is my personal website. To know more about my work & interests, please visit [this](https://imprashant.com)
 
 ## Credits
-[Kushagra Gour](http://kushagragour.in/)
+I am no expert at frontend. Though I have added a couple of other things on the website but majorly credit goes to [Kushagra Gour](http://kushagragour.in/)
 
 ## Meta
 
