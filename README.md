@@ -4,6 +4,7 @@
 
 ## Credits
 I am no expert at frontend. Credits: [Kushagra Gour](http://kushagragour.in/).
+
 Note: I've added some more things into this and will continue to do so.
 
 ## Meta
