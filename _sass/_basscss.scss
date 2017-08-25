@@ -549,6 +549,8 @@ strong, .bold {
 .list-inline {
   list-style: none;
   padding-left: 0;
+  padding-bottom: -20px;
+
 }
 .list-inline li {
   display: inline;
