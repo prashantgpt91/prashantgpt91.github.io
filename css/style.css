@@ -376,8 +376,37 @@ body{
 .bttn-slant.bttn-royal:after {
   background: #f5866f;
 }
-/*button css end*/
 
+
+
+/*button css end*/
+.contact23{
+	text-align: center;
+	padding-bottom: 0px;
+	padding-top: 40px;
+}
+.contact24{
+	text-align: center;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+.desc2  {
+		text-align: center;
+        color: #424242;
+        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+        letter-spacing:0.1em;
+        text-align:center;
+        margin: 40px auto;
+        text-transform: lowercase;
+        line-height: 145%;
+        font-size: 14pt;
+        font-variant: small-caps;            
+	}
+
+.desc2 > p:first-letter
+        {
+        text-transform: uppercase;
+}
 a {
 	text-decoration: none;
 	color: #F5866F;
@@ -539,6 +568,7 @@ figure h3 {
 		transform: translateY(0px);
 	}
 }
+
 
 .top-header__link:hover {
 	text-decoration: none;
@@ -1295,6 +1325,7 @@ pre[class*=language-] {
 	.home #main-container nav > ul a {
 		line-height: 60px;
 	}
+
 	.search-btn { display: none; }
 
 	::-webkit-scrollbar {
