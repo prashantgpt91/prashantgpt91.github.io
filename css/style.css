@@ -536,6 +536,17 @@ figure h3 {
 	animation: logo-drop 0.4s ease-out forwards 0.5s;
 	transform: translateY(-120%);
 }
+
+
+
+.top-header__logo2 {
+	color: #F5866F;
+	background: #ffffff;
+	animation: logo-drop 0.4s ease-out forwards 0.5s;
+	transform: translateY(-120%);
+}
+
+
 .home .top-header__logo {
 	width: 150px;
 	height: 150px;
