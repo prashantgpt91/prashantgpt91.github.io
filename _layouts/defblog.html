@@ -72,6 +72,16 @@
         </div>
         {% endif %}
 
+        <div class="top-header__logo2"> <h1>Recent Posts</h1></div>
+          {% for post in site.posts limit:3 %}
+              <ul>
+                &raquo;
+                <a href="{{ post.url }}">
+                <h3>{{ post.title }}</h3></a>
+                <p class="blogdate">{{ post.date | date: "%d %B %Y" }}</p>
+                <div>{{ post.content |truncatehtml | truncatewords: 25 }}</div>
+              </ul>
+          {% endfor %}
       </div>
 
     </div>
