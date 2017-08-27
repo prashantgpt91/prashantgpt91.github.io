@@ -393,14 +393,12 @@ body{
 .desc2  {
 		text-align: center;
         color: #424242;
-        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+        font-family: Georgia, Garamond, Times, serif;
         letter-spacing:0.1em;
         text-align:center;
         margin: 40px auto;
-        text-transform: lowercase;
         line-height: 145%;
         font-size: 14pt;
-        font-variant: small-caps;            
 	}
 
 .desc2 > p:first-letter

@@ -18,7 +18,7 @@ body {
   font-size: 100%;
   font-family: "Droid Serif", serif;
   color: #7f8c97;
-  background-color: #26D9B5;
+  background-color: #ffffff;
 }
 
 a {
@@ -145,19 +145,15 @@ header h1 {
   left: 0;
   width: 40px;
   height: 40px;
-  border-radius: 5%;
-  background-color: #F5866F;
-  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  background: center center no-repeat;
+  background-size: contain;
 }
+
+
 .cd-timeline-img img {
   display: block;
-  width: 24px;
-  height: 24px;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  margin-left: -12px;
-  margin-top: -12px;
+  max-width:100%;
+  max-height:400%;
 }
 .cd-timeline-img.cd-picture {
   background: #75ce66;
@@ -249,7 +245,7 @@ header h1 {
 .cd-timeline-content {
   position: relative;
   margin-left: 60px;
-  background: white;
+  background: #26D9B5;
   border-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
@@ -260,7 +256,7 @@ header h1 {
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #303e49;
+  color: #ffffff;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 13px;
@@ -278,7 +274,7 @@ header h1 {
 .cd-timeline-content .cd-read-more {
   float: right;
   padding: .8em 1em;
-  background: #acb7c0;
+  background: cadetblue;
   color: white;
   border-radius: 0.25em;
 }
