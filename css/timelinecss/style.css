@@ -18,7 +18,7 @@ body {
   font-size: 100%;
   font-family: "Droid Serif", serif;
   color: #7f8c97;
-  background-color: #ffffff;
+  background-color: #e9f0f5;
 }
 
 a {
@@ -67,7 +67,7 @@ header {
   height: 150px;
   line-height: 120px;
   text-align: center;
-  background: #FFFFFF;
+  background: #e9f0f5;
 }
 header h1 {
   color: F5866F;
@@ -245,7 +245,7 @@ header h1 {
 .cd-timeline-content {
   position: relative;
   margin-left: 60px;
-  background: #26D9B5;
+  background: #ffffff;
   border-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
@@ -256,7 +256,7 @@ header h1 {
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #ffffff;
+  color: #000000;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 13px;
