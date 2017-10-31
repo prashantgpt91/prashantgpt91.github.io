@@ -68,17 +68,29 @@
         </div>
         {% endif %}
 
-        <div class="top-header__logo2"> <h1>Recent Posts</h1></div>
+<!--         <center><div class="top-header__logo2"> <h1>Recent Posts</h1></div>
           {% for post in site.posts limit:3 %}
-              <ul>
-                &raquo;
+              <li>
                 <a href="{{ post.url }}">
                 <h3>{{ post.title }}</h3></a>
-                <p class="blogdate">{{ post.date | date: "%d %B %Y" }}</p>
-                <div>{{ post.content |truncatehtml | truncatewords: 25 }}</div>
-              </ul>
+                <h6 class="blogdate">{{ post.date | date: "%d %B %Y" }}</h6>
+              </li>
           {% endfor %}
-      </div>
+      </div></center>
+ -->
+
+              <!-- using the split filter -->
+       {% for post in site.posts limit:10 %}
+           <div class="post-preview">
+           <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+           <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+           {{ post.content | split:'<!--break-->' | first }}
+           {% if post.content contains '<!--break-->' %}
+              <a href="{{ post.url }}">read more</a>
+           {% endif %}
+           </div>
+           <hr>
+        {% endfor %}
 
     </div>
 

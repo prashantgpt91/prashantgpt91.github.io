@@ -1,17 +1,16 @@
 ---
 layout:     post
 title:      Git-util-commands
-date:       2017-08-26 04:15:25
+date:       2017-10-31 04:15:25
 summary:   
 tags: backend
 comments: true
 ---
 
 
+1. **Ignore file/folder while commit**
 
-1. Ignore file/folder while commit
-
-   **For a File**
+   For a File
    
             git add -u
             git reset -- main/dontcheckmein.txt
@@ -19,15 +18,17 @@ comments: true
             git commit -m "commit message"
             git push -u origin master
 
-    **For a folder**
+    For a folder
     
             git add -u
             git reset -- main/*
             git add .
             git commit -m "commit message"
             git push -u origin master
-        
-2. Use these commands to revert/delete your last (only one) commit from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
+
+<!--break-->
+
+2. **Use these commands to revert/delete your last (only one) commit** from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
 
             git reset --hard HEAD~1
             git push --force
@@ -38,7 +39,7 @@ comments: true
             git reset --hard HEAD~3
             git reset --hard HEAD~4
 
-3. To print the last n logs/details of git
+3. **To print the last n logs/details of git**
 
         `git log -n`
         
