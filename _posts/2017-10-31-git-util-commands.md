@@ -17,8 +17,8 @@ comments: true
             git add .
             git commit -m "commit message"
             git push -u origin master
-<!--break-->
-    For a folder
+
+   For a folder
     
             git add -u
             git reset -- main/*
@@ -28,7 +28,7 @@ comments: true
 
 
 2. **Use these commands to revert/delete your last (only one) commit** from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
-
+<!--break-->
             git reset --hard HEAD~1
             git push --force
 
