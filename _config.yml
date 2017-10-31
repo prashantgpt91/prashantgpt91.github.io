@@ -8,3 +8,6 @@ author:
 title: Prashant Gupta - AI freak!
 permalink: /blog/:year/:month/:title/
 highlighter: rouge
+
+gem 'jemoji'
+
