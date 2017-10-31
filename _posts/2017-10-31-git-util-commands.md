@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      Git-util-commands
+date:       2017-08-26 04:15:25
+summary:   
+tags: backend
+comments: true
+---
+
+
+
 1. Ignore file/folder while commit
 
    **For a File**
@@ -18,14 +29,14 @@
         
 2. Use these commands to revert/delete your last (only one) commit from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
 
-        git reset --hard HEAD~1
-        git push --force
+            git reset --hard HEAD~1
+            git push --force
 
    If you want to go back by more than one commit we can use
    
-        git reset --hard HEAD~2
-        git reset --hard HEAD~3
-        git reset --hard HEAD~4
+            git reset --hard HEAD~2
+            git reset --hard HEAD~3
+            git reset --hard HEAD~4
 
 3. To print the last n logs/details of git
 
