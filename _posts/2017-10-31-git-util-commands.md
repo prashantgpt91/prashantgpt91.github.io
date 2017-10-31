@@ -29,14 +29,15 @@ comments: true
 
 2. **Use these commands to revert/delete your last (only one) commit** from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
 <!--break-->
-            git reset --hard HEAD~1
-            git push --force
+            
+         git reset --hard HEAD~1
+         git push --force
 
    If you want to go back by more than one commit we can use
    
-            git reset --hard HEAD~2
-            git reset --hard HEAD~3
-            git reset --hard HEAD~4
+         git reset --hard HEAD~2
+         git reset --hard HEAD~3
+         git reset --hard HEAD~4
 
 3. **To print the last n logs/details of git**
 
@@ -44,7 +45,7 @@ comments: true
         
     Examples
 
-        git log -1
+         git log -1
         
             commit 8a72148741d8d18k40fbe8fd9e0b79d0812cd478
             Author: Prashant Gupta <prashantgpt91@gmail.com>
@@ -52,7 +53,7 @@ comments: true
 
             README.md created online with Bitbucket
         
-        git log -2
+         git log -2
         
             commit 8a72148741d8d28d23g56fd9e0b79da0812cd478
             Author: Prashant Gupta <prashantgpt91@gmail.com>
