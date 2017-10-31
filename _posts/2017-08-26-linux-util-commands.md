@@ -21,3 +21,34 @@ To display RAM usage process-wise
 
     ps aux  | awk '{print $6/1024 " MB\t\t" $11}'  | sort -n
 
+Kill a process running on specific port
+
+    kill -9 $(lsof -t -i:4000)
+    
+**Screen sessions utils**
+
+create a screen session with name api
+
+    screen -S api
+    
+kill a screen session
+
+    screen -X -S sessionID quit
+resume a screen session
+
+    screen -r sessionID
+list all screen sessions
+
+    screen -ls
+    
+Sometimes we try to resume a screen session but it doesn't shows up and says there is no screen session matching this sessionID. It happens because of the abrupt disconnection from machine while a user is in that screen session.
+
+    screen -d -r sessionID
+    
+scp command utils
+    
+    scp | src | destination
+    scp -i proc.pem ubuntu@XX.X.XXX.XXX:model/util.py /home/prashant
+    use scp -r -i for folder transfer
+
+
