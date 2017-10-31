@@ -1,5 +1,9 @@
 > Demo @https://imprashant.com
 
+[Update 31st Oct'17]
+
+**After latest commit, Blog Search is not working. I will fix it by coming weekend**
+
 > This is my personal website. To know more about my work & interests, please visit [this](https://imprashant.com)
 
 ## Credits
