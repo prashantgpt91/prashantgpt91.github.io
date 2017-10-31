@@ -34,9 +34,11 @@ create a screen session with name api
 kill a screen session
 
     screen -X -S sessionID quit
+    
 resume a screen session
 
     screen -r sessionID
+    
 list all screen sessions
 
     screen -ls
