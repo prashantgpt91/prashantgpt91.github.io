@@ -1,10 +1,14 @@
+## Info
 > Demo @https://imprashant.com
 
-[Update 31st Oct'17]
-
-**After latest commit, Blog Search is not working. I will fix it by coming weekend**
-
 > This is my personal website. To know more about my work & interests, please visit [this](https://imprashant.com)
+
+## Other dependencies
+ - [Setting up HTTPS](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/)
+ - [Setting up Instant Search](https://blog.webjeda.com/instant-jekyll-search/)
+
+## Updates
+[Update 31st Oct'17] **After latest post addition, Blog Search is not working. I will fix it by coming weekend**
 
 ## Credits
 I am no expert at frontend. 
