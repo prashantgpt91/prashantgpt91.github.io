@@ -4,6 +4,7 @@ start social button CSS
 /*------------------------------------------------------------------
       						RESET STYLES
 -------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Archivo:400,600,700|Roboto:400,700');
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 ul {
     list-style: none;
@@ -97,7 +98,7 @@ button,
 input,
 select,
 textarea {
-    font-family: Arial, sans-serif;
+    font-family: roboto, sans-serif;
 }
 
 h2, h3, h4, h5, h6 {
@@ -393,11 +394,11 @@ body{
 .desc2  {
 		text-align: center;
         color: #424242;
-        font-family: Georgia, Garamond, Times, serif;
-        letter-spacing:0.1em;
+        font-family: roboto, sans-serif;
+        
         text-align:center;
         margin: 40px auto;
-        line-height: 145%;
+        line-height: 21pt;
         font-size: 14pt;
 	}
 
