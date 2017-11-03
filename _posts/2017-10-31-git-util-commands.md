@@ -66,6 +66,10 @@ comments: true
             Date:   Tue Oct 31 08:08:34 2017 +0000
 
             med-app backend
+            
+ 4. **Delete a branch remotely** 
+ 
+         git push https://yyyy@bitbucket.org/yyyy/xxxxx.git --delete branch_name
 
 
     
