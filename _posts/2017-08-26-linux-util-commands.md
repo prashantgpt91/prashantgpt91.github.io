@@ -70,4 +70,12 @@ scp command utils
         scp -i proc.pem ubuntu@XX.X.XXX.XXX:model/util.py /home/prashant
         use scp -r -i for folder transfer
 
+Sort by Last modified.
+
+        ls -ltr --block-size=M
+        
+Sort by Size
+
+        ls -lS --block-size=M
+
 
