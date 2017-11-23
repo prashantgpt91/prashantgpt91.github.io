@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Linux-util-commands
+title:      Linux utility commands
 date:       2017-08-26 04:15:25
 summary:   
 tags: backend
@@ -31,6 +31,7 @@ Search a process by it's name
 
 Kill all instances of a particular process, searching by it's name
 
+        
         ps aux | grep -i uwsgi | awk '{print $2}' | xargs sudo kill -9
 
         For ex:
@@ -60,7 +61,9 @@ list all screen sessions
 
         screen -ls
     
+
 Sometimes we try to resume a screen session but it doesn't shows up and says there is no screen session matching this sessionID. It happens because of the abrupt disconnection from machine while a user is in that screen session.
+
 
         screen -d -r sessionID
     
