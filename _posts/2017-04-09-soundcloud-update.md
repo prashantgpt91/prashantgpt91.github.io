@@ -1,12 +1,12 @@
 ---
 layout:     post
-title:      Audio Recordings | 1
+title:      Play music &#35;1
 date:       2017-04-09 06:30:45
 summary:   
-tags: music
+tags: play
 comments: true
 ---
-For me, It rolled out very tough, when it comes to sing with or without karaoke. I tried a mix of both in these three beautiful songs.
+For me, It rolled out very tough, when it comes to singing with or without karaoke. I tried a mix of both in these three beautiful songs.
 
 My first experience of singing with a recording? Out of key, out of time...Still, here are they.
 <!--break-->
@@ -16,19 +16,7 @@ My first experience of singing with a recording? Out of key, out of time...Still
 <sub><sup><sub><sup>**An excerpt from this [song](https://goo.gl/YVHc3W)**</sup></sub></sup></sub>
 
 
-
-
-
-The sensational romantic song from Bollywood Movie *Kuch Kuch Hota hai* was not an easy one to try. Although this song was originally sung by Udit Narayan, but I eventually got inspiration from [this performance of arijit singh](https://www.youtube.com/watch?v=GHkcGNCfjns). A special memory related to this song -  I usually record on my laptop multiple times for a particular song and probably it gets better after each recording (P.S - as far as it seems to me :P)
-
-But surprisingly the version uploaded on soundcloud for this song was my first attempt to this song.
-
-
-
-
-
-
-
+The sensational romantic song from Bollywood Movie *Kuch Kuch Hota hai* was not an easy one to try. Although this song was originally sung by Udit Narayan, but I eventually got inspiration from [this performance](https://www.youtube.com/watch?v=GHkcGNCfjns). A special memory related to this song -  I usually record on my laptop multiple times for a particular song and probably it gets better after each recording (LOL - as far as it seems to me). But surprisingly the version uploaded on soundcloud for this song was my first attempt to this song. And all subsequent recordings were bad than this.
 
 
 

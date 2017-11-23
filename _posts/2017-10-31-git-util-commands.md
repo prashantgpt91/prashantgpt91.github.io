@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Git-util-commands
+title:      Git utility commands
 date:       2017-10-31 04:15:25
 summary:   
 tags: backend

@@ -7,9 +7,6 @@
  - [Setting up HTTPS](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/)
  - [Setting up Instant Search](https://blog.webjeda.com/instant-jekyll-search/)
 
-## Updates
-[Update 31st Oct'17] **After latest post addition, Blog Search is not working. I will fix it by coming weekend**
-
 ## Credits
 I am no expert at frontend. 
 Credits: [Kushagra Gour](http://kushagragour.in/) | [Skills Charts](http://www.chartjs.org/) | [Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
