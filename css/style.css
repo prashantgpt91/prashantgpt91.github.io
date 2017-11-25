@@ -384,7 +384,6 @@ body{
 .contact23{
 	text-align: center;
 	padding-bottom: 0px;
-	padding-top: 40px;
 }
 .contact24{
 	text-align: center;
@@ -397,7 +396,6 @@ body{
         font-family: roboto, sans-serif;
         
         text-align:center;
-        margin: 40px auto;
         line-height: 21pt;
         font-size: 14pt;
 	}
@@ -511,13 +509,12 @@ figure h3 {
 
 #outer-container {
 	width: 750px;
-	min-height: calc(100% - 120px);
+	min-height: calc(100% - 150px);
 	margin: 0 auto;
 }
 
 #main-container {
 	/*background-color: #F8F8F8;*/
-	padding: 20px;
 }
 
 .top-header {

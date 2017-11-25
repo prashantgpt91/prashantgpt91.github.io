@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Play music &#35;1
+title:      Play vocals &#35;1
 date:       2017-04-09 06:30:45
 summary:   
 tags: play
