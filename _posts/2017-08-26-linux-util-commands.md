@@ -13,6 +13,10 @@ To monitor CPU Usage on any Linux distribution, use
 
 <!--break-->
 
+Find by file name
+
+        sudo find / -name "ossec.conf"
+
 To monitor CPU Usage on MacOSX, use this command or directly use activity monitor
 
         top -l 2 -n 0 -F | egrep -o ' \d*\.\d+% idle' | tail -1 | awk -F% -v prefix="$prefix" '{ printf "%s%.1f%%\n", prefix, 100 - $1 }'
