@@ -383,7 +383,10 @@ body{
 /*button css end*/
 
 
-
+.hi
+{
+	font-size: 17pt;
+}
 
 
 .contact23{
@@ -402,7 +405,7 @@ body{
         
         text-align:center;
         line-height: 21pt;
-        font-size: 14pt;
+        font-size: 12pt;
 	}
 
 .desc2 > p:first-letter
@@ -411,7 +414,7 @@ body{
 }
 a {
 	text-decoration: none;
-	color: #F5866F;
+	color: #000000;
 	/*font-weight: 200;*/
 }
 
@@ -514,7 +517,7 @@ figure h3 {
 
 #outer-container {
 	width: 750px;
-	min-height: calc(100% - 150px);
+	min-height: calc(100% - 240px);
 	margin: 0 auto;
 }
 
@@ -708,7 +711,7 @@ background-color: #004b66; }
 
 .py2 {
   padding-top: 2rem;
-padding-bottom: 2rem; }
+padding-bottom: 5rem; }
 
 .input {
   appearance: none;
