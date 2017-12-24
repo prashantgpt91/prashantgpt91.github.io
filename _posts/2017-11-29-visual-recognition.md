@@ -8,8 +8,9 @@ comments: true
 ---
 I am really fascinated by the subject of this broad research topic. So, I decided to play around things and this post is a serially arranged attempts of mine into visual recognition.
 
-### What inspired me ?
+#### What inspired me ?
 Dr. Fei Fei Li with her [TED talk](https://www.youtube.com/watch?v=40riCqvRoMs)
+
 <!--break-->
 
 
