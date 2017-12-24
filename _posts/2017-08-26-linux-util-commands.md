@@ -17,6 +17,14 @@ Find by file name
 
         sudo find / -name "ossec.conf"
 
+Number of Cores
+
+        sysctl -n hw.ncpu
+
+Get processor info
+  
+        sysctl -n machdep.cpu.brand_string
+
 To monitor CPU Usage on MacOSX, use this command or directly use activity monitor
 
         top -l 2 -n 0 -F | egrep -o ' \d*\.\d+% idle' | tail -1 | awk -F% -v prefix="$prefix" '{ printf "%s%.1f%%\n", prefix, 100 - $1 }'
