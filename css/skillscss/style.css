@@ -25,14 +25,6 @@ button.dim {
     list-style: none
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 100
-}
 
 h1 {
     font-size: 30px
@@ -3701,7 +3693,6 @@ body.tour-open .animated {
 }
 
 body {
-    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: #ffffff;
     font-size: 13px;
     color: #676a6c
