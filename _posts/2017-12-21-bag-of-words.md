@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Feature Extraction from text
+title:      Feature Extraction from text using Bag of Words
 date:       2017-12-21 02:01:57
 summary:   
 tags: nlp
@@ -14,6 +14,7 @@ The bag of words model ignores grammar and order of words.
 ‘When my cat sits down, she looks like a Furby toy!’,
 
 Breaking down the given sentences into words and assigning them each a unique ID
+
 <!--break-->
 
 `{‘all’: 0, ‘cat’: 1, ‘cats’: 2, ‘down’: 3, ‘furby’: 4, ‘in’: 5, ‘like’: 6, ‘looks’: 7, ‘my’: 8, ‘row’: 9, ‘she’: 10, ‘sits’: 11, ‘toy’: 12, ‘when’: 13 }`

@@ -9,7 +9,7 @@ comments: true
 
 To monitor CPU Usage on any Linux distribution, use
 
-        top -b -n2 -p 1 | fgrep "Cpu(s)" | tail -1 | awk -F'id,' -v prefix="$prefix" '{ split($1, vs, ","); v=vs[length(vs)]; sub("%", "", v); printf "%s%.1f%%\n", prefix, 100 - v }'
+<script src="https://gist.github.com/x0v/1da78328ab5ad53ede03f9e8bdd78863.js"></script>
 
 <!--break-->
 
@@ -27,7 +27,7 @@ Get processor info
 
 To monitor CPU Usage on MacOSX, use this command or directly use activity monitor
 
-        top -l 2 -n 0 -F | egrep -o ' \d*\.\d+% idle' | tail -1 | awk -F% -v prefix="$prefix" '{ printf "%s%.1f%%\n", prefix, 100 - $1 }'
+<script src="https://gist.github.com/x0v/e1d168fae1eeff2475bf994dd3987588.js"></script>
 
 To display RAM usage process-wise
 
@@ -43,17 +43,8 @@ Search a process by it's name
 
 Kill all instances of a particular process, searching by it's name
 
-        
-        ps aux | grep -i uwsgi | awk '{print $2}' | xargs sudo kill -9
+<script src="https://gist.github.com/x0v/c9a2a082d6f67a4c5ce885a49d3b3f96.js"></script>        
 
-        For ex:
-            You run this ps -aux | grep uwsgi command & it shows these many instances
-                ubuntu    4738  0.0 13.7 1048556 555396 pts/1  Tl   Nov01   0:26 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-                ubuntu    4783  0.0 14.5 1087988 588608 pts/1  Tl   Nov01   0:25 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-                ubuntu    5232  0.0 14.8 1085076 601804 pts/1  Tl   Nov01   0:26 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-                ubuntu    5277  0.0 14.8 1085132 600596 pts/1  Tl   Nov01   0:25 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-                ubuntu    5293  1.4 14.2 1059432 576552 pts/1  Tl   Nov01   8:43 uwsgi --ini /var/www/demoapp/demoapp_uwsgi.ini
-            then instead of killing one by one use above command.
         
 **Screen sessions utils**
 
@@ -81,9 +72,7 @@ Sometimes we try to resume a screen session but it doesn't shows up and says the
     
 scp command utils
     
-        scp | src | destination
-        scp -i proc.pem ubuntu@XX.X.XXX.XXX:model/util.py /home/prashant
-        use scp -r -i for folder transfer
+<script src="https://gist.github.com/x0v/eed9f37c15a2a1c250de1f7d74471b23.js"></script>
 
 Sort by Last modified.
 
