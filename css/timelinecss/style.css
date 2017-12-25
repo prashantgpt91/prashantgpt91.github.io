@@ -18,7 +18,7 @@ body {
   font-size: 100%;
   font-family: "Droid Serif", serif;
   color: #7f8c97;
-  background-color: #e9f0f5;
+  background-color: #ffffff;
 }
 
 a {
@@ -310,7 +310,7 @@ header {
   height: 100px;
   line-height: 90px;
   text-align: center;
-  background: #e9f0f5;
+  background: #ffffff;
 }
 header h1 {
   color: F5866F;
