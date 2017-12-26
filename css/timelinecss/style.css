@@ -16,7 +16,8 @@ html * {
 
 body {
   font-size: 100%;
-  font-family: "Droid Serif", serif;
+  font-family: "PT Serif", "Helvetica", "Arial", "Geneva", "sans-serif"
+
   color: #7f8c97;
   background-color: #ffffff;
 }
@@ -24,7 +25,9 @@ body {
 a {
   color: #F5866F;
   text-decoration: none;
-  font-family: "Open Sans", sans-serif;
+  font-family: "PT Serif";
+  font-weight: bold;
+  font-size: 24pt
 }
 
 img {
@@ -32,8 +35,9 @@ img {
 }
 
 h1, h2 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
+  font-family: "PT Serif"
+  font-weight: lighter;
+
 }
 
 h2 {
