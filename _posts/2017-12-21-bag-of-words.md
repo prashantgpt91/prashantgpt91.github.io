@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Feature Extraction from text using Bag of Words
+title:      All you need to know about BOW
 date:       2017-12-21 02:01:57
 summary:   
 tags: nlp
