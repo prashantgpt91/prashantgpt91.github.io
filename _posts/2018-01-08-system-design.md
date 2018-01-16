@@ -1,10 +1,11 @@
 ---
 layout:     post
-title:      Software design
+title:      System design
 date:       2018-01-08 12:22:57
 summary:   
 tags: backend
 comments: true
+
 ---
 
 ### Table of contents
@@ -26,10 +27,11 @@ comments: true
 4. [Object oriented cheat-sheet](#id4)
 5. [References](#id5)
 
+<!--break-->
 
 ### Introduction <a name="id1"></a>
-Software Design is an art. And this is my consistent effort to improve myself with solid foundations of various principles.
-<!--break-->
+System Design is an art. And this is my consistent effort to improve myself with solid foundations of various principles.
+
 
 ### What is a CRC card ? <a name="sub1id1"></a>
 Class - Rresponsibility - Collaborators Cards
@@ -327,7 +329,6 @@ Create a UML class diagram to represent this information.
 
 #### References <a name="id9"></a>
 Ref: [IBM](https://www.ibm.com/developerworks/rational/library/content/RationalEdge/sep04/bell/index.html) | [barbarian](https://www.barbarianmeetscoding.com/blog/2010/12/02/introduction-to-principles-of-object-oriented-design/) | [Coursera](https://www.coursera.org/specializations/software-design-architecture)
-
 
 
 
