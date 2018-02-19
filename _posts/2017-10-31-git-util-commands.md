@@ -71,6 +71,15 @@ comments: true
  4. **Delete a branch remotely** 
  
          git push https://yyyy@bitbucket.org/yyyy/xxxxx.git --delete branch_name
+         
+ 5. **Push to a remote branch different from master**
+ 
+         git init
+         sudo git remote add BRANCH-NAME REPO_URL
+         git checkout -b BRANCH-NAME
+         git add .
+         git commit -m "COMMIT MSG"
+         git push http://git.cloudadic.com/stegosoc/threat-intel.git BRANCH-NAME:BRANCH-NAME
 
 
     
