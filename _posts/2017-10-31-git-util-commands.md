@@ -74,12 +74,9 @@ comments: true
          
  5. **Push to a remote branch different from master**
  
-         git init
-         sudo git remote add BRANCH-NAME REPO_URL
-         git checkout -b BRANCH-NAME
-         git add .
-         git commit -m "COMMIT MSG"
-         git push http://git.cloudadic.com/stegosoc/threat-intel.git BRANCH-NAME:BRANCH-NAME
+       <script src="https://gist.github.com/x0v/1f9f66661bac67de3cba179d10eb7fa9.js"></script>
+ 
+
 
 
     
