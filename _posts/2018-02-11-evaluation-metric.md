@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Evaluation metrics
+title:      Machine learning evaluation metrics
 date:       2018-02-11 12:34:57
 summary:   
 tags: tds
