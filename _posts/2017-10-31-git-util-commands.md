@@ -71,6 +71,12 @@ comments: true
  4. **Delete a branch remotely** 
  
          git push https://yyyy@bitbucket.org/yyyy/xxxxx.git --delete branch_name
+         
+ 5. **Push to a remote branch different from master**
+ 
+       <script src="https://gist.github.com/x0v/1f9f66661bac67de3cba179d10eb7fa9.js"></script>
+ 
+
 
 
     
