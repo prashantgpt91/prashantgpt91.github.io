@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Sentimental Analysis
-date:       2018-03-08 12:26:27
+date:       2018-03-14 12:26:27
 summary:   
 tags: nlp
 comments: true
@@ -89,6 +89,9 @@ Finally, if your looking for a list of the best additional dictionaries to exper
 
 
 Bag of Words Approach(BOW)
+What is Bag of words? [Read here](https://imprashant.com/blog/2017/12/bag-of-words/)
+
+Doing sentimental Analysis with BOW
 
 <script src="https://gist.github.com/x0v/e1e522ef6f3c7dd48c3c0a2b1fff2c42.js"></script>
 
