@@ -27,7 +27,9 @@ comments: true
             git push -u origin master
 
 <!--break-->
-2. **Use these commands to revert/delete your last (only one) commit** from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
+2. **Use these commands to revert/delete your last (only one) commit** 
+
+     from the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may          cause problems.
             
          git reset --hard HEAD~1
          git push --force
