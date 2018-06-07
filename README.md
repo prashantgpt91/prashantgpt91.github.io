@@ -1,7 +1,6 @@
-## Info
-> Demo @https://imprashant.com
+## Info (NOT MAINTAINED - NO LONGER UNDER ACTIVE DEVELOPMENT)
+> Demo >>>
 
-> This is my personal website. To know more about my work & interests, please visit [this](https://imprashant.com)
 
 ## Other dependencies
  - [Setting up HTTPS](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/)
