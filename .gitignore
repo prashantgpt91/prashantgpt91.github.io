@@ -2,3 +2,4 @@
 .bundle
 node_modules
 _site/*
+.jekyll-metadata

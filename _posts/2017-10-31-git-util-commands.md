@@ -68,11 +68,11 @@ comments: true
 
             med-app backend
             
- 4. **Delete a branch remotely** 
+4. **Delete a branch remotely** 
  
          git push https://yyyy@bitbucket.org/yyyy/xxxxx.git --delete branch_name
          
- 5. **Push to a remote branch different from master**
+5. **Push to a remote branch different from master**
  
          git init
          sudo git remote add BRANCH-NAME REPO_URL
@@ -82,7 +82,9 @@ comments: true
          git push REPO_URL BRANCH-NAME:BRANCH-NAME
          git pull BRANCH-NAME BRANCH-NAME
  
+6. **Change git username while pushing in git credentials**
 
+         git config credential.username x0v
 
 
     
