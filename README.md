@@ -1,5 +1,5 @@
-## Info (NOT MAINTAINED - NO LONGER UNDER ACTIVE DEVELOPMENT)
-> Demo >>> https://ankur7721.github.io/
+## Info
+> Demo >>> https://imprashant.com
 
 
 ## Other dependencies
