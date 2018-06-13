@@ -3,10 +3,12 @@ layout:     post
 title:      StegoSOC-AI sample results
 date:       2018-05-29 12:35:57
 summary:   
-tags: cv
+tags: pds
 comments: true
 ---
 
 Demostrating StegoSOC AI
+
+<!--break-->
 
 [Sample StegoSOC-AI results](https://drive.google.com/open?id=1NB9EIzL40y_ZgnJE_MBIXY37fdP6yA4c)
