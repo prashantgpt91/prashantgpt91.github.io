@@ -7,86 +7,47 @@ tags: backend
 comments: true
 ---
 
-
 1. **Ignore file/folder while commit**
 
    For a File
-   
-            git add -u
-            git reset -- main/dontcheckmein.txt
-            git add .
-            git commit -m "commit message"
-            git push -u origin master
-
-   For a folder
-    
-            git add -u
-            git reset -- main/*
-            git add .
-            git commit -m "commit message"
-            git push -u origin master
-
+   <script src="https://gist.github.com/x0v/c0cb3e6b482526a9ee63db1d1e29a4ac.js"></script>
+   For a folder 
+   <script src="https://gist.github.com/x0v/9201d7045132147f4c44053523a72963.js"></script>
 <!--break-->
 
-2. **Use these commands to revert/delete your last (only one) commit** 
+2. **Use these commands to delete your last (only one) commit**
 
-   From the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may          cause problems.
+   From the repo but keep in mind that if other contributors have pulled the code before you start reverting then it may cause problems.
             
-         git reset --hard HEAD~1
-         git push --force
+            git reset --hard HEAD~1
+            git push --force
 
    If you want to go back by more than one commit we can use
    
-         git reset --hard HEAD~2
-         git reset --hard HEAD~3
-         git reset --hard HEAD~4
+            git reset --hard HEAD~2
+            git reset --hard HEAD~3
+            git reset --hard HEAD~4
+
 
 3. **To print the last n logs/details of git**
 
-        `git log -n`
+            git log -n
         
     Examples
-
-         git log -1
-        
-            commit 8a72148741d8d18k40fbe8fd9e0b79d0812cd478
-            Author: Prashant Gupta <prashantgpt91@gmail.com>
-            Date:   Tue Oct 31 08:16:01 2017 +0000
-
-            README.md created online with Bitbucket
-        
-         git log -2
-        
-            commit 8a72148741d8d28d23g56fd9e0b79da0812cd478
-            Author: Prashant Gupta <prashantgpt91@gmail.com>
-            Date:   Tue Oct 31 08:16:01 2017 +0000
-
-            README.md created online with Bitbucket
-
-            commit 6252c3c600699f54616had91616ef59b08d06dc4
-            Author: Prashant Gupta <prashantgpt91@gmail.com>
-            Date:   Tue Oct 31 08:08:34 2017 +0000
-
-            med-app backend
+<script src="https://gist.github.com/x0v/f29d237d896967f0bc3ba5aeaf6f4959.js"></script>
             
 4. **Delete a branch remotely** 
  
-         git push https://yyyy@bitbucket.org/yyyy/xxxxx.git --delete branch_name
+   <script src="https://gist.github.com/x0v/b6a54541763d9bfc14fda395184a542c.js"></script>
          
 5. **Push to a remote branch different from master**
  
-         git init
-         sudo git remote add BRANCH-NAME REPO_URL
-         git checkout -b BRANCH-NAME
-         git add .
-         git commit -m "COMMIT MSG"
-         git push REPO_URL BRANCH-NAME:BRANCH-NAME
-         git pull BRANCH-NAME BRANCH-NAME
+   <script src="https://gist.github.com/x0v/dc44d0efaa6146c545e473119fc711fe.js"></script>
+
  
 6. **Change git username while pushing in git credentials**
 
-         git config credential.username x0v
-
+   <script src="https://gist.github.com/x0v/91a40299225ea3e9638196909a3ce583.js"></script>
 
     
         
