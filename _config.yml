@@ -1,6 +1,6 @@
 title: Prashant Gupta
 email: contact@imprashant.com
-description: "Data Scientist with Software Developer ethics"
+description: "Data Scientist with software developement ethics"
 baseurl: ""
 url: "https://imprashant.com"
 
@@ -17,7 +17,7 @@ exclude:
 paginate: 9
 paginate_path: "/page/:num/"
 
-googleAnalyticsId: UA-54012006-1  
+googleAnalyticsId: UA-120508304-1  
 
 gems:
   - jekyll-paginate
