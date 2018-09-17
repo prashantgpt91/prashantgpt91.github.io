@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Confusion Matrix...confusing ?
+title:      Confusion Matrix..confusing?
 categories: blog
 tags: theoritical data science
 ---
