@@ -1,40 +1,24 @@
-![Desk with desktop and laptop computers](https://raw.githubusercontent.com/eduardoboucas/eduardoboucas.github.io/master/assets/images/about.gif)
+## Info
+> Demo >>> https://imprashant.com
 
-# eduardoboucas.com
 
-This is the source code for [eduardoboucas.com](https://eduardoboucas.com). The site is fully static, powered by [Jekyll](http://jekyllrb.com/) and hosted on [GitHub Pages](https://pages.github.com/), served right from this repository.
+## Other dependencies
+ - [Setting up HTTPS](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/)
+ - [Setting up Instant Search](https://blog.webjeda.com/instant-jekyll-search/)
 
-## Installation
+## Credits
+I am no expert at frontend. 
+Credits: [Kushagra Gour](http://kushagragour.in/) | [Skills Charts](http://www.chartjs.org/) | [Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
 
-1. Clone the repository and enter its directory
-   
-   ```
-   git clone https://github.com/eduardoboucas/eduardoboucas.github.io.git eduardoboucas.com
-   cd eduardoboucas.com
-   ```
+Note: I've made some changes to Kushagra's work and will continue to do so.
 
-1. Install the dependencies
+## Meta
 
-  ```
-  npm start
-  ```
+**License**
 
-1. Run a server, generate the site and watch for changes
-   
-   ```
-   npm start
-   ```
+The blog is dedicated to the public domain. Use it as you please with no restrictions whatsoever.
 
-1. Navigate to [http://localhost:4100/](http://localhost:4100/).
+**Questions? Comments?**
 
-## Development
+Post them to the [Repository Issues](https://github.com/x0v/x0v.github.io/issues/new). Thanks!
 
-Sass is compiled to CSS natively by Jekyll. To build the JavaScript files, run:
-
-```
-gulp
-```
-
-## Old version
-
-The source code for the previous iteration of the site can be found in [this repository](https://github.com/eduardoboucas/v1).
