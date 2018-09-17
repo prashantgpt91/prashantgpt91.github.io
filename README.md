@@ -8,7 +8,7 @@
 
 ## Credits
 I am no expert at frontend. 
-Credits: [Kushagra Gour](http://kushagragour.in/) | [Skills Charts](http://www.chartjs.org/) | [Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
+Credits: [eb.](https://eduardoboucas.com/) | [Skills Charts](http://www.chartjs.org/) | [Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
 
 Note: I've made some changes to Kushagra's work and will continue to do so.
 
