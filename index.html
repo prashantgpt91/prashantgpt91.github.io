@@ -1,20 +1,47 @@
 ---
 layout: default
-title: Home
-name: home
-label: home
 ---
+{% assign posts = '' | split: '/' %}
+{% for post in site.posts %}
+  {% if post.queued == null %}
+    {% assign posts = posts | push: post %}
+  {% endif %}
+{% endfor %}
+{% assign totalPages = site.posts | size | minus: 1 | divided_by: 9 %}
+{% assign totalPagesRemainder = site.posts | size | minus: 1 | modulo: site.paginate %}
 
-<!-- <div class="space3d  main-page-cube">
-	<div class="_3dbox">
-		<div id="me" class="_3dface  _3dface--front">
-			<div></div>
-		</div>
-		<div class="_3dface  _3dface--bottom">
-			<a href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Flocalhost%3A4000%2F&region=follow_link&screen_name=chinchang457&tw_p=followbutton&variant=2.0" class="main-page-cube__twitter-link">
-				<img src="/images/twitter-logo.png" width="64" class="valign-middle">
-			</a>
-		</div>
-	</div>
-</div> -->
+{% if totalPagesRemainder > 0 %}
+  {% assign totalPages = totalPages | plus: 1 %}
+{% endif %}
+<main id="main" role="main" class="main constrain" data-paginator-current="{{ paginator.page }}" data-paginator-total="{{ totalPages }}">
+  {% assign postsPerPage = site.paginate %}
+  
+  {% if paginator.page == 1 %}
+    {% assign postsOffset = 0 %}
+    {% assign postsPerPage = postsPerPage | plus: 1 %}
+  {% else %}
+    {% assign postsOffset = paginator.page | minus: 1 | times: postsPerPage | plus: 1 %}
+  {% endif %}
 
+  {% for post in posts | offset: postsOffset | limit: postsPerPage %}
+    {% if forloop.first == true %}
+      {% if postsOffset == 0 %}
+        {% include partials/post-featured.html post=post %}
+      {% endif %}
+
+      <div class="js-posts">
+
+      {% if postsOffset != 0 %}
+        {% include partials/post-small.html post=post index=forloop.index page=paginator.page %}
+      {% endif %}
+    {% else %}
+      {% include partials/post-small.html post=post index=forloop.index page=paginator.page %}
+
+      {% if forloop.last == true %}
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</main>
+
+{% include partials/paginator.html paginator=paginator %}
