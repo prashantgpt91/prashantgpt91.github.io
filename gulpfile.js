@@ -1,14 +1,22 @@
-var gulp = require('gulp'),
-	minifyCSS = require('gulp-minify-css');
-	concat = require('gulp-concat');
+const gulp  = require('gulp')
+const concat = require('gulp-concat')
+const uglify = require('gulp-uglify')
 
-gulp.task('minify-css', function() {
-  gulp.src(['./css/style.css', './css/prism.css'])
-    .pipe(concat('./css/style.min.css'))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('./'))
-});
+gulp.task('scripts', function() {
+  const scriptsToMerge = [
+    './_src/jquery.unveil.js',
+    './_src/masonry.pkgd.js',
+    './_src/main.js'
+  ]
 
-gulp.task('default', function() {
-  // place code for your default task here
-});
+  return gulp.src(scriptsToMerge)
+    .pipe(concat('main.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./js/'))
+})
+
+gulp.task('watch', function() {
+  gulp.watch('./_src/**/*.js', ['scripts'])
+})
+
+gulp.task('default', ['scripts'])
