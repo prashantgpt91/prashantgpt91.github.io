@@ -2,6 +2,10 @@
 layout: about
 permalink: /about
 ---
-Born in the north of Portugal, I'm a software engineer with camp set up in London, England. I am a firm supporter of an open, free and independent world-wide web, and an advocate of open source software. I'm a Principal Engineer at [DADI](https://dadi.tech), making all-round awesome things with a strong focus on API-first back-end and front-end systems, and the principle of [COPE](https://dadi.tech/en/concepts/api-first-and-cope/). I also maintain a few [open-source projects](/projects).
+I'm Prashant Gupta, working as a <b>machine learning engineer</b> based out of Bengaluru, India.
+Having studied Engineering Mathematics, Probability, Statistics, Machine Learning, AI & Data Mining as subjects in my masters academic curriculum, had settled a solid foundation for me in the field of Data science. A good exposure in building backend services for <a href="https://www.stegosoc.com/">StegoSOC</a> <a href="https://www.ziwid.com/">Ziwid</a> <a href="https://receiptbot.herokuapp.com/">Receiptbot</a> along with deploying end to end ML models is what I have been doing for a while now.
 
-This site is fully static, running on [Jekyll](http://jekyllrb.com/) and hosted on GitHub Pages. Comments are powered by [Staticman](https://staticman.net). The source code is publicly available, so if you see something that's incorrect, please [submit a pull request](https://github.com/eduardoboucas/eduardoboucas.github.io/compare). *Obrigado!*<!--tomb-->
+Check out my projects <a href="/projects"> here</a>. 
+Feel free to reach out to me via <a href="mailto:contact@imprashant.com" target="_top">email.</a>
+
+This site is fully static, running on [Jekyll](http://jekyllrb.com/) and hosted on GitHub Pages. Comments are powered by [Staticman](https://staticman.net). The source code is publicly available, so if you see something that's incorrect, please [submit a pull request](https://github.com/x0v/x0v.github.io/compare). *Obrigado!*<!--tomb-->

@@ -1,5 +1,5 @@
 {
-  "name": "eduardoboucas.com",
+  "name": "imprashant.com",
   "version": "1.0.0",
   "description": "My personal website",
   "main": "index.js",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduardoboucas/eduardoboucas.github.io.git"
+    "url": "git+https://github.com/x0v/x0v.github.io.git"
   },
   "keywords": [
     "front-end",
     "css",
     "sass"
   ],
-  "author": "Eduardo Boucas <mail@eduardoboucas.com> (https://eduardoboucas.com/)",
+  "author": "Prashant Gupta <contact@imprashant.com> (https://imprashant.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eduardoboucas/eduardoboucas.github.io/issues"
+    "url": "https://github.com/x0v/x0v.github.io/issues"
   },
-  "homepage": "https://github.com/eduardoboucas/eduardoboucas.github.io#readme",
+  "homepage": "https://github.com/x0v/x0v.github.io#readme",
   "dependencies": {
     "include-media": "^1.4.1",
     "include-media-columns": "^1.1.0",
