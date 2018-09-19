@@ -2,15 +2,17 @@
 > Demo >>> https://imprashant.com
 
 
-## Other dependencies
- - [Setting up HTTPS](https://sheharyar.me/blog/free-ssl-for-github-pages-with-custom-domains/)
- - [Setting up Instant Search](https://blog.webjeda.com/instant-jekyll-search/)
-
 ## Credits
-I am no expert at frontend. 
-Credits: [eb.](https://eduardoboucas.com/) | [Skills Charts](http://www.chartjs.org/) | [Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
+I am a noob at frontend stuff. 
 
-Note: I've made some changes to Kushagra's work and will continue to do so.
+[Web Credits: Eduardo](https://github.com/eduardoboucas/eduardoboucas.com)
+[Skills Charts](http://www.chartjs.org/)
+[Vertical Timeline](https://codyhouse.co/demo/vertical-timeline/index.html)
+
+[favicon generator](https://www.favicon-generator.org/)
+
+[avatar generator](https://ui-avatars.com/api/?size=512&name=prashant+gupta&background=fffff5)
+
 
 ## Meta
 
