@@ -7,10 +7,7 @@ title: Projects
   {% for project in site.data.projects %}
     {% if project.featured == true %}
       <article class="post post--feature post--room">
-        <h1 class="post__title feature-title">{% include helpers/generate-feature-title.html title=project.title %}</h1>
-        <div class="post__hero">
-          <img class="js-lazyload" src="/assets/images/projects/{{ project.handle }}-placeholder.png" data-src="/assets/images/projects/{{ project.handle }}.png">
-        </div>
+        <h3 class="post__title feature-title">{% include helpers/generate-feature-title.html title=project.title %}</h3>
 
         <div class="post__body">{{ project.copy | markdownify }}</div>
         
