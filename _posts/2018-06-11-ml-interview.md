@@ -9,7 +9,7 @@ Here it goes
 
 
 1. [Deep learning Error Analysis (Bias variance, train/train-dev/dev/test)](https://docs.google.com/document/d/1ISYM3djT2jzfCPDXuwU1goFF_DNSinuWdh6spjc3Dd0/edit)
-<!--break-->
+<!--more-->
 
 2. [Why use softmax only in the output layer and not in hidden layers](https://stackoverflow.com/a/37601915/2058355)  [further explaination](https://stackoverflow.com/questions/44223902/why-is-softmax-not-used-in-hidden-layers)
 

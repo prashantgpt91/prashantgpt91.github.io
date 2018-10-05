@@ -10,7 +10,7 @@ tags: natural language processing
 
 Language modeling in very simple terms is the task of assigning a probability to sentences in a language. Besides assigning a probability to each sequence of words, the language models also assigns a probability for the likelihood of a given word (or a sequence of words) to follow a sequence of words.
 
-<!--break-->
+<!--more-->
 
 #### Why on earth would we want to assign a probability to a sentence ?
 

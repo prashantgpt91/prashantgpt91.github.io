@@ -24,7 +24,7 @@ tags: backend
 4. [Object oriented cheat-sheet](#id4)
 5. [References](#id5)
 
-<!--break-->
+<!--more-->
 
 ### Introduction <a name="id1"></a>
 System Design is an art. And this is my consistent effort to improve myself with solid foundations of various principles.

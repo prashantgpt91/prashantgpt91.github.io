@@ -14,7 +14,7 @@ The bag of words model ignores grammar and order of words.
 
 Breaking down the given sentences into words and assigning them each a unique ID
 
-<!--break-->
+<!--more-->
 
 `{‘all’: 0, ‘cat’: 1, ‘cats’: 2, ‘down’: 3, ‘furby’: 4, ‘in’: 5, ‘like’: 6, ‘looks’: 7, ‘my’: 8, ‘row’: 9, ‘she’: 10, ‘sits’: 11, ‘toy’: 12, ‘when’: 13 }`
 

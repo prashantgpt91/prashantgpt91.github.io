@@ -7,6 +7,6 @@ tags: practical data science
 
 Demonstrating OCR results
 
-<!--break-->
+<!--more-->
 
 [Sample OCR results](https://drive.google.com/open?id=1nnodewhuDYyT5FXw9Mjdy98XQyiNOlJZ)

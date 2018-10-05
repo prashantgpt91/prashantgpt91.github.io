@@ -7,7 +7,7 @@ tags: theoritical data science
 
 I Participated in Myntra Data Science Challenge. The challenge was about predicting the graphic type of T-shirt given the image of T-shirt. From Business point of view, Knowing that in e-commerce industry, there is a lot of dead-stock, this can be used to rotate products in Inventory thereby reducing loss to company and enhance customer experience as well by giving them enough options to choose from latest trendy T-shirts that people are wearing in Social Media.
 
-<!--break-->
+<!--more-->
 
 Here are the summary from the Webinar by Mr. Anoop from Myntra. Accidentally, I just saw webinar on 2nd April'18.
 

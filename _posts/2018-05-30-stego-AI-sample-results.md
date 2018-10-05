@@ -13,7 +13,7 @@ Real time threat detection is imperative with GDPR and other cyberlaws. Threat
 detection is always been an expensive solution to implement. It requires CSO and
 Security Analyst to implement the solution.
 
-<!--break-->
+<!--more-->
 
 StegoSOC brings down time to detect threats at 1/10th cost on public clouds with
 AI and cloud-native technologies.

@@ -10,7 +10,7 @@ I am really fascinated by the subject of this broad research topic. So, I decide
 #### What inspired me ?
 Dr. Fei Fei Li with her [TED talk](https://www.youtube.com/watch?v=40riCqvRoMs)
 
-<!--break-->
+<!--more-->
 
 
 ### Using a pretrained VGG16 model to recognise an object in an image. 

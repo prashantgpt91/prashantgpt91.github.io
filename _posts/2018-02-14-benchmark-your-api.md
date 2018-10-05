@@ -27,7 +27,7 @@ tags: backend
 ### Benchmarking right way - Introduction <a name="id1"></a>
 Benchmakring API should be majorly concerned with time, cpu & memory. One should also be concerned about the number of concurrent connections the API can handle in Prod env. This post will help you understand the mechanisms of network slowdowns.
 
-<!--break-->
+<!--more-->
 
 
 When troubleshooting network degradation or outage, we need to find ways to measure the network performance and determine when the network is slow and for what is the root cause (saturation, bandwidth outage, misconfiguration, network device defect, etc..). This could help maintain a flawless less service for your customers even in bad times.
@@ -128,7 +128,7 @@ Content of curl-format.txt is
 <script src="https://gist.github.com/x0v/f923e2eee0bf1496d33be33cc25ddbb0.js"></script>
 
 
-<!--break-->
+<!--more-->
 
 Sample output
 <script src="https://gist.github.com/x0v/45a7fb238c0bc4f6d4bbe9502e84251f.js"></script>

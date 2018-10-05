@@ -8,7 +8,7 @@ tags: theoritical Data science
 
 Machine Learning Algorithms in one glance.
 
-<!--break-->
+<!--more-->
 
 
 > ![mlalgo](/images/MachineLearningAlgorithms.png) 
