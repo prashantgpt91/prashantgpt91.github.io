@@ -11,7 +11,7 @@ On the Windows 10 PC
 
 If you're migtating from a MAC to a Windows 10 PC, follow these steps to create and then share a folder, and then find your PC's IP address:
 
-<!--break-->
+<!--more-->
 
 
 1. First, create and share a folder on your desktop. To do this, tollow these steps:

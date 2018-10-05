@@ -12,7 +12,7 @@ Sample sentence 1
 Sample Sentence 2
 <script src="https://gist.github.com/x0v/36fedf434781e93dfe21e3b3d31eb4d6.js"></script>
 
-<!--break-->
+<!--more-->
 
 Since these are really long, let’s instead gain some insight by looking at the Wordclouds formed by combining the positive and negative reviews:
 

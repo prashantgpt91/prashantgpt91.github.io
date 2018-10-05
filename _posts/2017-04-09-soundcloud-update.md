@@ -8,7 +8,7 @@ tags: singing music
 For me, It rolled out very tough, when it comes to singing with or without karaoke. I tried a mix of both in these three beautiful songs.
 
 My first experience of singing with a recording? Out of key, out of time...Still, here are they.
-<!--break-->
+<!--more-->
 
 <iframe width="75%" height="100" scrolling="yes" frameborder="yes" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/316818564&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 

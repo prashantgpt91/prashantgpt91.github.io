@@ -24,7 +24,7 @@ When a client connects to your server trying to reach your Flask app:
 
 3. Flask talks to the client happily
 
-<!--break-->
+<!--more-->
 
 ### But Why do we even need nginx and uWSGI in front of Flask?
 That is the question everyone should ask. Main reason is performance, of course. The Flasks built-in web server is a development server by Werkzeug which was not designed to be particularly efficient, stable, or secure.

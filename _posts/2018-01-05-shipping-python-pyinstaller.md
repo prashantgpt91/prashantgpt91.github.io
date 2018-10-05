@@ -11,7 +11,7 @@ You have done all your research, prototyped it, optimize it and now you are read
 1. Expose an API
 2. Package your code in a single executable
 
-<!--break-->
+<!--more-->
 
 To expose an API in some situations is not a feasible solution. Let's suppose the client wants on-premise deployment with no connection to outside world may be because it's too critical server for them. They don't want to take any chances by doing any external requests. We faced a similar usecase in our product StegoSOC - Cloud native security operations center.
 

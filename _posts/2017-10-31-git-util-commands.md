@@ -11,7 +11,7 @@ tags: backend
    <script src="https://gist.github.com/x0v/c0cb3e6b482526a9ee63db1d1e29a4ac.js"></script>
    For a folder 
    <script src="https://gist.github.com/x0v/9201d7045132147f4c44053523a72963.js"></script>
-<!--break-->
+<!--more-->
 
 2. **Use these commands to delete your last (only one) commit**
 

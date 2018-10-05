@@ -9,7 +9,7 @@ To monitor CPU Usage on any Linux distribution, use
 
 <script src="https://gist.github.com/x0v/1da78328ab5ad53ede03f9e8bdd78863.js"></script>
 
-<!--break-->
+<!--more-->
 
 Find by file name
 
