@@ -20,7 +20,9 @@ AI and cloud-native technologies.
 
 ![](https://cdn-images-1.medium.com/max/1440/1*mkyPvdMJEgMqDW1rN2npSg.png)
 
-**Some background**Security is of paramount significance for any organization
+**Some background**
+
+Security is of paramount significance for any organization
 having its production servers deployed in its own enterprise infrastructure or
 in the cloud. Due to unceasing evolution of software vulnerabilities,
 misconfigured devices in the network and software vulnerabilities already
