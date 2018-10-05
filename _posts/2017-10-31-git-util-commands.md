@@ -47,5 +47,9 @@ tags: backend
 
    <script src="https://gist.github.com/x0v/91a40299225ea3e9638196909a3ce583.js"></script>
 
+
+7. **Pushing to own branch from different user**
+
+   <script src="https://gist.github.com/x0v/7890cbf22f27a620fbd4e12c46960022.js"></script>
     
         
