@@ -1,11 +1,3 @@
-- handle: stego
-  featured: true
-  title:  Stegosoc AI powered SOC
-  copy: >
-    This is a product made by us at Cloudadic Inc, which basically helps mid-sized enterprises to seamlessly scale their security operations at very minimal cost. The deployment time is few seconds. It is based on coon & hound model where coon or agent sits on end user/client's one of the machines that needs to be monitored and keeps sending logs and other stats to Hound.
-  website: https://stegosoc.com
-  github: https://github.com/stegosoc/console-application
-
 - handle: ocr
   featured: true
   title: Receiptbot
@@ -13,6 +5,14 @@
     From the early days of my professional career, I was very much interested in vision for machines. This project was the building block for me to enter into the very same field. Our objective was to create an API that can process the reciepts. The complete pipeline was divided into three modules. Details will be added soon.
   website: https://receiptbot.herokuapp.com/
   github: https://bitbucket.org/prashantgpt91/receiptbot_min/src/master/
+
+- handle: stego
+  featured: true
+  title:  Stegosoc AI powered SOC
+  copy: >
+    This is a product made by us at Cloudadic Inc, which basically helps mid-sized enterprises to seamlessly scale their security operations at very minimal cost. The deployment time is few seconds. It is based on coon & hound model where coon or agent sits on end user/client's one of the machines that needs to be monitored and keeps sending logs and other stats to Hound.
+  website: https://stegosoc.com
+  github: https://github.com/stegosoc/console-application
 
 - handle: ziwid
   featured: true
@@ -54,7 +54,7 @@
     This project was done as my masters project under Prof. Joydip Dhar. it is an app where once you search for any video on youtube, you wouldn't be bombarded with frsutrating video results. Idea was to elminate duplicate and show clean results to user. This would ultimately lead to a better recommendation engine that runs behind billions of videos & will help channel owners gain more traffic, not sure about Youtube though.
   github: https://github.com/x0v/M.Tech-Project
 
- - handle: staticman
+- handle: staticman
   featured: true
   title: Twitter - Top Producers & Consumers
   copy: >
