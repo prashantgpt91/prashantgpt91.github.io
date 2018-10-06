@@ -30,9 +30,13 @@ title: Projects
         <article class="post post--small">
           <h4 class="post__title">{{ project.title }}</h4>
           <div class="post__body">{{ project.copy }}</div>
-                  <div class="post__hero">
+          
+          {% if project.image %}
+          <div class="post__hero">
           <img class="js-lazyload" src="/assets/images/projects/{{ project.handle }}-placeholder.png" data-src="/assets/images/projects/{{ project.handle }}.png">
         </div>
+        {% endif %}
+
 
           {% if project.website %}
             <a href="{{ project.website }}" class="cta post__cta">
@@ -45,6 +49,13 @@ title: Projects
               <span class="cta__inner">Code</span>
             </a>
           {% endif %}
+
+          {% if project.intro %}
+            <a href="{{ project.intro }}" class="cta post__cta">
+              <span class="cta__inner">Explain me</span>
+            </a>
+          {% endif %}
+
         </article>
       </div>    
     {% endif %}
