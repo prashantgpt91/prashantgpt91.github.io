@@ -1,6 +1,7 @@
 - handle: ocr
   featured: false
   title: Receiptbot
+  image: true
   copy: >
     From the early days of my professional career, I was very much interested in vision for machines. This project was the building block for me to enter into the very same field. Our objective was to create an API that can process the reciepts. The complete pipeline was divided into three modules. Details will be added soon.
   website: https://receiptbot.herokuapp.com/
@@ -9,16 +10,22 @@
 - handle: stego
   featured: false
   title:  Stegosoc | AI powered SOC
+  image: true
+  intro: https://medium.com/@prashantgpt91/secure-your-cloud-with-stegosoc-ai-driven-threat-detection-54e64b083964
   copy: >
-    This is a product made by us at Cloudadic Inc, which basically helps mid-sized enterprises to seamlessly scale their security operations at very minimal cost. The deployment time is few seconds. It is based on coon & hound model where coon or agent sits on end user/client's one of the machines that needs to be monitored and keeps sending logs and other stats to Hound.
+    This is a product made by us at Cloudadic Inc, which basically helps mid-sized enterprises to seamlessly scale their security operations at very minimal cost. The deployment time is few seconds. It is based on coon & hound model where coon or agent sits on end user/client's one of the machines that needs to be monitored and keeps sending logs and other stats to Hound. Stegosoc prevents from top OWSAP attacks in real time using Signature based detection.
+    It prevents from DDOS using Application anomaly detection. Earlier stage unknown/undetected attacks using Correlated anomaly detection. It takes into account common features of all types of logs. Both the anomalies helps is drilling down from plethora of logs to very few logs, thereby reducing detection time from days to minutes.
+    Application anomaly is designed separately.
+
   website: https://stegosoc.com
   github: https://github.com/stegosoc/console-application
 
 - handle: ziwid
   featured: false
-  title: Business domain classifier | Ziwid
+  title: Ziwid Prospector & Leads probablity
   copy: >
-    This was to categorise any given URL into some business category.
+    This project was part of Cloudadic's product named Ziwid, which was a sales prospecting tool positioned to fully unleash the promise of CRM with innovative CRM system designed for every individual who engages with customers: sellers, marketers, customer support agents, receptionists, and executives. 
+    First product was to categorise any given URL into some business category. While second task was to give the probability of a prospect converting into business.
   github: https://bitbucket.org/prashantgpt91/ziwid-ai/src/master/
 
 - handle: address-detection
@@ -36,7 +43,7 @@
   github: https://github.com/x0v/B.Tech-Project
 
 - handle: cmd
-  title: remote command execution
+  title: Remote command execution
   copy: >
     A playbook for stegosoc customers to directly control their VMs from stegosoc dashboard. 
   github: https://bitbucket.org/prashantgpt91/stegosoc-snippets/src/master/
