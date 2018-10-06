@@ -1,6 +1,6 @@
 - handle: stego
   featured: true
-  title:  Stegosoc | AI powered SOC
+  title:  Stegosoc AI powered SOC
   copy: >
     This is a product made by us at Cloudadic Inc, which basically helps mid-sized enterprises to seamlessly scale their security operations at very minimal cost. The deployment time is few seconds. It is based on coon & hound model where coon or agent sits on end user/client's one of the machines that needs to be monitored and keeps sending logs and other stats to Hound.
   website: https://stegosoc.com
