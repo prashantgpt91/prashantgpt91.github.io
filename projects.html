@@ -8,7 +8,9 @@ title: Projects
     {% if project.featured == true %}
       <article class="post post--feature post--room">
         <h4 class="post__title feature-title">{% include helpers/generate-feature-title.html title=project.title %}</h4>
-
+        <div class="post__hero">
+          <img class="js-lazyload" src="/assets/images/projects/{{ project.handle }}-placeholder.png" data-src="/assets/images/projects/{{ project.handle }}.png">
+        </div>
         <div class="post__body">{{ project.copy | markdownify }}</div>
         
         {% if project.website %}
