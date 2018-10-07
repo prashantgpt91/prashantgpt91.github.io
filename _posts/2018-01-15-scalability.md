@@ -23,7 +23,7 @@ that faults will be handled correctly when they occur naturally. The Netflix [Ch
 Monkey](https://github.com/Netflix/chaosmonkey) is an example of this approach.
 
 > One possbile architecture, just to display several components in one piece.
-![architecture](/images/architecture1.jpeg)
+![architecture](/assets/images/projects/architecture1.jpeg)
 
 ### Prime reasons for reliability to fail ?
 

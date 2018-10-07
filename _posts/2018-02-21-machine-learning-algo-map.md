@@ -11,6 +11,6 @@ Machine Learning Algorithms in one glance.
 <!--more-->
 
 
-> ![mlalgo](/images/MachineLearningAlgorithms.png) 
+> ![mlalgo](/assets/images/projects/MachineLearningAlgorithms.png) 
 
 Source: Jason @ML Mastery 

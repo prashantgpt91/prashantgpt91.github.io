@@ -287,23 +287,23 @@ the SOLID principles.
 
 
 Bidirectional association
-> ![uml1](/images/uml1.jpg)  
+> ![uml1](/assets/images/projects/uml1.jpg)  
 bi-directional association is indicated by a solid line between the two classes. At either end of the line, you place a role name and a multiplicity value. Figure 6 shows that the Flight is associated with a specific Plane, and the Flight class knows about this association. The Plane takes on the role of "assignedPlane" in this association because the role name next to the Plane class says so. The multiplicity value next to the Plane class of 0..1 means that when an instance of a Flight exists, it can either have one instance of a Plane associated with it or no Planes associated with it (i.e., maybe a plane has not yet been assigned). Figure 6 also shows that a Plane knows about its association with the Flight class. In this association, the Flight takes on the role of "assignedFlights"; the diagram in Figure 6 tells us that the Plane instance can be associated either with no flights (e.g., it's a brand new plane) or with up to an infinite number of flights (e.g., the plane has been in commission for the last five years).
 
 
 Unidirectional association
-> ![uml1](/images/uml2.jpg)  
+> ![uml1](/assets/images/projects/uml2.jpg)  
 A uni-directional association is drawn as a solid line with an open arrowhead (not the closed arrowhead, or triangle, used to indicate inheritance) pointing to the known class. Like standard associations, the uni-directional association includes a role name and a multiplicity value, but unlike the standard bi-directional association, the uni-directional association only contains the role name and multiplicity value for the known class. In our example in Figure 7, the OverdrawnAccountsReport knows about the BankAccount class, and the BankAccount class plays the role of "overdrawnAccounts." However, unlike a standard association, the BankAccount class has no idea that it is associated with the OverdrawnAccountsReport. [Note: It may seem strange that the BankAccount class does not know about the OverdrawnAccountsReport class. This modeling allows report classes to know about the business class they report, but the business classes do not know they are being reported on. This loosens the coupling of the objects and therefore makes the system more adaptive to changes.
 
 Representing Packages
-> ![uml1](/images/uml3.jpg)  
+> ![uml1](/assets/images/projects/uml3.jpg)  
 Inevitably, if you are modeling a large system or a large area of a business, there will be many different classifiers in your model. Managing all the classes can be a daunting task; therefore, UML provides an organizing element called a package. Packages enable modelers to organize the model's classifiers into namespaces, which is sort of like folders in a filing system. Dividing a system into multiple packages makes the system easier to understand, especially if each package represents a specific part of the system. [Note: Packages are great for organizing your model's classes, but it's important to remember that your class diagrams are supposed to easily communicate information about the system being modeled. In cases where your packages have lots of classes, it is better to use multiple topic-specific class diagrams instead of just producing one large class diagram.]
 
 There are two ways of drawing packages on diagrams. There is no rule for determining which notation to use, except to use your personal judgement regarding which is easiest to read for the class diagram you are drawing. Both ways begin with a large rectangle with a smaller rectangle (tab) above its upper left corner, as seen in Figure 8. But the modeler must decide how the package's membership is to be shown, as follows:
 
 If the modeler decides to show the package's members within the large rectangle, then all those members need to be placed within the rectangle. [Note: It's important to understand that when I say "all those members," I mean only the classes that the current diagram is going to show. A diagram showing a package with contents does not need to show all its contents; it can show a subset of the contained elements according to some criterion, which is not necessarily all the package's classifiers.] Also the package's name needs to be placed in the package's smaller rectangle.
 
-> ![uml1](/images/uml4.jpg)  
+> ![uml1](/assets/images/projects/uml4.jpg)  
 If the modeler decides to show the package's members outside the large rectangle then all the members that will be shown on the diagram need to be placed outside the rectangle. To show what classifiers belong to the package, a line is drawn from each classifier to a circle that has a plus sign inside the circle attached to the package.
 
 

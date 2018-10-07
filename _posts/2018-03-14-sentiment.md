@@ -24,25 +24,25 @@ Generate word cloud
 
  A wordcloud is a pretty common visualization in textual data, where word sizes are proportional to their occurences in the data. So, it is really handy to visualize, occurences of words keeping in mind their sentiments.
 
-| ![space-5.jpg](/images/313.png) | 
+| ![space-5.jpg](/assets/images/projects/313.png) | 
 |:--:| 
 | *Extremely Negative* |
 
-| ![space-1.jpg](/images/312.png) | 
+| ![space-1.jpg](/assets/images/projects/312.png) | 
 |:--:| 
 | *Negative* |
 
 
-| ![space-2.jpg](/images/314.png) | 
+| ![space-2.jpg](/assets/images/projects/314.png) | 
 |:--:| 
 | *Neutral* |
 
 
-| ![space-3.jpg](/images/315.png) | 
+| ![space-3.jpg](/assets/images/projects/315.png) | 
 |:--:| 
 | *Positive* |
 
-| ![space-4.jpg](/images/316.png) | 
+| ![space-4.jpg](/assets/images/projects/316.png) | 
 |:--:| 
 | *Extremely Positive* |
 
