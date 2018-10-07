@@ -38,7 +38,7 @@ as in the template below.
 
 When talking to stakeholders, CRC cards are the best way to discuss the requirements specifications without going into much technical details. The technical details could be covered in Class Diagrams, left further to discuss with developers.
 
-<iframe src="https://drive.google.com/file/d/1Ow0pvbQb0_35-TcvMqbtBgK5r6a7KJHp/preview" width="640" height="480"></iframe>
+<center><iframe src="https://drive.google.com/file/d/1Ow0pvbQb0_35-TcvMqbtBgK5r6a7KJHp/preview" width="640" height="480"></iframe></center>
 
 ### Major Goals of Software Design <a name="sub2id1"></a>
 
@@ -322,7 +322,7 @@ Create a UML class diagram to represent this information.
 
 ### Object oriented cheat-sheet <a name="id8"></a>
 
-<iframe src="https://drive.google.com/file/d/1yU74_FZBmuKXJuugFFMrKROek4DwpKSW/preview" width="640" height="480"></iframe>
+<center><iframe src="https://drive.google.com/file/d/1yU74_FZBmuKXJuugFFMrKROek4DwpKSW/preview" width="640" height="480"></iframe></center>
 
 #### References <a name="id9"></a>
 Ref: [IBM](https://www.ibm.com/developerworks/rational/library/content/RationalEdge/sep04/bell/index.html) | [barbarian](https://www.barbarianmeetscoding.com/blog/2010/12/02/introduction-to-principles-of-object-oriented-design/) | [Coursera](https://www.coursera.org/specializations/software-design-architecture)

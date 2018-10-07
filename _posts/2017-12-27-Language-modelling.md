@@ -63,7 +63,7 @@ This trigram language model is build on Second order markov process with variabl
 
 Check out complete lecture notes here.
 
-<iframe src="https://drive.google.com/file/d/1gQDlKnLRyGrJwlOq1eHx_v9IiGOlkfvC/preview" width="740" height="480"></iframe>
+<center><iframe src="https://drive.google.com/file/d/1gQDlKnLRyGrJwlOq1eHx_v9IiGOlkfvC/preview" width="740" height="480"></iframe></center>
 
 
 
