@@ -80,4 +80,6 @@ Sort by Size
 
         ls -lS --block-size=M
 
+Install existing kernel in jupyter notebook
 
+        ipython kernel install --name Yvision
