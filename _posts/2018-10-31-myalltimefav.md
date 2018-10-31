@@ -16,6 +16,7 @@ List particularly includes websites containing enough good materials about stati
 | StasticsbyJim  | [statisticsbyjim](http://statisticsbyjim.com/) |
 | Arxiv-Sanity | [Arxiv-Sanity](http://www.arxiv-sanity.com/) |
 | OpenAI | [OpenAI](https://blog.openai.com/) |
+| deepmind blog | [deepmind](https://deepmind.com/blog/) |
 
 I will keep adding more such websites. See you all. Cheers !!
  
