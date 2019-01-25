@@ -22,3 +22,5 @@ Read [this](https://github.com/binhnguyennus/awesome-scalability)
 Continuous Delivery
 <center><iframe src="https://drive.google.com/file/d/1tBt3XJOEZFcY5xqI10ErIJR0ofdimfzm/preview" width="640" height="480"></iframe></center>
 
+Designing distributed systems
+<center><iframe src="https://drive.google.com/file/d/1nmzyWZXFSQlFGOnZlAte5frHMbcAbKEW/preview" width="640" height="480"></iframe></center>
