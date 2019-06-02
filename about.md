@@ -8,4 +8,4 @@ Having studied Engineering Mathematics, Probability, Statistics, Machine Learnin
 Check out my projects <a href="/projects"> here</a>. 
 Feel free to reach out to me via <a href="mailto:contact@imprashant.com" target="_top">email.</a>
 
-This site is fully static, running on [Jekyll](http://jekyllrb.com/) and hosted on GitHub Pages. Comments are powered by [Staticman](https://staticman.net). The source code is publicly available, so if you see something that's incorrect, please [submit a pull request](https://github.com/x0v/x0v.github.io/compare). *Obrigado!*<!--tomb-->
+This site is fully static, running on [Jekyll](http://jekyllrb.com/) and hosted on GitHub Pages. Comments are powered by [Staticman](https://staticman.net). The source code is publicly available, so if you see something that's incorrect, please [submit a pull request](https://github.com/x0v/x0v.github.io/compare)<!--tomb-->
