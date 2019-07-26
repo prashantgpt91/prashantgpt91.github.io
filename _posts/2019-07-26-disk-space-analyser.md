@@ -5,6 +5,7 @@ categories: blog
 tags: backend
 ---
 
-https://dev.yorhel.nl/ncdu
+for linux: https://dev.yorhel.nl/ncdu
+for windows: https://www.fosshub.com/WinDirStat.html
 
 
