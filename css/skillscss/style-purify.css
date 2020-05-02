@@ -209,7 +209,7 @@ body.canvas-menu .nav-header {
 
 .top-navigation .nav>li>a {
   padding: 15px 20px;
-  color: #676a6c;
+  color: #000000;
 }
 
 .top-navigation .nav>li a:focus,.top-navigation .nav>li a:hover {
@@ -791,7 +791,7 @@ label.error {
 }
 
 .author-info {
-  color: #676a6c;
+  color: #000000;
   font-size: 11px;
   margin-top: 5px;
 }
@@ -1023,7 +1023,7 @@ body {
   font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #2f4050;
   font-size: 13px;
-  color: #676a6c;
+  color: #000000;
 }
 
 body,html {
@@ -1586,7 +1586,7 @@ ul.clear-list:first-child {
 }
 
 .file-name small {
-  color: #676a6c;
+  color: #000000;
 }
 
 .product-name,.vote-icon,.vote-title {
@@ -1654,13 +1654,13 @@ ul.clear-list:first-child {
 
 .project-title a {
   font-size: 14px;
-  color: #676a6c;
+  color: #000000;
   font-weight: 600;
 }
 
 .project-files li a {
   font-size: 11px;
-  color: #676a6c;
+  color: #000000;
   margin-left: 10px;
   line-height: 22px;
 }
@@ -1721,7 +1721,7 @@ ul.clear-list:first-child {
 .product-name {
   font-size: 16px;
   font-weight: 600;
-  color: #676a6c;
+  color: #000000;
   margin: 2px 0 5px;
 }
 
@@ -2161,7 +2161,7 @@ body.body-small .vote-icon {
 }
 
 body.landing-page {
-  color: #676a6c;
+  color: #000000;
   font-family: 'Open Sans', helvetica, arial, sans-serif;
   background-color: #fff;
 }
@@ -2171,7 +2171,7 @@ body.landing-page {
 }
 
 .landing-page p.text-color {
-  color: #676a6c;
+  color: #000000;
 }
 
 .landing-page a.navy-link {
@@ -2284,7 +2284,7 @@ body.landing-page {
 }
 
 .landing-page .navbar-scroll.navbar-default .nav li a {
-  color: #676a6c;
+  color: #000000;
 }
 
 .landing-page .navbar-scroll.navbar-default .nav li a:hover {
@@ -2620,7 +2620,7 @@ body.landing-page {
   }
 
   .landing-page .navbar-default .nav li a {
-    color: #676a6c;
+    color: #000000;
   }
 
   .landing-page .navbar-default .nav li a:hover {
