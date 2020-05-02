@@ -74,7 +74,7 @@ h5 {
 }
 
 .nav>li.active>a {
-    color: #fff
+    color: #164173
 }
 
 .navbar-default .nav>li>a:focus,
@@ -604,7 +604,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 
 .top-navigation .nav>li>a {
     padding: 15px 20px;
-    color: #676a6c
+    color: #000000
 }
 
 .top-navigation .nav>li a:focus,
@@ -1763,7 +1763,7 @@ table.dataTable thead .sorting_desc_disabled {
 .html5buttons a {
     border: 1px solid #e7eaec;
     background: #fff;
-    color: #676a6c;
+    color: #000000;
     box-shadow: none;
     padding: 6px 8px;
     font-size: 12px
@@ -2210,7 +2210,7 @@ div.dt-button-info {
 .ui-jqgrid-titlebar {
     height: 40px;
     line-height: 15px;
-    color: #676a6c;
+    color: #000000;
     background-color: #F9F9F9;
     text-shadow: 0 1px 0 rgba(255, 255, 255, .5)
 }
@@ -2266,7 +2266,7 @@ div.dt-button-info {
     border: 1px solid #DDD;
     line-height: 15px;
     font-weight: 700;
-    color: #676a6c;
+    color: #000000;
     text-shadow: 0 1px 0 rgba(255, 255, 255, .5)
 }
 
@@ -2802,7 +2802,7 @@ label.error {
 }
 
 .author-info {
-    color: #676a6c;
+    color: #000000;
     font-size: 11px;
     margin-top: 5px
 }
@@ -3622,7 +3622,7 @@ body.tour-open .animated {
 .sidebar-container ul.nav-tabs li.active a {
     border: none;
     background: #f9f9f9;
-    color: #676a6c;
+    color: #000000;
     font-weight: 700
 }
 
@@ -3695,7 +3695,7 @@ body.tour-open .animated {
 body {
     background-color: #ffffff;
     font-size: 13px;
-    color: #676a6c
+    color: #000000
 }
 
 body,
@@ -4028,7 +4028,7 @@ body.body-small .footer.fixed {
 .nav-tabs>li>a:focus,
 .nav-tabs>li>a:hover {
     background-color: #e6e6e6;
-    color: #676a6c
+    color: #000000
 }
 
 .ui-tab .tab-content {
@@ -4122,7 +4122,7 @@ img.circle-border {
 .icons-box .infont a i {
     font-size: 25px;
     display: block;
-    color: #676a6c
+    color: #000000
 }
 
 .icons-box .infont a {
@@ -5406,7 +5406,7 @@ ul.notes li div:hover {
 }
 
 .file-name small {
-    color: #676a6c
+    color: #000000
 }
 
 .corner {
@@ -5608,7 +5608,7 @@ dd.project-people {
 
 .project-title a {
     font-size: 14px;
-    color: #676a6c;
+    color: #000000;
     font-weight: 600
 }
 
@@ -5639,7 +5639,7 @@ dd.project-people {
 
 .project-files li a {
     font-size: 11px;
-    color: #676a6c;
+    color: #000000;
     margin-left: 10px;
     line-height: 22px
 }
@@ -5889,7 +5889,7 @@ table.issue-tracker tbody tr td {
 
 .issue-info a {
     font-weight: 600;
-    color: #676a6c
+    color: #000000
 }
 
 .team-members {
@@ -6036,7 +6036,7 @@ table.shoping-cart-table tr td:last-child {
 .product-name {
     font-size: 16px;
     font-weight: 600;
-    color: #676a6c;
+    color: #000000;
     margin: 2px 0 5px
 }
 
@@ -7299,7 +7299,7 @@ body.body-small .vote-icon {
 }
 
 body.landing-page {
-    color: #676a6c;
+    color: #000000;
     font-family: 'Open Sans', helvetica, arial, sans-serif;
     background-color: #fff
 }
@@ -7309,7 +7309,7 @@ body.landing-page {
 }
 
 .landing-page p.text-color {
-    color: #676a6c
+    color: #000000
 }
 
 .landing-page a.navy-link {
@@ -7429,7 +7429,7 @@ body.landing-page {
 }
 
 .landing-page .navbar-scroll.navbar-default .nav li a {
-    color: #676a6c
+    color: #000000
 }
 
 .landing-page .navbar-scroll.navbar-default .nav li a:hover {
@@ -7881,7 +7881,7 @@ body.landing-page {
         color: inherit
     }
     .landing-page .navbar-default .nav li a {
-        color: #676a6c
+        color: #000000
     }
     .landing-page .navbar-default .nav li a:hover {
         color: #3385FF
