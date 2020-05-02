@@ -1,8 +1,5 @@
 .feature-title {
-    display: inline-block;
-    font-family: $font-family-secondary;
-    font-size: 50px;
-    font-weight: $font-weight-bold;
+   display: block;
 }
 
 .feature-title__full {
@@ -17,15 +14,6 @@
 }
 
 .feature-title__part {
-	@include transition(opacity);
-	
-	display: inline-block;
-	white-space: nowrap;
-	text-transform: uppercase;
-	line-height: 0.78;
-	opacity: 0;
-    
-	@include media('<medium') {
-		display: none !important;
-	}
+   font-size: 75px !important;
+   text-align: center;
 }
