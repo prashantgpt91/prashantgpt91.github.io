@@ -1,11 +1,13 @@
 ---
 layout: post
-title:  Disk space analyser
+title:  Tools | Devops | Commands
 categories: blog
 tags: backend
 ---
 
-for linux: https://dev.yorhel.nl/ncdu
-for windows: https://www.fosshub.com/WinDirStat.html
+| Tool Name | Tool purpose | URL/Ref
+| ---------- | ---------- | ---------|
+| ncdu | Analysing Disk space usage | https://dev.yorhel.nl/ncdu
+|  |  | 
 
 
