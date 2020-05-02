@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  python code formatter
+title:  python code ethics
 categories: blog
 tags: code
 ---
