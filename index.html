@@ -26,7 +26,7 @@ layout: default
   {% for post in posts | offset: postsOffset | limit: postsPerPage %}
     {% if forloop.first == true %}
       {% if postsOffset == 0 %}
-        {% include partials/post-featured.html post=post %}
+        {% include partials/post-small.html post=post %}
       {% endif %}
 
       <div class="js-posts">
