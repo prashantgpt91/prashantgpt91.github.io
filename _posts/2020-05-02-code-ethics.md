@@ -3,6 +3,8 @@ layout: post
 title:  Code ethics
 categories: blog
 tags: code
+excerpt: Linting is the process of running a program that will analyse code for potential errors. As a developer, I would always want my code to use the same format everywhere (like tabs and spaces) use the best practices for good quality (like let/const rather than var)
+
 ---
 Linting is the process of running a program that will analyse code for potential errors.
 
