@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Linter vs Formatter
+title:  Code ethics
 categories: blog
 tags: code
 ---
