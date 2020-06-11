@@ -6,7 +6,8 @@ tags: misc
 ---
 Google-drive sharing URL
 
-`https://drive.google.com/file/d/1eh521MlEG582p3ztz3vGsrG7sYADuavq/view?usp=sharing`
+`https://drive.google.com/file/d/1eh521MlEG582p3ztz3vGsrG7sYADuavq
+ /view?usp=sharing`
 
 Just replace fileID from drive URL which is `1eh521MlEG582p3ztz3vGsrG7sYADuavq` and use below command
 
