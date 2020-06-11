@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  How to download files from google drive using wget
+title:  How to install conda env as notebook kernel
 categories: blog
 tags: misc
 ---
