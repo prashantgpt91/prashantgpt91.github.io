@@ -11,7 +11,7 @@ comments:
 
   # When allowedOrigins is defined, only requests sent from one of the domains
   # listed will be accepted.
-  allowedOrigins: ["localhost", "eduardoboucas.com"]
+  allowedOrigins: ["localhost", "imprashant.com"]
 
   # (*) REQUIRED
   #
@@ -39,7 +39,7 @@ comments:
   moderation: false
 
   # Name of the site. Used in notification emails.
-  name: "eduardoboucas.com"
+  name: "imprashant.com"
   
   notifications:
     enabled: true
@@ -65,5 +65,5 @@ comments:
 
   reCaptcha:
     enabled: true
-    siteKey: "6LddezEUAAAAAEgYhFlbg6YMrola0d5ZdhK6OyrA"
-    secret: "C/beoE4nGgpjfvj6yPT4/B+54tlnfxXiL/OynntFifQ2CFQDadkGXnBAzxk/LFa2Ta/KCUSSfmgpDrODqzgZ4euo+EGL1VL3jKcP6mstpyT39Z9mlzd4grO2COrdbjuIJ1R4dlmjL95532Os0qbw3KfYkj0tOzbxBahlOrCzC0o="
+    siteKey: "6LdQ8c0ZAAAAAANFwEhUSFJ4wAKphUNs_hZo8y0l"
+    secret: "6LdQ8c0ZAAAAAJahhK3xFLOAcQ4CZzyqb1poPAGn"
