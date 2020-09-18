@@ -24,4 +24,3 @@ tags: commands
 | [cmd](https://gist.github.com/prashantitis/eed9f37c15a2a1c250de1f7d74471b23#file-cmd4) | scp command utils |
 | `ls -ltr --block-size=M` | Sort by last modified |
 | `ls -lS --block-size=M` | Sort by size |
-| `ipython kernel install --name Yvision` | Install existing kernel in jupyter notebook |
