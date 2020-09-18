@@ -14,7 +14,7 @@ tags: commands
 | `sysctl -n machdep.cpu.brand_string` | Get processor info |
 | `ps aux \| awk '{print $6/1024 " MB\t\t" $11}'  \| sort -n` | To display RAM usage process-wise |
 | `kill -9 $(lsof -t -i:4000)`| Kill a process running on specific port |
-| `ps -aux | grep uwsgi` | Search a process by it's name |
+| `ps -aux \| grep uwsgi` | Search a process by it's name |
 | [cmd](https://gist.github.com/prashantitis/c9a2a082d6f67a4c5ce885a49d3b3f96#file-cmd3) | Kill all instances of a particular process, searching by it's name |
 | `screen -S api` | create a screen session with name api
 | `screen -X -S sessionID quit` |  kill a screen session |
