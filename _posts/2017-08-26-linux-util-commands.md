@@ -24,3 +24,5 @@ tags: commands
 | [cmd](https://gist.github.com/prashantitis/eed9f37c15a2a1c250de1f7d74471b23#file-cmd4) | scp command utils |
 | `ls -ltr --block-size=M` | Sort by last modified |
 | `ls -lS --block-size=M` | Sort by size |
+| `no space left on device` | Search in multiple log files |
+| `df -T file.txt` | find out partition name for file.txt |
