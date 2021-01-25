@@ -11,7 +11,7 @@ sYADuavq/view?usp=sharing`
 
 Just replace fileID from drive URL which is `1eh521MlEG582p3ztz3vGsrG7sYADuavq` and use below command
 
-<script src="https://gist.github.com/prashantitis/17f88f6b06354af8ccd644e37f48418b.js"></script>
+<script src="https://gist.github.com/prashantgpt91/17f88f6b06354af8ccd644e37f48418b.js"></script>
 
 
 
