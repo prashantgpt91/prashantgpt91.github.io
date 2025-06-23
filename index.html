@@ -1,47 +1,39 @@
----
-layout: default
----
-{% assign posts = '' | split: '/' %}
-{% for post in site.posts %}
-  {% if post.queued == null %}
-    {% assign posts = posts | push: post %}
-  {% endif %}
-{% endfor %}
-{% assign totalPages = site.posts | size | minus: 1 | divided_by: 9 %}
-{% assign totalPagesRemainder = site.posts | size | minus: 1 | modulo: site.paginate %}
 
-{% if totalPagesRemainder > 0 %}
-  {% assign totalPages = totalPages | plus: 1 %}
-{% endif %}
-<main id="main" role="main" class="main constrain" data-paginator-current="{{ paginator.page }}" data-paginator-total="{{ totalPages }}">
-  {% assign postsPerPage = site.paginate %}
-  
-  {% if paginator.page == 1 %}
-    {% assign postsOffset = 0 %}
-    {% assign postsPerPage = postsPerPage | plus: 1 %}
-  {% else %}
-    {% assign postsOffset = paginator.page | minus: 1 | times: postsPerPage | plus: 1 %}
-  {% endif %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prashant Gupta - Data Scientist & AI Engineer</title>
+    <meta name="description" content="Personal portfolio and blog of Prashant Gupta, a data scientist with 10+ years of experience in machine learning, AI, and data engineering." />
+    <meta name="author" content="Prashant Gupta" />
+    <meta name="keywords" content="data science, machine learning, AI, portfolio, blog, NLP, computer vision" />
 
-  {% for post in posts | offset: postsOffset | limit: postsPerPage %}
-    {% if forloop.first == true %}
-      {% if postsOffset == 0 %}
-        {% include partials/post-small.html post=post %}
-      {% endif %}
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://alexchen.github.io/" />
+    <meta property="og:title" content="Prashant Gupta - Data Scientist & AI Engineer" />
+    <meta property="og:description" content="Personal portfolio and blog of Prashant Gupta, a data scientist with 10+ years of experience in machine learning, AI, and data engineering." />
+    <meta property="og:image" content="https://alexchen.github.io/og-image.png" />
 
-      <div class="js-posts">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://alexchen.github.io/" />
+    <meta property="twitter:title" content="Prashant Gupta - Data Scientist & AI Engineer" />
+    <meta property="twitter:description" content="Personal portfolio and blog of Prashant Gupta, a data scientist with 10+ years of experience in machine learning, AI, and data engineering." />
+    <meta property="twitter:image" content="https://alexchen.github.io/og-image.png" />
 
-      {% if postsOffset != 0 %}
-        {% include partials/post-small.html post=post index=forloop.index page=paginator.page %}
-      {% endif %}
-    {% else %}
-      {% include partials/post-small.html post=post index=forloop.index page=paginator.page %}
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
 
-      {% if forloop.last == true %}
-        </div>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-</main>
-
-{% include partials/paginator.html paginator=paginator %}
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
