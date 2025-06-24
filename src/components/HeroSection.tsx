@@ -35,7 +35,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
       {/* Content container */}
       <div className="w-full max-w-4xl mx-auto px-4 animate-fade-in text-center">
         {/* Name and Role */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
           Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Prashant</span>
         </h1>
         
@@ -53,20 +53,20 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         </p>
         
         {/* Main action buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-lg mx-auto mb-12">
-          <Button size="lg" variant="default" className="w-full" asChild>
+        <div className="flex flex-col sm:grid sm:grid-cols-3 gap-3 sm:gap-4 max-w-xs sm:max-w-lg mx-auto mb-8 sm:mb-12">
+          <Button size="lg" variant="default" className="w-full px-3 py-2 h-auto" asChild>
             <a href="mailto:prashantgpt91@gmail.com" className="flex items-center justify-center gap-2">
               <Mail className="h-4 w-4" /> Contact
             </a>
           </Button>
           
-          <Button size="lg" variant="outline" className="w-full" asChild>
+          <Button size="lg" variant="outline" className="w-full px-3 py-2 h-auto" asChild>
             <a href="https://linkedin.com/in/prashantgpt91" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
           </Button>
           
-          <Button size="lg" variant="outline" className="w-full" asChild>
+          <Button size="lg" variant="outline" className="w-full px-3 py-2 h-auto" asChild>
             <a href="https://twitter.com/prashantgpt91" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
               <Twitter className="h-4 w-4" /> Twitter
             </a>

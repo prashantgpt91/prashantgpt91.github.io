@@ -159,7 +159,7 @@ const BlogPost = () => {
 
         {/* Article Footer */}
         <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-4">
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
@@ -174,12 +174,12 @@ const BlogPost = () => {
             <div className="flex items-center space-x-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="px-3 py-1 h-8">
                     <Share2 className="h-4 w-4 mr-2" />
-                    Share
+                    <span>Share</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
+                <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuItem onClick={() => handleShare('copy')}>
                     <ClipboardCopy className="h-4 w-4 mr-2" />
                     <span>Copy Link</span>

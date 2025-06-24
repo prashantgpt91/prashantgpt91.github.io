@@ -84,8 +84,8 @@ const Blog = () => {
             onClick={() => setShowMobileFilters(!showMobileFilters)}
             className="w-full flex justify-between items-center"
           >
-            <span>Filters</span>
-            {showMobileFilters ? <X className="h-4 w-4" /> : <Filter className="h-4 w-4" />}
+            <span>{showMobileFilters ? "Hide Filters" : "Show Filters"}</span>
+            {showMobileFilters ? <X className="h-4 w-4 ml-2" /> : <Filter className="h-4 w-4 ml-2" />}
           </Button>
         </div>
         
@@ -174,13 +174,13 @@ const Blog = () => {
                 </Button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
               {filteredPosts.map((post) => (
                 <Card key={post.id} className="group flex flex-col overflow-hidden rounded-lg border dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300">
-                  <CardContent className="flex-grow p-6">
-                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-slate-400 mb-2">
+                  <CardContent className="flex-grow p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 dark:text-slate-400 mb-2 gap-2">
                       <span>{post.date}</span>
-                      <Badge variant="secondary">{post.category}</Badge>
+                      <Badge variant="secondary" className="self-start sm:self-auto">{post.category}</Badge>
                     </div>
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       <Link to={`/blog/${post.slug}`} className="focus:outline-none">
@@ -189,12 +189,12 @@ const Blog = () => {
                       </Link>
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
                       {post.tags.map(tag => (
                         <Badge 
                           key={tag} 
                           variant="outline" 
-                          className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                          className="cursor-pointer text-xs sm:text-sm py-0.5 px-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();

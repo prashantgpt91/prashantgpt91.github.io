@@ -113,11 +113,8 @@ const Index = () => {
       {/* Footer */}
       <footer className="bg-gray-50 dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700 py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-          <p className="text-gray-600 dark:text-slate-400">
-            © 2024 Prashant Gupta. All rights reserved.
-          </p>
-          <p className="text-sm text-gray-500 dark:text-slate-500 mt-2">
-            Built with React, TypeScript, and Tailwind CSS
+          <p className="text-gray-600 dark:text-slate-400 flex items-center justify-center gap-2 cursor-pointer">
+            Built with <span className="text-red-500 animate-pulse">❤️</span>
           </p>
         </div>
       </footer>
