@@ -8,19 +8,30 @@
     // MIT License
     // https://github.com/rafgraph/spa-github-pages
     (function(l) {
-      if (l.search[1] === '/') {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+      // Extract the path from the 404.html URL (excluding the '/404.html' part)
+      var segmentCount = 0;
+      var location = window.location;
+      
+      // Store the URL the user was trying to access
+      var redirect = sessionStorage.getItem('redirect');
+      if (redirect === null) {
+        // Save the pathname excluding '/404.html'
+        var pathName = location.pathname.replace(/\/404.html$/, '');
+        var redirectPath = pathName + location.search + location.hash;
+        sessionStorage.setItem('redirect', redirectPath);
+        
+        // Redirect to the root with a special parameter
+        location.replace(
+          location.protocol + '//' + location.hostname + 
+          (location.port ? ':' + location.port : '') +
+          '/?redirect=' + encodeURIComponent(redirectPath)
         );
       }
-    }(window.location))
+    })(window.location)
   </script>
-  <meta http-equiv="refresh" content="0;URL='/'">
 </head>
 <body>
-  Redirecting to homepage...
+  <h1>Page Not Found</h1>
+  <p>Redirecting you to the homepage...</p>
 </body>
 </html>
