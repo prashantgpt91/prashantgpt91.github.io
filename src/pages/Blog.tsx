@@ -6,19 +6,37 @@ import { Input } from "@/components/ui/input";
 import { ArrowUp, Search, Filter, X } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { blogPostsList } from "@/data/blogData";
+
+
+import { getAllPosts } from "@/lib/posts";
+import { Post } from "@/data/blogData";
 
 const Blog = () => {
+  const [allPosts, setAllPosts] = useState<Post[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   const { toast } = useToast();
 
-  // Initialize theme from localStorage
   useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const posts = await getAllPosts();
+        setAllPosts(posts);
+      } catch (error) {
+        console.error("Failed to fetch posts:", error);
+        toast({ title: "Error", description: "Failed to load blog posts.", variant: "destructive" });
+      }
+      setIsLoading(false);
+    };
+
+    fetchPosts();
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -26,25 +44,27 @@ const Blog = () => {
       document.documentElement.classList.remove('dark');
     }
     
-    // Check for tag in URL params
     const params = new URLSearchParams(location.search);
     const tagParam = params.get('tag');
     if (tagParam) {
       setSelectedTag(tagParam);
     }
-  }, [location.search]);
+  }, [location.search, toast]);
 
-  const allTags = ["all", ...Array.from(new Set(blogPostsList.flatMap(post => post.tags)))];
-  const allCategories = ["all", ...Array.from(new Set(blogPostsList.map(post => post.category)))];
+  const allTags = ["all", ...Array.from(new Set(allPosts.flatMap(post => post.tags)))];
+  const allCategories = ["all", ...Array.from(new Set(allPosts.map(post => post.category)))];
 
-  const filteredPosts = blogPostsList.filter(post => {
+  useEffect(() => {
+    const filtered = allPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesTag = selectedTag === "all" || post.tags.includes(selectedTag);
     const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
     return matchesSearch && matchesTag && matchesCategory;
-  });
+    });
+    setFilteredPosts(filtered);
+  }, [searchTerm, selectedTag, selectedCategory, allPosts]);
 
   const handleBlogClick = (slug: string) => {
     navigate(`/blog/${slug}`);
@@ -154,67 +174,75 @@ const Blog = () => {
 
           {/* Blog Posts Grid */}
           <div className="md:col-span-3">
-            <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
-              Showing {filteredPosts.length} of {blogPostsList.length} posts
-            </p>
-            {filteredPosts.length === 0 ? (
-              <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-8 text-center">
-                <p className="text-gray-500 dark:text-slate-400">No posts found matching your filters.</p>
-                <Button 
-                  variant="link" 
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedTag('all');
-                    setSelectedCategory('all');
-                    navigate('/blog');
-                  }}
-                  className="mt-2"
-                >
-                  Clear filters
-                </Button>
+            {isLoading ? (
+              <div className="text-center py-12">
+                <p className="text-lg text-gray-500 dark:text-slate-400">Loading posts...</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-              {filteredPosts.map((post) => (
-                <Card key={post.id} className="group flex flex-col overflow-hidden rounded-lg border dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300">
-                  <CardContent className="flex-grow p-4 sm:p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 dark:text-slate-400 mb-2 gap-2">
-                      <span>{post.date}</span>
-                      <Badge variant="secondary" className="self-start sm:self-auto">{post.category}</Badge>
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      <Link to={`/blog/${post.slug}`} className="focus:outline-none">
-                        <span className="absolute inset-0" aria-hidden="true"></span>
-                        {post.title}
-                      </Link>
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
-                      {post.tags.map(tag => (
-                        <Badge 
-                          key={tag} 
-                          variant="outline" 
-                          className="cursor-pointer text-xs sm:text-sm py-0.5 px-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            setSelectedTag(tag);
-                            const params = new URLSearchParams(location.search);
-                            params.set('tag', tag);
-                            navigate({ search: params.toString() });
-                          }}
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                  <div className="bg-gray-50 dark:bg-slate-900 px-6 py-3 text-sm text-gray-500 dark:text-slate-400">
-                    <span>{post.readTime}</span>
+              <>
+                <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
+                  Showing {filteredPosts.length} of {allPosts.length} posts
+                </p>
+                {filteredPosts.length === 0 ? (
+                  <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-8 text-center">
+                    <p className="text-gray-500 dark:text-slate-400">No posts found matching your filters.</p>
+                    <Button 
+                      variant="link" 
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedTag('all');
+                        setSelectedCategory('all');
+                        navigate('/blog');
+                      }}
+                      className="mt-2"
+                    >
+                      Clear filters
+                    </Button>
                   </div>
-                </Card>
-              ))}
-            </div>
+                ) : (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
+                  {filteredPosts.map((post) => (
+                    <Card key={post.id} className="group flex flex-col overflow-hidden rounded-lg border dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300">
+                      <CardContent className="flex-grow p-4 sm:p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 dark:text-slate-400 mb-2 gap-2">
+                          <span>{post.date}</span>
+                          <Badge variant="secondary" className="self-start sm:self-auto">{post.category}</Badge>
+                        </div>
+                        <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <Link to={`/blog/${post.slug}`} className="focus:outline-none">
+                            <span className="absolute inset-0" aria-hidden="true"></span>
+                            {post.title}
+                          </Link>
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
+                          {post.tags.map(tag => (
+                            <Badge 
+                              key={tag} 
+                              variant="outline" 
+                              className="cursor-pointer text-xs sm:text-sm py-0.5 px-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                setSelectedTag(tag);
+                                const params = new URLSearchParams(location.search);
+                                params.set('tag', tag);
+                                navigate({ search: params.toString() });
+                              }}
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                      <div className="bg-gray-50 dark:bg-slate-900 px-6 py-3 text-sm text-gray-500 dark:text-slate-400">
+                        {post.readTime}
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+                )}
+              </>
             )}
           </div>
         </div>

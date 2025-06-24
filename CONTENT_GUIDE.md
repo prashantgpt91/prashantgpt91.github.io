@@ -1,4 +1,81 @@
-# Content Management Guide for prashant.sh
+# Content Management Guide
+
+This guide explains how to add new content (blog posts, projects, and papers) to the website. The content is managed through individual markdown files located in the `src/data` directory.
+
+## Overview
+
+- **Blog Posts**: Stored in `src/data/posts`
+- **Projects**: Stored in `src/data/projects`
+- **Papers**: Stored in `src/data/papers`
+
+Each piece of content is a separate `.md` file. The file's metadata (like title, date, tags) is defined in a YAML frontmatter block at the top of the file, and the main content follows below it.
+
+---
+
+## Adding a New Blog Post
+
+1.  **Create a new file:** Add a new `.md` file in the `src/data/posts/` directory. The filename should be a unique, URL-friendly slug (e.g., `my-new-post.md`).
+
+2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
+
+    ```yaml
+    ---
+    id: 10 # A unique number
+    slug: "my-new-post" # Matches the filename
+    title: "My New Blog Post Title"
+    excerpt: "A short, one-sentence summary of the post."
+    date: "YYYY-MM-DD"
+    tags: ["tag1", "tag2", "tag3"]
+    category: "tutorial" # e.g., research, tutorial, opinion
+    readTime: "5 min read"
+    author: "Your Name"
+    ---
+    ```
+
+3.  **Add content:** Below the frontmatter, write the blog post content using Markdown or HTML.
+
+---
+
+## Adding a New Project
+
+1.  **Create a new file:** Add a new `.md` file in the `src/data/projects/` directory.
+
+2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
+
+    ```yaml
+    ---
+    id: 7 # A unique number
+    title: "My Awesome Project"
+    description: "A detailed description of the project, its goals, and outcomes."
+    technologies: ["React", "TypeScript", "Node.js"]
+    businessImpact: "Explain the value or impact of the project."
+    role: "Technical Lead" # or "Individual Contributor"
+    category: "web-development" # e.g., machine-learning, data-engineering
+    ---
+    ```
+
+---
+
+## Adding a New Paper
+
+1.  **Create a new file:** Add a new `.md` file in the `src/data/papers/` directory.
+
+2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
+
+    ```yaml
+    ---
+    id: 7 # A unique number
+    title: "A Groundbreaking Paper Title"
+    authors: "Author One, Author Two, et al."
+    description: "A concise summary of the paper's abstract or key contributions."
+    year: "YYYY"
+    venue: "Conference or Journal Name (e.g., NIPS, CVPR)"
+    category: "nlp" # e.g., nlp, computer-vision, machine-learning
+    tags: ["Tag1", "Tag2"]
+    url: "https://link-to-paper.com"
+    ---
+    ```
+
 
 This guide explains how to add new blog posts, projects, and papers to your portfolio website.
 

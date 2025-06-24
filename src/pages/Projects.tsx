@@ -6,13 +6,28 @@ import { Input } from "@/components/ui/input";
 import { ArrowUp, Search, Briefcase, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { getAllProjects, Project } from "@/lib/projects";
+
 const Projects = () => {
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTech, setSelectedTech] = useState("all");
   const [selectedRole, setSelectedRole] = useState("all");
 
-  // Initialize theme from localStorage
   useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const projects = await getAllProjects();
+        setAllProjects(projects);
+      } catch (error) {
+        console.error("Failed to fetch projects:", error);
+      }
+      setIsLoading(false);
+    };
+
+    fetchProjects();
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -21,68 +36,10 @@ const Projects = () => {
     }
   }, []);
 
-  // Extended projects data
-  const projects = [
-    {
-      id: 1,
-      title: "Customer Churn Prediction System",
-      description: "End-to-end ML pipeline predicting customer churn with 94% accuracy using ensemble methods and feature engineering.",
-      technologies: ["Python", "Sklearn", "XGBoost", "Docker", "AWS"],
-      businessImpact: "Reduced customer churn by 23%, saving $2.4M annually",
-      role: "Technical Lead",
-      category: "machine-learning"
-    },
-    {
-      id: 2,
-      title: "Real-time Analytics Dashboard",
-      description: "Interactive dashboard processing 100K+ events/minute with real-time visualizations and anomaly detection.",
-      technologies: ["Python", "Kafka", "Elasticsearch", "React", "D3.js"],
-      businessImpact: "Improved decision-making speed by 60% for operations team",
-      role: "Individual Contributor",
-      category: "data-engineering"
-    },
-    {
-      id: 3,
-      title: "NLP Document Classification",
-      description: "Multi-label document classifier using BERT and transformer architectures for legal document processing.",
-      technologies: ["Python", "PyTorch", "Transformers", "BERT", "FastAPI"],
-      businessImpact: "Automated 80% of document processing, reducing manual effort by 15 hours/week",
-      role: "Technical Lead",
-      category: "nlp"
-    },
-    {
-      id: 4,
-      title: "Computer Vision Quality Control",
-      description: "Automated quality inspection system using deep learning for manufacturing defect detection.",
-      technologies: ["Python", "TensorFlow", "OpenCV", "Kubernetes", "GCP"],
-      businessImpact: "Reduced defect rate by 45% and inspection time by 70%",
-      role: "Technical Lead",
-      category: "computer-vision"
-    },
-    {
-      id: 5,
-      title: "Fraud Detection Platform",
-      description: "Real-time fraud detection system processing millions of transactions with sub-100ms latency.",
-      technologies: ["Python", "Apache Spark", "Redis", "PostgreSQL", "Docker"],
-      businessImpact: "Prevented $5.2M in fraudulent transactions with 98.5% accuracy",
-      role: "Individual Contributor",
-      category: "machine-learning"
-    },
-    {
-      id: 6,
-      title: "Recommendation Engine",
-      description: "Collaborative filtering and content-based recommendation system for e-commerce platform.",
-      technologies: ["Python", "Scikit-learn", "Apache Airflow", "MongoDB", "AWS"],
-      businessImpact: "Increased conversion rate by 35% and average order value by 28%",
-      role: "Technical Lead",
-      category: "machine-learning"
-    }
-  ];
-
-  const allTechnologies = ["all", ...Array.from(new Set(projects.flatMap(project => project.technologies)))];
+  const allTechnologies = ["all", ...Array.from(new Set(allProjects.flatMap(project => project.technologies)))];
   const allRoles = ["all", "Technical Lead", "Individual Contributor"];
 
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = allProjects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -94,6 +51,14 @@ const Projects = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+    if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
+        <p className="text-lg text-gray-500 dark:text-slate-400">Loading projects...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
@@ -154,8 +119,8 @@ const Projects = () => {
         </div>
 
         {/* Results count */}
-        <p className="text-sm text-gray-600 dark:text-slate-400 mb-6">
-          Showing {filteredProjects.length} of {projects.length} projects
+        <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
+          Showing {filteredProjects.length} of {allProjects.length} projects.
         </p>
 
         {/* Projects Grid */}

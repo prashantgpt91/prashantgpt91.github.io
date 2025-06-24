@@ -7,14 +7,29 @@ import { ArrowUp, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
+import { getAllPapers, Paper } from "@/lib/papers";
+
 const Papers = () => {
+  const [allPapers, setAllPapers] = useState<Paper[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedYear, setSelectedYear] = useState("all");
   const { toast } = useToast();
 
-  // Initialize theme from localStorage
   useEffect(() => {
+    const fetchPapers = async () => {
+      try {
+        const papers = await getAllPapers();
+        setAllPapers(papers);
+      } catch (error) {
+        console.error("Failed to fetch papers:", error);
+      }
+      setIsLoading(false);
+    };
+
+    fetchPapers();
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -23,80 +38,10 @@ const Papers = () => {
     }
   }, []);
 
-  // Extended papers data
-  const papers = [
-    {
-      id: 1,
-      title: "Attention Is All You Need",
-      authors: "Vaswani et al.",
-      description: "Revolutionary paper that introduced the Transformer architecture, fundamentally changing how we approach sequence modeling in NLP.",
-      year: "2017",
-      venue: "NIPS",
-      category: "nlp",
-      tags: ["NLP", "Deep Learning", "Transformers"],
-      url: "#"
-    },
-    {
-      id: 2,
-      title: "BERT: Pre-training Deep Bidirectional Representations",
-      authors: "Devlin et al.",
-      description: "Groundbreaking work on bidirectional training of Transformers that set new standards for NLP tasks.",
-      year: "2018",
-      venue: "NAACL",
-      category: "nlp",
-      tags: ["BERT", "Pre-training", "NLP"],
-      url: "#"
-    },
-    {
-      id: 3,
-      title: "ResNet: Deep Residual Learning for Image Recognition",
-      authors: "He et al.",
-      description: "Introduction of residual connections that enabled training of much deeper neural networks.",
-      year: "2016",
-      venue: "CVPR",
-      category: "computer-vision",
-      tags: ["Computer Vision", "ResNet", "Deep Learning"],
-      url: "#"
-    },
-    {
-      id: 4,
-      title: "Generative Adversarial Networks",
-      authors: "Goodfellow et al.",
-      description: "Original paper introducing GANs, a revolutionary approach to generative modeling.",
-      year: "2014",
-      venue: "NIPS",
-      category: "machine-learning",
-      tags: ["GANs", "Generative Models", "Deep Learning"],
-      url: "#"
-    },
-    {
-      id: 5,
-      title: "XGBoost: A Scalable Tree Boosting System",
-      authors: "Chen & Guestrin",
-      description: "Highly efficient and scalable gradient boosting framework that dominated ML competitions.",
-      year: "2016",
-      venue: "KDD",
-      category: "machine-learning",
-      tags: ["XGBoost", "Gradient Boosting", "Machine Learning"],
-      url: "#"
-    },
-    {
-      id: 6,
-      title: "Dropout: A Simple Way to Prevent Neural Networks from Overfitting",
-      authors: "Srivastava et al.",
-      description: "Simple yet effective regularization technique that became standard in deep learning.",
-      year: "2014",
-      venue: "JMLR",
-      category: "machine-learning",
-      tags: ["Dropout", "Regularization", "Deep Learning"],
-      url: "#"
-    }
-  ];
+  const allCategories = ["all", ...Array.from(new Set(allPapers.map(paper => paper.category)))];
+  const allYears = ["all", ...Array.from(new Set(allPapers.map(paper => paper.year))).sort().reverse()];
 
-  const allCategories = ["all", ...Array.from(new Set(papers.map(paper => paper.category)))];
-  const allYears = ["all", ...Array.from(new Set(papers.map(paper => paper.year))).sort().reverse()];
-
-  const filteredPapers = papers.filter(paper => {
+  const filteredPapers = allPapers.filter(paper => {
     const matchesSearch = paper.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          paper.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          paper.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -117,6 +62,14 @@ const Papers = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+    if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
+        <p className="text-lg text-gray-500 dark:text-slate-400">Loading papers...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
@@ -178,7 +131,7 @@ const Papers = () => {
 
         {/* Results count */}
         <p className="text-sm text-gray-600 dark:text-slate-400 mb-6">
-          Showing {filteredPapers.length} of {papers.length} papers
+          Showing {filteredPapers.length} of {allPapers.length} papers
         </p>
 
         {/* Papers Grid */}

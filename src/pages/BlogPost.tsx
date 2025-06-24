@@ -5,23 +5,44 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { ArrowLeft, Clock, Calendar, Share2, ClipboardCopy } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { blogPostsBySlug } from "@/data/blogData";
+import { getPostBySlug } from "@/lib/posts";
+import { Post } from "@/data/blogData";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Giscus } from "@/components/Giscus";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { toast } = useToast();
+  const [post, setPost] = useState<Post | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem('theme') === 'dark' || 
            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
   });
 
   useEffect(() => {
+    if (slug) {
+      const fetchPost = async () => {
+        try {
+          const fetchedPost = await getPostBySlug(slug);
+          if (fetchedPost) {
+            setPost(fetchedPost);
+          } else {
+            setPost(null);
+          }
+        } catch (error) {
+          console.error(`Failed to fetch post with slug "${slug}":`, error);
+          setPost(null);
+        }
+        setIsLoading(false);
+      };
+      fetchPost();
+    }
+
     document.documentElement.classList.toggle('dark', darkMode);
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-  }, [darkMode]);
-
-  const post = slug ? blogPostsBySlug[slug] : null;
+  }, [slug, darkMode]);
 
   const handleShare = (type: string) => {
     if (!slug) return;
@@ -46,15 +67,25 @@ const BlogPost = () => {
     window.location.href = `/blog?tag=${encodeURIComponent(tag)}`;
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-slate-950 flex items-center justify-center">
+        <p className="text-lg text-gray-500 dark:text-slate-400">Loading post...</p>
+      </div>
+    );
+  }
+
   if (!post) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
-          <Link to="/blog">
-            <Button>Back to Blog</Button>
-          </Link>
-        </div>
+      <div className="min-h-screen bg-white dark:bg-slate-950 flex flex-col items-center justify-center text-center px-4">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Post not found</h1>
+        <p className="text-lg text-gray-600 dark:text-slate-400 mb-8">Sorry, we couldn't find the blog post you're looking for.</p>
+        <Link to="/blog">
+          <Button variant="default">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Blog
+          </Button>
+        </Link>
       </div>
     );
   }
@@ -143,19 +174,11 @@ const BlogPost = () => {
         </header>
 
         {/* Article Content */}
-        <div 
-          className="prose prose-lg dark:prose-invert max-w-none
-                     prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-slate-100
-                     prose-p:text-gray-700 dark:prose-p:text-slate-300 prose-p:leading-relaxed
-                     prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-                     prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:bg-blue-50 dark:prose-blockquote:bg-slate-800/50
-                     prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:italic prose-blockquote:text-gray-800 dark:prose-blockquote:text-slate-200
-                     prose-ul:text-gray-700 dark:prose-ul:text-slate-300
-                     prose-ol:text-gray-700 dark:prose-ol:text-slate-300
-                     prose-li:mb-2
-                     prose-strong:text-gray-900 dark:prose-strong:text-slate-100"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <article className="prose prose-lg dark:prose-invert max-w-none mx-auto">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {post.content}
+          </ReactMarkdown>
+        </article>
 
         {/* Article Footer */}
         <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
