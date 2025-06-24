@@ -1,10 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Clock, Calendar, Share2, Bookmark } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ArrowLeft, Clock, Calendar, Share2, ClipboardCopy } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { blogPostsBySlug } from "@/data/blogData";
+import { Giscus } from "@/components/Giscus";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -19,159 +21,29 @@ const BlogPost = () => {
     localStorage.setItem('theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
-  // Sample blog post data - in a real app, this would come from an API
-  const blogPosts = {
-    "deep-learning-nlp-guide": {
-      title: "Deep Learning for Natural Language Processing: A Comprehensive Guide",
-      author: "Prashant Gupta",
-      date: "2024-03-15",
-      readTime: "8 min read",
-      tags: ["machine-learning", "nlp", "deep-learning"],
-      category: "research",
-      excerpt: "Exploring the latest advances in transformer architectures and their applications in real-world NLP tasks.",
-      content: `
-        <h2>Introduction to Modern NLP</h2>
-        <p>Natural Language Processing has undergone a revolutionary transformation in recent years, primarily driven by the advent of transformer architectures and large language models. This comprehensive guide explores the cutting-edge techniques that are reshaping how we approach language understanding and generation.</p>
-        
-        <h2>The Transformer Revolution</h2>
-        <p>The introduction of the Transformer architecture in 2017 marked a pivotal moment in NLP history. Unlike previous approaches that relied on recurrent neural networks, transformers leverage self-attention mechanisms to process sequences in parallel, dramatically improving both efficiency and performance.</p>
-        
-        <blockquote>
-          "Attention is all you need" - this simple yet profound statement has become the foundation of modern NLP.
-        </blockquote>
-        
-        <h2>Key Components of Transformer Architecture</h2>
-        <ul>
-          <li><strong>Self-Attention Mechanism:</strong> Allows the model to weigh the importance of different words in a sequence</li>
-          <li><strong>Positional Encoding:</strong> Provides sequence order information without recurrence</li>
-          <li><strong>Multi-Head Attention:</strong> Enables the model to focus on different aspects simultaneously</li>
-          <li><strong>Feed-Forward Networks:</strong> Process the attention outputs through non-linear transformations</li>
-        </ul>
-        
-        <h2>Practical Applications</h2>
-        <p>The impact of transformer-based models extends far beyond academic research. Here are some key applications:</p>
-        
-        <h3>1. Text Classification</h3>
-        <p>From sentiment analysis to document categorization, transformers have set new benchmarks across various classification tasks. The ability to understand context and nuance makes them particularly effective for complex classification problems.</p>
-        
-        <h3>2. Named Entity Recognition</h3>
-        <p>Identifying and classifying entities within text has become significantly more accurate with transformer models, enabling better information extraction from unstructured data.</p>
-        
-        <h3>3. Question Answering Systems</h3>
-        <p>Modern QA systems powered by transformers can understand context and provide accurate answers from large document collections, revolutionizing information retrieval.</p>
-        
-        <h2>Implementation Best Practices</h2>
-        <p>When implementing transformer-based NLP solutions in production environments, consider these key factors:</p>
-        
-        <ol>
-          <li><strong>Model Selection:</strong> Choose the right model size based on your computational constraints and accuracy requirements</li>
-          <li><strong>Fine-tuning Strategy:</strong> Develop an effective fine-tuning approach for your specific domain</li>
-          <li><strong>Data Preprocessing:</strong> Implement robust text preprocessing pipelines</li>
-          <li><strong>Evaluation Metrics:</strong> Use appropriate metrics that align with your business objectives</li>
-        </ol>
-        
-        <h2>Future Directions</h2>
-        <p>The field of NLP continues to evolve rapidly. Emerging trends include:</p>
-        
-        <ul>
-          <li>Multimodal models that combine text with other data types</li>
-          <li>More efficient architectures that reduce computational requirements</li>
-          <li>Better few-shot and zero-shot learning capabilities</li>
-          <li>Enhanced interpretability and explainability features</li>
-        </ul>
-        
-        <h2>Conclusion</h2>
-        <p>Deep learning has fundamentally transformed natural language processing, with transformer architectures leading the charge. As we continue to push the boundaries of what's possible, the potential applications seem limitless. The key to success lies in understanding these powerful tools and applying them thoughtfully to solve real-world problems.</p>
-        
-        <p>Whether you're building chatbots, content analysis systems, or language translation tools, the principles and techniques covered in this guide provide a solid foundation for your NLP journey.</p>
-      `
-    },
-    "scalable-data-pipelines-airflow": {
-      title: "Building Scalable Data Pipelines with Apache Airflow",
-      author: "Prashant Gupta",
-      date: "2024-03-10",
-      readTime: "12 min read",
-      tags: ["data-engineering", "python", "airflow"],
-      category: "tutorial",
-      excerpt: "Learn how to design and implement robust ETL pipelines that can handle millions of records efficiently.",
-      content: `
-        <h2>Introduction to Apache Airflow</h2>
-        <p>Apache Airflow has emerged as the de facto standard for orchestrating complex data workflows. This comprehensive guide will walk you through building scalable, maintainable data pipelines that can handle enterprise-level workloads.</p>
-        
-        <h2>Core Concepts</h2>
-        <p>Before diving into implementation details, let's understand the fundamental concepts that make Airflow powerful:</p>
-        
-        <ul>
-          <li><strong>DAGs (Directed Acyclic Graphs):</strong> The blueprint of your workflow</li>
-          <li><strong>Tasks:</strong> Individual units of work within a DAG</li>
-          <li><strong>Operators:</strong> Templates for common tasks</li>
-          <li><strong>Hooks:</strong> Interfaces to external systems</li>
-        </ul>
-        
-        <h2>Building Your First Pipeline</h2>
-        <p>Let's start with a practical example of an ETL pipeline that processes customer data:</p>
-        
-        <blockquote>
-          The key to successful data pipeline design is thinking about failure scenarios from the beginning.
-        </blockquote>
-        
-        <h2>Best Practices for Production</h2>
-        <p>When deploying Airflow in production environments, consider these critical factors:</p>
-        
-        <ol>
-          <li><strong>Resource Management:</strong> Properly configure worker resources and task concurrency</li>
-          <li><strong>Monitoring:</strong> Implement comprehensive logging and alerting</li>
-          <li><strong>Security:</strong> Secure your Airflow instance and manage credentials properly</li>
-          <li><strong>Testing:</strong> Develop robust testing strategies for your DAGs</li>
-        </ol>
-      `
-    },
-    "ml-model-interpretability": {
-      title: "Machine Learning Model Interpretability in Production",
-      author: "Prashant Gupta", 
-      date: "2024-03-05",
-      readTime: "10 min read",
-      tags: ["machine-learning", "explainable-ai", "production"],
-      category: "research",
-      excerpt: "Strategies for explaining black-box models and building trust with stakeholders in production environments.",
-      content: `
-        <h2>The Importance of Model Interpretability</h2>
-        <p>As machine learning models become more complex and are deployed in critical business applications, the need for interpretability has never been greater. This article explores practical strategies for making your models more explainable.</p>
-        
-        <h2>Types of Interpretability</h2>
-        <p>Understanding the different levels of interpretability helps in choosing the right approach:</p>
-        
-        <ul>
-          <li><strong>Global Interpretability:</strong> Understanding the model's overall behavior</li>
-          <li><strong>Local Interpretability:</strong> Explaining individual predictions</li>
-          <li><strong>Model-Agnostic Methods:</strong> Techniques that work with any model</li>
-          <li><strong>Model-Specific Methods:</strong> Interpretability built into the model architecture</li>
-        </ul>
-        
-        <h2>Practical Implementation</h2>
-        <p>When implementing interpretability in production systems, consider both technical and business requirements. The goal is to build trust while maintaining model performance.</p>
-        
-        <blockquote>
-          The best interpretable model is often not the most accurate one, but the one that stakeholders can trust and act upon.
-        </blockquote>
-      `
+  const post = slug ? blogPostsBySlug[slug] : null;
+
+  const handleShare = (type: string) => {
+    if (!slug) return;
+
+    const url = window.location.href;
+
+    if (type === 'copy') {
+      navigator.clipboard.writeText(url).then(() => {
+        toast({
+          title: "Link Copied",
+          description: "Blog post link has been copied to clipboard",
+        });
+      });
+    } else if (type === 'whatsapp') {
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`${post?.title} - ${url}`)}`;      
+      window.open(whatsappUrl, '_blank');
     }
   };
 
-  const post = slug ? blogPosts[slug as keyof typeof blogPosts] : null;
-
-  const handleShare = () => {
-    toast({
-      title: "Link Copied",
-      description: "Blog post link has been copied to clipboard",
-    });
-  };
-
-  const handleBookmark = () => {
-    toast({
-      title: "Bookmarked",
-      description: "Post has been added to your reading list",
-    });
+  const handleTagClick = (tag: string) => {
+    // Navigate to blog page with tag filter
+    window.location.href = `/blog?tag=${encodeURIComponent(tag)}`;
   };
 
   if (!post) {
@@ -200,12 +72,23 @@ const BlogPost = () => {
               </Button>
             </Link>
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" onClick={handleShare}>
-                <Share2 className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="sm" onClick={handleBookmark}>
-                <Bookmark className="h-4 w-4" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <Share2 className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => handleShare('copy')}>
+                    <ClipboardCopy className="h-4 w-4 mr-2" />
+                    <span>Copy Link</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleShare('whatsapp')}>
+                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 fill-current"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span>Share on WhatsApp</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
@@ -220,7 +103,12 @@ const BlogPost = () => {
               {post.category.charAt(0).toUpperCase() + post.category.slice(1)}
             </Badge>
             {post.tags.map((tag, index) => (
-              <Badge key={index} variant="secondary" className="text-xs">
+              <Badge 
+                key={index} 
+                variant="secondary" 
+                className="text-xs cursor-pointer hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
+                onClick={() => handleTagClick(tag)}
+              >
                 {tag}
               </Badge>
             ))}
@@ -284,17 +172,45 @@ const BlogPost = () => {
               </div>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm" onClick={handleShare}>
-                <Share2 className="h-4 w-4 mr-2" />
-                Share
-              </Button>
-              <Button variant="outline" size="sm" onClick={handleBookmark}>
-                <Bookmark className="h-4 w-4 mr-2" />
-                Bookmark
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Share
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => handleShare('copy')}>
+                    <ClipboardCopy className="h-4 w-4 mr-2" />
+                    <span>Copy Link</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleShare('whatsapp')}>
+                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 fill-current"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span>Share on WhatsApp</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </footer>
+        
+        {/* Comments Section with Giscus */}
+        <section className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
+          <h3 className="text-2xl font-bold mb-6">Comments & Reactions</h3>
+          <Giscus
+            repo="prashantgpt91/prashantgpt91.github.io"
+            repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
+            category="General"
+            categoryId="DIC_kwDOBTqyu84Cr7SZ"
+            mapping="pathname"
+            strict="0"
+            reactionsEnabled="1"
+            emitMetadata="1"
+            inputPosition="top"
+            theme={darkMode ? 'dark' : 'light'}
+            lang="en"
+          />
+        </section>
       </article>
     </div>
   );

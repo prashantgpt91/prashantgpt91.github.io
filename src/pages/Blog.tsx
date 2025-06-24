@@ -3,15 +3,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { ArrowUp, Search } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { ArrowUp, Search, Filter, X } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { blogPostsList } from "@/data/blogData";
 
 const Blog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("all");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
   // Initialize theme from localStorage
@@ -22,96 +25,19 @@ const Blog = () => {
     } else if (savedTheme === 'light') {
       document.documentElement.classList.remove('dark');
     }
-  }, []);
-
-  // Extended blog posts data
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Deep Learning for Natural Language Processing: A Comprehensive Guide",
-      excerpt: "Exploring the latest advances in transformer architectures and their applications in real-world NLP tasks.",
-      date: "2024-03-15",
-      tags: ["machine-learning", "nlp", "deep-learning"],
-      category: "research",
-      readTime: "8 min read",
-      slug: "deep-learning-nlp-guide"
-    },
-    {
-      id: 2,
-      title: "Building Scalable Data Pipelines with Apache Airflow",
-      excerpt: "Learn how to design and implement robust ETL pipelines that can handle millions of records efficiently.",
-      date: "2024-03-10",
-      tags: ["data-engineering", "python", "airflow"],
-      category: "tutorial",
-      readTime: "12 min read",
-      slug: "scalable-data-pipelines-airflow"
-    },
-    {
-      id: 3,
-      title: "Machine Learning Model Interpretability in Production",
-      excerpt: "Strategies for explaining black-box models and building trust with stakeholders in production environments.",
-      date: "2024-03-05",
-      tags: ["machine-learning", "explainable-ai", "production"],
-      category: "research",
-      readTime: "10 min read",
-      slug: "ml-model-interpretability"
-    },
-    {
-      id: 4,
-      title: "Getting Started with Computer Vision in Python",
-      excerpt: "A beginner-friendly introduction to computer vision concepts and practical implementations using OpenCV and TensorFlow.",
-      date: "2024-02-28",
-      tags: ["computer-vision", "python", "opencv", "tensorflow"],
-      category: "tutorial",
-      readTime: "15 min read",
-      slug: "computer-vision-python-intro"
-    },
-    {
-      id: 5,
-      title: "The Future of AI: Trends and Predictions for 2024",
-      excerpt: "Analyzing emerging trends in artificial intelligence and what they mean for businesses and developers.",
-      date: "2024-02-20",
-      tags: ["ai", "trends", "future", "business"],
-      category: "opinion",
-      readTime: "6 min read",
-      slug: "ai-trends-2024"
-    },
-    {
-      id: 6,
-      title: "Optimizing Deep Learning Models for Edge Deployment",
-      excerpt: "Techniques for model compression, quantization, and optimization for deployment on mobile and edge devices.",
-      date: "2024-02-15",
-      tags: ["deep-learning", "optimization", "edge-computing", "mobile"],
-      category: "tutorial",
-      readTime: "14 min read",
-      slug: "dl-models-edge-deployment"
-    },
-    {
-      id: 7,
-      title: "Data Quality: The Foundation of Successful ML Projects",
-      excerpt: "Why data quality matters more than algorithms and how to implement effective data validation strategies.",
-      date: "2024-02-10",
-      tags: ["data-quality", "machine-learning", "best-practices"],
-      category: "research",
-      readTime: "9 min read",
-      slug: "data-quality-ml-foundation"
-    },
-    {
-      id: 8,
-      title: "Building Real-time Recommendation Systems at Scale",
-      excerpt: "Architecture patterns and technologies for building recommendation systems that serve millions of users.",
-      date: "2024-02-05",
-      tags: ["recommendation-systems", "real-time", "scalability", "architecture"],
-      category: "tutorial",
-      readTime: "16 min read",
-      slug: "realtime-recommendation-systems"
+    
+    // Check for tag in URL params
+    const params = new URLSearchParams(location.search);
+    const tagParam = params.get('tag');
+    if (tagParam) {
+      setSelectedTag(tagParam);
     }
-  ];
+  }, [location.search]);
 
-  const allTags = ["all", ...Array.from(new Set(blogPosts.flatMap(post => post.tags)))];
-  const allCategories = ["all", ...Array.from(new Set(blogPosts.map(post => post.category)))];
+  const allTags = ["all", ...Array.from(new Set(blogPostsList.flatMap(post => post.tags)))];
+  const allCategories = ["all", ...Array.from(new Set(blogPostsList.map(post => post.category)))];
 
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = blogPostsList.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -129,113 +55,177 @@ const Blog = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100">
       {/* Header */}
-      <header className="border-b border-gray-200 dark:border-slate-700 py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Prashant Gupta
-              </Link>
-            </div>
+      <header className="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Prashant Gupta
+            </Link>
             <Link to="/">
               <Button variant="outline">Back to Home</Button>
             </Link>
           </div>
-          <h1 className="text-4xl font-bold mt-4 mb-2">All Blog Posts</h1>
-          <p className="text-lg text-gray-600 dark:text-slate-400">
-            Insights, tutorials, and thoughts on data science, AI, and machine learning
-          </p>
         </div>
       </header>
 
-      {/* Filters */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <Input
-              placeholder="Search blog posts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-          <select
-            value={selectedTag}
-            onChange={(e) => setSelectedTag(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800"
-          >
-            {allTags.map(tag => (
-              <option key={tag} value={tag}>
-                {tag === "all" ? "All Tags" : tag.replace("-", " ").replace(/\b\w/g, l => l.toUpperCase())}
-              </option>
-            ))}
-          </select>
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800"
-          >
-            {allCategories.map(category => (
-              <option key={category} value={category}>
-                {category === "all" ? "All Categories" : category.charAt(0).toUpperCase() + category.slice(1)}
-              </option>
-            ))}
-          </select>
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Blog Archive</h1>
+          <p className="mt-4 text-lg text-gray-600 dark:text-slate-400">Insights, tutorials, and thoughts on data science, AI, and machine learning.</p>
         </div>
 
-        {/* Results count */}
-        <p className="text-sm text-gray-600 dark:text-slate-400 mb-6">
-          Showing {filteredPosts.length} of {blogPosts.length} posts
-        </p>
-
-        {/* Blog Posts Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post) => (
-            <Card key={post.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer" onClick={() => handleBlogClick(post.slug)}>
-              <CardHeader>
-                <div className="flex items-center justify-between text-sm text-gray-600 dark:text-slate-400 mb-2">
-                  <span>{post.date}</span>
-                  <span>{post.readTime}</span>
-                </div>
-                <CardTitle className="text-xl group-hover:text-blue-600 transition-colors">
-                  {post.title}
-                </CardTitle>
-                <CardDescription>{post.excerpt}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {post.tags.map((tag, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <Badge variant="outline" className="text-xs">
-                  {post.category.charAt(0).toUpperCase() + post.category.slice(1)}
-                </Badge>
-              </CardContent>
-            </Card>
-          ))}
+        {/* Mobile filters toggle */}
+        <div className="md:hidden mb-4">
+          <Button 
+            variant="outline" 
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            className="w-full flex justify-between items-center"
+          >
+            <span>Filters</span>
+            {showMobileFilters ? <X className="h-4 w-4" /> : <Filter className="h-4 w-4" />}
+          </Button>
         </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Filters Sidebar */}
+          <aside className={`${showMobileFilters ? 'block' : 'hidden'} md:block md:col-span-1`}>
+            <div className="sticky top-24 bg-white dark:bg-slate-950 p-4 rounded-lg border border-gray-100 dark:border-slate-800 shadow-sm">
+              <h2 className="text-xl font-semibold mb-4">Filters</h2>
+              <div className="space-y-6">
+                <div>
+                  <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Search</label>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    <Input
+                      id="search"
+                      placeholder="Search posts..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="pl-10 w-full"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Category</label>
+                  <select
+                    id="category"
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-md bg-white dark:bg-slate-900 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {allCategories.map(category => (
+                      <option key={category} value={category}>
+                        {category === "all" ? "All Categories" : category.charAt(0).toUpperCase() + category.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="tag" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Tag</label>
+                  <select
+                    id="tag"
+                    value={selectedTag}
+                    onChange={(e) => {
+                      setSelectedTag(e.target.value);
+                      // Update URL when tag changes
+                      const params = new URLSearchParams(location.search);
+                      if (e.target.value === "all") {
+                        params.delete('tag');
+                      } else {
+                        params.set('tag', e.target.value);
+                      }
+                      navigate({ search: params.toString() });
+                    }}
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-md bg-white dark:bg-slate-900 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    {allTags.map(tag => (
+                      <option key={tag} value={tag}>
+                        {tag === "all" ? "All Tags" : tag.replace("-", " ").replace(/\b\w/g, l => l.toUpperCase())}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+          </aside>
 
-        {/* No results */}
-        {filteredPosts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-lg text-gray-600 dark:text-slate-400">No blog posts found matching your criteria.</p>
+          {/* Blog Posts Grid */}
+          <div className="md:col-span-3">
+            <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
+              Showing {filteredPosts.length} of {blogPostsList.length} posts
+            </p>
+            {filteredPosts.length === 0 ? (
+              <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-8 text-center">
+                <p className="text-gray-500 dark:text-slate-400">No posts found matching your filters.</p>
+                <Button 
+                  variant="link" 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedTag('all');
+                    setSelectedCategory('all');
+                    navigate('/blog');
+                  }}
+                  className="mt-2"
+                >
+                  Clear filters
+                </Button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              {filteredPosts.map((post) => (
+                <Card key={post.id} className="group flex flex-col overflow-hidden rounded-lg border dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300">
+                  <CardContent className="flex-grow p-6">
+                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-slate-400 mb-2">
+                      <span>{post.date}</span>
+                      <Badge variant="secondary">{post.category}</Badge>
+                    </div>
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <Link to={`/blog/${post.slug}`} className="focus:outline-none">
+                        <span className="absolute inset-0" aria-hidden="true"></span>
+                        {post.title}
+                      </Link>
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {post.tags.map(tag => (
+                        <Badge 
+                          key={tag} 
+                          variant="outline" 
+                          className="cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setSelectedTag(tag);
+                            const params = new URLSearchParams(location.search);
+                            params.set('tag', tag);
+                            navigate({ search: params.toString() });
+                          }}
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <div className="bg-gray-50 dark:bg-slate-900 px-6 py-3 text-sm text-gray-500 dark:text-slate-400">
+                    <span>{post.readTime}</span>
+                  </div>
+                </Card>
+              ))}
+            </div>
+            )}
           </div>
-        )}
-      </section>
+        </div>
+      </main>
 
       {/* Scroll to top button */}
       <Button
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 rounded-full p-3"
-        size="sm"
+        className="fixed bottom-8 right-8 rounded-full p-4 h-14 w-14 bg-blue-600 hover:bg-blue-700 shadow-lg transition-opacity duration-300"
       >
-        <ArrowUp className="h-4 w-4" />
+        <ArrowUp className="h-6 w-6" />
       </Button>
     </div>
   );
