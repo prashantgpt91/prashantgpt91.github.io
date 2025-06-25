@@ -1,261 +1,263 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Search, Filter, Clock, User, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { ArrowUp, Search, Filter, X } from "lucide-react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
-import { loadBlogPosts, getBlogTags, getBlogCategories } from "@/data/blogLoader";
-import { BlogPost } from "@/utils/markdownUtils";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
+import { Pagination, PageSizeSelector } from "@/components/Pagination";
+import { getPaginatedBlogPosts, getBlogCategories, getBlogTags } from "@/data/blogLoader";
+import { BlogPost } from "@/utils/markdownUtils";
+import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Blog = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("all");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [allTags, setAllTags] = useState<string[]>([]);
-  const [allCategories, setAllCategories] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const location = useLocation();
-  const { toast } = useToast();
+  
+  // State management
+  const [paginatedPosts, setPaginatedPosts] = useState<PaginationResult<Omit<BlogPost, 'content'>> | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  // URL-based state
+  const currentPage = parseInt(searchParams.get('page') || '1');
+  const pageSize = parseInt(searchParams.get('size') || PAGINATION_SIZES.MEDIUM.toString());
+  const selectedCategory = searchParams.get('category') || 'all';
+  const searchTerm = searchParams.get('search') || '';
+  const selectedTag = searchParams.get('tag') || '';
 
-  // Initialize filters from URL params
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const tagParam = params.get('tag');
-    if (tagParam) {
-      setSelectedTag(tagParam);
-    }
-  }, [location.search]);
-
-  // Load blog data
+  // Load initial data
   useEffect(() => {
     const loadData = async () => {
+      setLoading(true);
       try {
-        const [posts, tags, categories] = await Promise.all([
-          loadBlogPosts(),
-          getBlogTags(),
-          getBlogCategories()
+        const [postsResult, categoriesData, tagsData] = await Promise.all([
+          getPaginatedBlogPosts(currentPage, pageSize, selectedCategory, searchTerm || selectedTag),
+          getBlogCategories(),
+          getBlogTags()
         ]);
         
-        setBlogPosts(posts);
-        setAllTags(['all', ...tags]);
-        setAllCategories(['all', ...categories]);
+        setPaginatedPosts(postsResult);
+        setCategories(['all', ...categoriesData]);
+        setAllTags(tagsData);
       } catch (error) {
         console.error('Error loading blog data:', error);
-        toast({
-          title: "Error",
-          description: "Failed to load blog posts. Please try again.",
-          variant: "destructive",
-        });
       } finally {
         setLoading(false);
       }
     };
 
     loadData();
-  }, [toast]);
+  }, [currentPage, pageSize, selectedCategory, searchTerm, selectedTag]);
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesTag = selectedTag === "all" || post.tags.includes(selectedTag);
-    const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
-    return matchesSearch && matchesTag && matchesCategory;
-  });
-
-  const handleBlogClick = (slug: string) => {
-    navigate(`/blog/${slug}`);
+  // Update URL parameters
+  const updateSearchParams = (updates: Record<string, string | number>) => {
+    const newParams = new URLSearchParams(searchParams);
+    
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value === '' || value === 'all' || (key === 'page' && value === 1)) {
+        newParams.delete(key);
+      } else {
+        newParams.set(key, value.toString());
+      }
+    });
+    
+    setSearchParams(newParams);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleSearch = (value: string) => {
+    updateSearchParams({ search: value, tag: '', page: 1 });
+  };
+
+  const handleCategoryChange = (category: string) => {
+    updateSearchParams({ category, page: 1 });
+  };
+
+  const handleTagClick = (tag: string) => {
+    updateSearchParams({ tag, search: '', page: 1 });
+  };
+
+  const handlePageChange = (page: number) => {
+    updateSearchParams({ page });
+  };
+
+  const handlePageSizeChange = (size: number) => {
+    updateSearchParams({ size, page: 1 });
+  };
+
+  const handlePostClick = (slug: string, event: React.MouseEvent) => {
+    // Prevent navigation if clicking on a tag
+    if ((event.target as HTMLElement).closest('.tag-badge')) {
+      return;
+    }
+    navigate(`/blog/${slug}`);
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Loading blog posts...</h1>
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+      <div className="min-h-screen bg-white dark:bg-slate-950">
+        <Header />
+        <div className="flex items-center justify-center h-64">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-100">
-      {/* Header */}
+    <div className="min-h-screen bg-white dark:bg-slate-950">
       <Header />
       
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="container mx-auto px-4 py-8">
+        {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Blog Archive</h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-slate-400">Insights, tutorials, and thoughts on data science, AI, and machine learning.</p>
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Blog
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Insights, tutorials, and thoughts on software development, AI, and technology.
+          </p>
         </div>
 
-        {/* Mobile filters toggle */}
-        <div className="md:hidden mb-4">
-          <Button 
-            variant="outline" 
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-            className="w-full flex justify-between items-center"
-          >
-            <span>{showMobileFilters ? "Hide Filters" : "Show Filters"}</span>
-            {showMobileFilters ? <X className="h-4 w-4 ml-2" /> : <Filter className="h-4 w-4 ml-2" />}
-          </Button>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Filters Sidebar */}
-          <aside className={`${showMobileFilters ? 'block' : 'hidden'} md:block md:col-span-1`}>
-            <div className="sticky top-24 bg-white dark:bg-slate-950 p-4 rounded-lg border border-gray-100 dark:border-slate-800 shadow-sm">
-              <h2 className="text-xl font-semibold mb-4">Filters</h2>
-              <div className="space-y-6">
-                <div>
-                  <label htmlFor="search" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Search</label>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      id="search"
-                      placeholder="Search posts..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10 w-full"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Category</label>
-                  <select
-                    id="category"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-md bg-white dark:bg-slate-900 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {allCategories.map(category => (
-                      <option key={category} value={category}>
-                        {category === "all" ? "All Categories" : category.charAt(0).toUpperCase() + category.slice(1)}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="tag" className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">Tag</label>
-                  <select
-                    id="tag"
-                    value={selectedTag}
-                    onChange={(e) => {
-                      setSelectedTag(e.target.value);
-                      // Update URL when tag changes
-                      const params = new URLSearchParams(location.search);
-                      if (e.target.value === "all") {
-                        params.delete('tag');
-                      } else {
-                        params.set('tag', e.target.value);
-                      }
-                      navigate({ search: params.toString() });
-                    }}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-md bg-white dark:bg-slate-900 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    {allTags.map(tag => (
-                      <option key={tag} value={tag}>
-                        {tag === "all" ? "All Tags" : tag.replace("-", " ").replace(/\b\w/g, l => l.toUpperCase())}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          </aside>
+        {/* Search and Filters */}
+        <div className="mb-8 space-y-4">
+          {/* Search Bar */}
+          <div className="relative max-w-md mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <Input
+              placeholder="Search blog posts..."
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pl-10"
+            />
+          </div>
 
-          {/* Blog Posts Grid */}
-          <div className="md:col-span-3">
-            <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
-              Showing {filteredPosts.length} of {blogPosts.length} posts
-            </p>
-            {filteredPosts.length === 0 ? (
-              <div className="bg-gray-50 dark:bg-slate-900 rounded-lg p-8 text-center">
-                <p className="text-gray-500 dark:text-slate-400">No posts found matching your filters.</p>
-                <Button 
-                  variant="link" 
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedTag('all');
-                    setSelectedCategory('all');
-                    navigate('/blog');
-                  }}
-                  className="mt-2"
-                >
-                  Clear filters
-                </Button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-              {filteredPosts.map((post) => (
-                <Card 
-                  key={post.id} 
-                  className="group flex flex-col overflow-hidden rounded-lg border dark:border-slate-800 hover:border-blue-500 dark:hover:border-blue-500 transition-all duration-300 cursor-pointer"
-                  onClick={(e) => {
-                    // Don't navigate if clicking on a tag
-                    if (!(e.target as HTMLElement).closest('.tag-badge')) {
-                      navigate(`/blog/${post.slug}`);
-                    }
-                  }}
-                >
-                  <CardContent className="flex-grow p-4 sm:p-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 dark:text-slate-400 mb-2 gap-2">
-                      <span>{post.date}</span>
-                      <Badge variant="secondary" className="self-start sm:self-auto">{post.category}</Badge>
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                size="sm"
+                onClick={() => handleCategoryChange(category)}
+                className="capitalize"
+              >
+                <Filter className="h-3 w-3 mr-1" />
+                {category}
+              </Button>
+            ))}
+          </div>
+
+          {/* Page Size Selector */}
+          <div className="flex justify-center">
+            <PageSizeSelector
+              currentPageSize={pageSize}
+              pageSizeOptions={[PAGINATION_SIZES.SMALL, PAGINATION_SIZES.MEDIUM, PAGINATION_SIZES.LARGE]}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
+        </div>
+
+        {/* Results Info */}
+        {paginatedPosts && (
+          <div className="text-center mb-6 text-sm text-gray-600 dark:text-gray-400">
+            {searchTerm && `Search results for "${searchTerm}" • `}
+            {selectedTag && `Tagged with "${selectedTag}" • `}
+            {selectedCategory !== 'all' && `Category: ${selectedCategory} • `}
+            {paginatedPosts.totalItems} posts found
+          </div>
+        )}
+
+        {/* Blog Posts Grid */}
+        {paginatedPosts && paginatedPosts.items.length > 0 ? (
+          <div className="grid gap-6 md:gap-8 mb-12">
+            {paginatedPosts.items.map((post) => (
+              <article
+                key={post.id}
+                className="bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+                onClick={(e) => handlePostClick(post.slug, e)}
+              >
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      {new Date(post.date).toLocaleDateString()}
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-slate-400 mb-4 line-clamp-2">{post.excerpt}</p>
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
-                      {post.tags.map(tag => (
-                        <Badge 
-                          key={tag} 
-                          variant="outline" 
-                          className="tag-badge cursor-pointer text-xs sm:text-sm py-0.5 px-2 hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                    {post.author && (
+                      <div className="flex items-center gap-1">
+                        <User className="h-4 w-4" />
+                        {post.author}
+                      </div>
+                    )}
+                    {post.readTime && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {post.readTime}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    {post.title}
+                  </h2>
+                  
+                  {post.excerpt && (
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                  )}
+                  
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="tag-badge text-xs cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            setSelectedTag(tag);
-                            const params = new URLSearchParams(location.search);
-                            params.set('tag', tag);
-                            navigate({ search: params.toString() });
+                            handleTagClick(tag);
                           }}
                         >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-                  </CardContent>
-                  <div className="bg-gray-50 dark:bg-slate-900 px-6 py-3 text-sm text-gray-500 dark:text-slate-400">
-                    <span>{post.readTime}</span>
-                  </div>
-                </Card>
-              ))}
-            </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500 dark:text-gray-400 text-lg">
+              {searchTerm || selectedTag ? 'No posts found matching your criteria.' : 'No blog posts available.'}
+            </p>
+            {(searchTerm || selectedTag || selectedCategory !== 'all') && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchParams(new URLSearchParams());
+                }}
+                className="mt-4"
+              >
+                Clear filters
+              </Button>
             )}
           </div>
-        </div>
-      </main>
+        )}
 
-      {/* Scroll to top button */}
-      <Button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 rounded-full p-4 h-14 w-14 bg-blue-600 hover:bg-blue-700 shadow-lg transition-opacity duration-300"
-      >
-        <ArrowUp className="h-6 w-6" />
-      </Button>
+        {/* Pagination */}
+        {paginatedPosts && paginatedPosts.totalPages > 1 && (
+          <Pagination
+            pagination={paginatedPosts}
+            onPageChange={handlePageChange}
+            className="mt-8"
+          />
+        )}
+      </div>
     </div>
   );
 };

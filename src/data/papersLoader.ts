@@ -1,10 +1,17 @@
-import { Paper, parseMarkdown, sortByYear } from '@/utils/markdownUtils';
+import { Paper, parseMarkdown, sortByDate } from '@/utils/markdownUtils';
+import { paginateArray, PaginationResult, PAGINATION_SIZES } from '@/utils/paginationUtils';
 
 // Automatically import all markdown files from the papers directory - using eager loading
 const markdownModules = import.meta.glob('./papers/*.md', { query: '?raw', import: 'default', eager: true });
 
-// Load all papers
+// Cache for performance
+let cachedPapers: Paper[] | null = null;
+let cachedSummaries: Omit<Paper, 'content'>[] | null = null;
+
+// Load all papers (with content) - used only for individual paper pages
 export async function loadPapers(): Promise<Paper[]> {
+  if (cachedPapers) return cachedPapers;
+  
   const papers: Paper[] = [];
   
   Object.entries(markdownModules).forEach(([path, content]) => {
@@ -18,7 +25,66 @@ export async function loadPapers(): Promise<Paper[]> {
     }
   });
   
-  return sortByYear(papers);
+  cachedPapers = papers.sort((a, b) => b.year - a.year);
+  return cachedPapers;
+}
+
+// Load only metadata for listing pages (performance optimization)
+export async function loadPaperSummaries(): Promise<Omit<Paper, 'content'>[]> {
+  if (cachedSummaries) return cachedSummaries;
+  
+  const summaries: Omit<Paper, 'content'>[] = [];
+  
+  Object.entries(markdownModules).forEach(([path, content]) => {
+    try {
+      const filename = (path as string).replace('./papers/', '').replace('.md', '');
+      const paper = parseMarkdown<Paper>(content as string, filename);
+      
+      // Remove content for better performance on listing pages
+      const { content: _, ...summary } = paper;
+      summaries.push(summary);
+    } catch (error) {
+      console.error(`Error loading paper summary ${path}:`, error);
+    }
+  });
+  
+  cachedSummaries = (summaries as Paper[]).sort((a, b) => b.year - a.year)
+    .map(({ content, ...summary }) => summary);
+  return cachedSummaries;
+}
+
+// Paginated papers for listing pages
+export async function getPaginatedPapers(
+  page: number = 1,
+  itemsPerPage: number = PAGINATION_SIZES.SMALL,
+  category?: string,
+  status?: string,
+  searchTerm?: string
+): Promise<PaginationResult<Omit<Paper, 'content'>>> {
+  let papers = await loadPaperSummaries();
+  
+  // Filter by category if provided
+  if (category && category !== 'all') {
+    papers = papers.filter(paper => paper.category?.toLowerCase() === category.toLowerCase());
+  }
+  
+  // Filter by status if provided (published/draft/under-review)
+  if (status && status !== 'all') {
+    papers = papers.filter(paper => paper.status?.toLowerCase() === status.toLowerCase());
+  }
+  
+  // Filter by search term if provided
+  if (searchTerm) {
+    const term = searchTerm.toLowerCase();
+    papers = papers.filter(paper => 
+      paper.title.toLowerCase().includes(term) ||
+      paper.abstract?.toLowerCase().includes(term) ||
+      paper.keywords?.some(keyword => keyword.toLowerCase().includes(term)) ||
+      paper.journal?.toLowerCase().includes(term)
+    );
+  }
+  
+  return paginateArray(papers, page, itemsPerPage);
 }
 
 // Get a single paper by slug

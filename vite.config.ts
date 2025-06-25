@@ -11,9 +11,21 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     rollupOptions: {
       output: {
-        manualChunks: undefined
+        // Industry standard chunk splitting strategy
+        manualChunks: {
+          // Vendor chunk - all node_modules dependencies
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          // UI library chunk - separate heavy UI libraries
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tooltip', 'lucide-react'],
+          // Content processing chunk - markdown and related libraries
+          content: ['gray-matter', 'marked', 'prismjs'],
+          // Utils chunk - smaller utilities
+          utils: ['clsx', 'tailwind-merge', 'date-fns']
+        }
       }
-    }
+    },
+    // Increase chunk size warning limit (current default is 500kb)
+    chunkSizeWarningLimit: 1000
   },
   server: {
     host: "::",
