@@ -1,4 +1,4 @@
-import{p as s}from"./markdownUtils-dis8iGUx.js";const c=`---
+import{p as y,P as v,a as m}from"./markdownUtils-DCLgD1VY.js";const _=`---
 title: "Efficient Attention Mechanisms for Large-Scale Language Models"
 authors: ["Prashant Gupta", "Dr. Sarah Chen", "Prof. Michael Rodriguez"]
 journal: "International Conference on Machine Learning (ICML)"
@@ -306,7 +306,7 @@ We thank the anonymous reviewers for their valuable feedback. This work was supp
 *Corresponding author: Prashant Gupta (prashant@university.edu)*
 
 **Citation**: Gupta, P., Chen, S., & Rodriguez, M. (2024). Efficient Attention Mechanisms for Large-Scale Language Models. *International Conference on Machine Learning*, 41, 1247-1262.
-`,l=`---
+`,b=`---
 title: "Neural Architecture Search for Efficient Deep Learning Models"
 authors: ["Prashant GPT", "Dr. Sarah Chen", "Dr. Michael Zhang"]
 journal: "International Conference on Machine Learning (ICML)"
@@ -670,4 +670,4 @@ The discovered architectures achieve 97.61% accuracy on CIFAR-10 and 78.3% on Im
 [10] Wu, B., Dai, X., Zhang, P., Wang, Y., Sun, F., Wu, Y., ... & Vajda, P. (2019). FBNet: Hardware-aware efficient ConvNet design via differentiable neural architecture search. *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition*, 10734-10742.
 
 [11] Howard, A., Sandler, M., Chu, G., Chen, L. C., Chen, B., Tan, M., ... & Adam, H. (2019). Searching for mobilenetv3. *Proceedings of the IEEE/CVF International Conference on Computer Vision*, 1314-1324.
-`,p=Object.assign({"./papers/efficient-attention-mechanisms.md":c,"./papers/neural-architecture-search.md":l});let a=null;async function r(){if(a)return a;const t=[];return Object.entries(p).forEach(([e,n])=>{try{const i=e.replace("./papers/","").replace(".md",""),o=s(n,i);t.push(o)}catch(i){console.error(`Error loading paper ${e}:`,i)}}),a=t.sort((e,n)=>n.year-e.year),a}async function d(t){return(await r()).find(n=>n.slug===t)||null}async function h(){const t=await r(),e=new Set;return t.forEach(n=>{e.add(n.category)}),Array.from(e).sort()}export{d as a,h as g,r as l};
+`,h=Object.assign({"./papers/efficient-attention-mechanisms.md":_,"./papers/neural-architecture-search.md":b});let c=null,l=null;async function f(){if(c)return c;const t=[];return Object.entries(h).forEach(([n,e])=>{try{const a=n.replace("./papers/","").replace(".md",""),s=m(e,a);t.push(s)}catch(a){console.error(`Error loading paper ${n}:`,a)}}),c=t.sort((n,e)=>e.year-n.year),c}async function w(){if(l)return l;const t=[];return Object.entries(h).forEach(([n,e])=>{try{const a=n.replace("./papers/","").replace(".md",""),s=m(e,a),{content:o,...i}=s;t.push(i)}catch(a){console.error(`Error loading paper summary ${n}:`,a)}}),l=t.sort((n,e)=>e.year-n.year).map(({content:n,...e})=>e),l}async function S(t=1,n=v.SMALL,e,a,s){let o=await w();if(e&&e!=="all"&&(o=o.filter(i=>{var r;return((r=i.category)==null?void 0:r.toLowerCase())===e.toLowerCase()})),a&&a!=="all"&&(o=o.filter(i=>{var r;return((r=i.status)==null?void 0:r.toLowerCase())===a.toLowerCase()})),s){const i=s.toLowerCase();o=o.filter(r=>{var p,u,d;return r.title.toLowerCase().includes(i)||((p=r.abstract)==null?void 0:p.toLowerCase().includes(i))||((u=r.keywords)==null?void 0:u.some(g=>g.toLowerCase().includes(i)))||((d=r.journal)==null?void 0:d.toLowerCase().includes(i))})}return y(o,t,n)}async function x(t){return(await f()).find(e=>e.slug===t)||null}async function L(){const t=await f(),n=new Set;return t.forEach(e=>{n.add(e.category)}),Array.from(n).sort()}export{L as a,x as b,S as g};

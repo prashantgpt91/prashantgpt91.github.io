@@ -1,4 +1,4 @@
-import{p as m,s as u}from"./markdownUtils-dis8iGUx.js";function f(t,e=1,n=10){const o=(e-1)*n,r=o+n,i=t.slice(o,r),a=Math.ceil(t.length/n);return{items:i,currentPage:e,totalPages:a,totalItems:t.length,hasNextPage:e<a,hasPrevPage:e>1,itemsPerPage:n}}function M(t,e,n=5){const o=[],r=Math.floor(n/2);let i=Math.max(1,t-r),a=Math.min(e,t+r);a-i+1<n&&(i===1?a=Math.min(e,i+n-1):i=Math.max(1,a-n+1));for(let s=i;s<=a;s++)o.push(s);return o}const y={SMALL:6,MEDIUM:10,LARGE:20,SEARCH:15},b=`---
+import{p as y,P as b,a as u,s as g}from"./markdownUtils-DCLgD1VY.js";const v=`---
 title: "Building Scalable React Applications: Best Practices and Patterns"
 excerpt: "Learn essential patterns and best practices for building maintainable and scalable React applications that can grow with your team."
 date: "2024-03-20"
@@ -460,7 +460,7 @@ Building scalable React applications requires thoughtful architecture, consisten
 Your React applications will be more maintainable, performant, and ready to scale with your growing requirements.
 
 Remember, scalability isn't just about handling more users—it's about building applications that can evolve with changing requirements while maintaining code quality and developer productivity.
-`,v=`---
+`,_=`---
 title: "Deep Learning for Natural Language Processing: A Comprehensive Guide"
 excerpt: "Exploring the latest advances in transformer architectures and their applications in real-world NLP tasks."
 date: "2024-03-15"
@@ -587,7 +587,7 @@ Deep learning has fundamentally transformed natural language processing, with tr
 ---
 
 *Want to dive deeper into NLP? Check out my other posts on [machine learning fundamentals](/blog/ml-fundamentals) and [practical AI applications](/blog/ai-applications).*
-`,_=`---
+`,k=`---
 title: "Machine Learning Model Deployment: From Development to Production"
 description: "A comprehensive guide to deploying machine learning models in production environments, covering containerization, monitoring, and scaling strategies."
 date: "2024-06-15"
@@ -967,4 +967,4 @@ By following these practices and using the right tools, you can ensure your ML m
 - [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
 - [TensorFlow Serving Guide](https://www.tensorflow.org/tfx/guide/serving)
-`,g=Object.assign({"./blog/building-scalable-react-applications.md":b,"./blog/deep-learning-nlp-guide.md":v,"./blog/machine-learning-deployment-guide.md":_});let l=null,c=null;async function k(){if(l)return l;const t=[];return Object.entries(g).forEach(([e,n])=>{try{const o=e.replace("./blog/","").replace(".md",""),r=m(n,o);t.push(r)}catch(o){console.error(`Error loading blog post ${e}:`,o)}}),l=u(t),l}async function d(){if(c)return c;const t=[];return Object.entries(g).forEach(([e,n])=>{try{const o=e.replace("./blog/","").replace(".md",""),r=m(n,o),{content:i,...a}=r;t.push(a)}catch(o){console.error(`Error loading blog summary ${e}:`,o)}}),c=u(t).map(({content:e,...n})=>n),c}async function P(t=1,e=y.MEDIUM,n,o){let r=await d();if(n&&n!=="all"&&(r=r.filter(i=>{var a;return((a=i.category)==null?void 0:a.toLowerCase())===n.toLowerCase()})),o){const i=o.toLowerCase();r=r.filter(a=>{var s,p;return a.title.toLowerCase().includes(i)||((s=a.excerpt)==null?void 0:s.toLowerCase().includes(i))||((p=a.tags)==null?void 0:p.some(h=>h.toLowerCase().includes(i)))})}return f(r,t,e)}async function x(t){return(await k()).find(n=>n.slug===t)||null}async function T(){const t=await d(),e=new Set;return t.forEach(n=>{n.category&&e.add(n.category)}),Array.from(e).sort()}async function C(){const t=await d(),e=new Set;return t.forEach(n=>{var o;(o=n.tags)==null||o.forEach(r=>e.add(r))}),Array.from(e).sort()}export{y as P,P as a,T as b,C as c,x as d,M as g};
+`,f=Object.assign({"./blog/building-scalable-react-applications.md":v,"./blog/deep-learning-nlp-guide.md":_,"./blog/machine-learning-deployment-guide.md":k});let c=null,d=null;async function w(){if(c)return c;const r=[];return Object.entries(f).forEach(([n,e])=>{try{const t=n.replace("./blog/","").replace(".md",""),i=u(e,t);r.push(i)}catch(t){console.error(`Error loading blog post ${n}:`,t)}}),c=g(r),c}async function p(){if(d)return d;const r=[];return Object.entries(f).forEach(([n,e])=>{try{const t=n.replace("./blog/","").replace(".md",""),i=u(e,t),{content:s,...o}=i;r.push(o)}catch(t){console.error(`Error loading blog summary ${n}:`,t)}}),d=g(r).map(({content:n,...e})=>e),d}async function M(r=1,n=b.MEDIUM,e,t,i){let s=await p();if(e&&e!=="all"&&(s=s.filter(o=>{var a;return((a=o.category)==null?void 0:a.toLowerCase())===e.toLowerCase()})),t&&t!=="all"&&(s=s.filter(o=>{var a;return(a=o.tags)==null?void 0:a.some(l=>l.toLowerCase()===t.toLowerCase())})),i){const o=i.toLowerCase();s=s.filter(a=>{var l,m;return a.title.toLowerCase().includes(o)||((l=a.excerpt)==null?void 0:l.toLowerCase().includes(o))||((m=a.tags)==null?void 0:m.some(h=>h.toLowerCase().includes(o)))})}return y(s,r,n)}async function x(r){return(await w()).find(e=>e.slug===r)||null}async function C(){const r=await p(),n=new Set;return r.forEach(e=>{e.category&&n.add(e.category)}),Array.from(n).sort()}async function T(){const r=await p(),n=new Set;return r.forEach(e=>{var t;(t=e.tags)==null||t.forEach(i=>n.add(i))}),Array.from(n).sort()}export{C as a,T as b,x as c,M as g};

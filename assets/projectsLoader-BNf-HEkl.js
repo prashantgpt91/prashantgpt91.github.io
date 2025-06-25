@@ -1,4 +1,4 @@
-import{p as i}from"./markdownUtils-dis8iGUx.js";const c=`---
+import{p as f,P as y,a as u}from"./markdownUtils-DCLgD1VY.js";const v=`---
 title: "AI-Powered Document Analyzer"
 description: "A comprehensive document analysis system using computer vision and NLP to extract, classify, and summarize information from various document types."
 technologies: ["Python", "PyTorch", "OpenCV", "FastAPI", "React", "Docker"]
@@ -265,7 +265,7 @@ volumes:
 ---
 
 *This project demonstrates the power of combining computer vision and NLP to solve real-world document processing challenges. The system continues to evolve with new features and improvements based on user feedback.*
-`,d=`---
+`,S=`---
 title: "Real-time Chat Application with WebSockets"
 description: "A scalable real-time chat application built with Node.js, Socket.io, and React, featuring message encryption and user presence indicators."
 startDate: "2024-03-01"
@@ -882,4 +882,4 @@ const validateMessage = [
 - **Screen Sharing**: Collaborative features for team communication
 
 This project demonstrates proficiency in full-stack development, real-time systems, database design, and production deployment practices.
-`,m=Object.assign({"./projects/ai-powered-document-analyzer.md":c,"./projects/real-time-chat-application.md":d});let o=null;async function a(){if(o)return o;const t=[];return Object.entries(m).forEach(([e,n])=>{try{const s=e.replace("./projects/","").replace(".md",""),r=i(n,s);t.push(r)}catch(s){console.error(`Error loading project ${e}:`,s)}}),o=t.sort((e,n)=>new Date(n.startDate).getTime()-new Date(e.startDate).getTime()),o}async function l(t){return(await a()).find(n=>n.slug===t)||null}async function u(){const t=await a(),e=new Set;return t.forEach(n=>{n.technologies.forEach(s=>e.add(s))}),Array.from(e).sort()}async function g(){const t=await a(),e=new Set;return t.forEach(n=>{e.add(n.category)}),Array.from(e).sort()}export{g as a,l as b,u as g,a as l};
+`,g=Object.assign({"./projects/ai-powered-document-analyzer.md":v,"./projects/real-time-chat-application.md":S});let c=null,d=null;async function m(){if(c)return c;const t=[];return Object.entries(g).forEach(([e,n])=>{try{const s=e.replace("./projects/","").replace(".md",""),i=u(n,s);t.push(i)}catch(s){console.error(`Error loading project ${e}:`,s)}}),c=t.sort((e,n)=>new Date(n.startDate).getTime()-new Date(e.startDate).getTime()),c}async function k(){if(d)return d;const t=[];return Object.entries(g).forEach(([e,n])=>{try{const s=e.replace("./projects/","").replace(".md",""),i=u(n,s),{content:r,...o}=i;t.push(o)}catch(s){console.error(`Error loading project summary ${e}:`,s)}}),d=t.sort((e,n)=>new Date(n.startDate).getTime()-new Date(e.startDate).getTime()).map(({content:e,...n})=>n),d}async function w(t=1,e=y.SMALL,n,s,i){let r=await k();if(n&&n!=="all"&&(r=r.filter(o=>{var a;return((a=o.category)==null?void 0:a.toLowerCase())===n.toLowerCase()})),s&&s!=="all"&&(r=r.filter(o=>{var a;return((a=o.status)==null?void 0:a.toLowerCase())===s.toLowerCase()})),i){const o=i.toLowerCase();r=r.filter(a=>{var p,l;return a.title.toLowerCase().includes(o)||((p=a.description)==null?void 0:p.toLowerCase().includes(o))||((l=a.technologies)==null?void 0:l.some(h=>h.toLowerCase().includes(o)))})}return f(r,t,e)}async function b(t){return(await m()).find(n=>n.slug===t)||null}async function A(){const t=await m(),e=new Set;return t.forEach(n=>{n.technologies.forEach(s=>e.add(s))}),Array.from(e).sort()}async function D(){const t=await m(),e=new Set;return t.forEach(n=>{e.add(n.category)}),Array.from(e).sort()}export{D as a,A as b,b as c,w as g};
