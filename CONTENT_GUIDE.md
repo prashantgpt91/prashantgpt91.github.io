@@ -1,233 +1,361 @@
-# Content Management Guide
+# Content Management Guide for prashant.sh
 
-This guide explains how to add new content (blog posts, projects, and papers) to the website. The content is managed through individual markdown files located in the `src/data` directory.
+This guide explains how to add new blog posts, projects, and research papers to your portfolio website using the **automatic markdown-based content management system**.
+
+## 🚀 Overview
+
+Your portfolio now uses an **automatic content management system** where:
+- **Blog posts** are stored as individual `.md` files in `src/data/blog/`
+- **Projects** are stored as individual `.md` files in `src/data/projects/`  
+- **Research papers** are stored as individual `.md` files in `src/data/papers/`
+
+**✨ Key Feature: AUTOMATIC DETECTION**
+- Simply drop your `.md` file in the appropriate folder
+- **No code changes required** - content appears automatically
+- No manual imports or configuration needed
+- Content is immediately available on your website
+
+Each markdown file contains frontmatter (metadata) and content written in full markdown syntax.
+
+## 🚀 Automatic Content Loading System
+
+### How It Works
+- Uses Vite's `import.meta.glob` functionality
+- Automatically scans directories for `.md` files
+- Extracts filename as slug (e.g., `my-post.md` → `my-post`)
+- Parses frontmatter and content automatically
+- Makes content immediately available on the website
+
+### Benefits
+- **Zero Configuration**: No manual imports or code changes needed
+- **Scalable**: Add unlimited content without touching code
+- **Developer Friendly**: Simple file-based workflow
+- **Instant Availability**: Content appears immediately after file creation
+- **Error Resilient**: Failed imports don't break the entire system
+
+### File Structure
+```
+src/data/
+├── blog/
+│   ├── my-first-post.md
+│   ├── another-post.md
+│   └── latest-article.md
+├── projects/
+│   ├── my-project.md
+│   ├── another-project.md
+│   └── cool-app.md
+└── papers/
+    ├── research-paper-1.md
+    ├── another-study.md
+    └── latest-research.md
+```
+
+## 📝 Adding New Blog Posts
+
+### Step 1: Create the Markdown File
+
+1. Navigate to `src/data/blog/`
+2. Create a new file with a descriptive name: `your-post-title.md`
+3. Use the following template:
+
+```markdown
+---
+title: "Your Blog Post Title"
+excerpt: "A brief description of your blog post that appears in listings"
+date: "2024-01-15"
+tags: ["machine-learning", "python", "tutorial"]
+category: "tutorial"
+readTime: "8 min read"
+author: "Your Name"
+slug: "your-post-title"
+---
+
+# Your Blog Post Title
+
+Write your blog post content here using full markdown syntax.
+
+## Subheading
+
+You can use all markdown features:
+
+- **Bold text**
+- *Italic text*
+- `Inline code`
+- [Links](https://example.com)
+
+### Code Blocks
+
+```python
+def hello_world():
+    print("Hello, World!")
+    return "success"
+```
+
+### Lists
+
+1. Numbered lists
+2. Work great
+3. For step-by-step guides
+
+### Blockquotes
+
+> This is a blockquote that stands out from regular text.
+
+### Tables
+
+| Feature | Supported |
+|---------|-----------|
+| Tables  | ✅        |
+| Images  | ✅        |
+| Code    | ✅        |
+
+### Images
+
+![Alt text for image](path/to/image.jpg)
+
+## Conclusion
+
+Your conclusion goes here.
+```
+
+## 📈 Adding New Projects
+
+### Step 1: Create the Markdown File
+
+1. Navigate to `src/data/projects/`
+2. Create a new file: `your-project-name.md`
+3. Use this template:
+
+```markdown
+---
+title: "Your Project Title"
+description: "Brief description of what your project does"
+technologies: ["React", "TypeScript", "Node.js", "MongoDB"]
+category: "web-development"
+status: "completed"
+startDate: "2024-01-01"
+endDate: "2024-03-15"
+githubUrl: "https://github.com/yourusername/project"
+liveUrl: "https://yourproject.com"
+featured: true
+slug: "your-project-name"
+---
+
+# Your Project Title
 
 ## Overview
 
-- **Blog Posts**: Stored in `src/data/posts`
-- **Projects**: Stored in `src/data/projects`
-- **Papers**: Stored in `src/data/papers`
+Detailed description of your project, what it does, and why you built it.
 
-Each piece of content is a separate `.md` file. The file's metadata (like title, date, tags) is defined in a YAML frontmatter block at the top of the file, and the main content follows below it.
+## Features
 
----
+- Feature 1: Description
+- Feature 2: Description
+- Feature 3: Description
 
-## Adding a New Blog Post
+## Technology Stack
 
-1.  **Create a new file:** Add a new `.md` file in the `src/data/posts/` directory. The filename should be a unique, URL-friendly slug (e.g., `my-new-post.md`).
+### Frontend
+- React with TypeScript
+- Tailwind CSS for styling
+- React Router for navigation
 
-2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
+### Backend
+- Node.js with Express
+- MongoDB for database
+- JWT for authentication
 
-    ```yaml
-    ---
-    id: 10 # A unique number
-    slug: "my-new-post" # Matches the filename
-    title: "My New Blog Post Title"
-    excerpt: "A short, one-sentence summary of the post."
-    date: "YYYY-MM-DD"
-    tags: ["tag1", "tag2", "tag3"]
-    category: "tutorial" # e.g., research, tutorial, opinion
-    readTime: "5 min read"
-    author: "Your Name"
-    ---
-    ```
+## Architecture
 
-3.  **Add content:** Below the frontmatter, write the blog post content using Markdown or HTML.
+Explain your project's architecture, design decisions, and any interesting technical challenges you solved.
 
----
+## Screenshots
 
-## Adding a New Project
+![Project Screenshot](path/to/screenshot.jpg)
 
-1.  **Create a new file:** Add a new `.md` file in the `src/data/projects/` directory.
+## Installation & Setup
 
-2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/project.git
 
-    ```yaml
-    ---
-    id: 7 # A unique number
-    title: "My Awesome Project"
-    description: "A detailed description of the project, its goals, and outcomes."
-    technologies: ["React", "TypeScript", "Node.js"]
-    businessImpact: "Explain the value or impact of the project."
-    role: "Technical Lead" # or "Individual Contributor"
-    category: "web-development" # e.g., machine-learning, data-engineering
-    ---
-    ```
+# Install dependencies
+npm install
 
----
-
-## Adding a New Paper
-
-1.  **Create a new file:** Add a new `.md` file in the `src/data/papers/` directory.
-
-2.  **Add frontmatter:** At the top of the file, add a YAML frontmatter block with the following fields:
-
-    ```yaml
-    ---
-    id: 7 # A unique number
-    title: "A Groundbreaking Paper Title"
-    authors: "Author One, Author Two, et al."
-    description: "A concise summary of the paper's abstract or key contributions."
-    year: "YYYY"
-    venue: "Conference or Journal Name (e.g., NIPS, CVPR)"
-    category: "nlp" # e.g., nlp, computer-vision, machine-learning
-    tags: ["Tag1", "Tag2"]
-    url: "https://link-to-paper.com"
-    ---
-    ```
-
-
-This guide explains how to add new blog posts, projects, and papers to your portfolio website.
-
-## Adding New Blog Posts
-
-Blog posts are stored in the `src/data/blogData.ts` file. To add a new post:
-
-1. Open `src/data/blogData.ts`
-2. Add a new object to the `allPosts` array with the following structure:
-
-```typescript
-{
-  id: [unique_number],  // Increment the highest existing ID
-  slug: "your-post-slug",  // URL-friendly version of your title
-  title: "Your Post Title",
-  excerpt: "A brief description of your post",
-  date: "YYYY-MM-DD",
-  tags: ["tag1", "tag2", "tag3"],  // Related keywords
-  category: "research",  // Choose from: research, tutorial, opinion, etc.
-  readTime: "X min read",
-  content: `
-    <h2>Your First Heading</h2>
-    <p>Your paragraph content goes here. You can use HTML tags for formatting.</p>
-    
-    <h2>Another Section</h2>
-    <p>More content here...</p>
-    
-    <blockquote>
-      <p>You can add quotes like this.</p>
-    </blockquote>
-    
-    <h2>Lists</h2>
-    <ul>
-      <li><strong>Bold Item:</strong> Description</li>
-      <li><strong>Another Item:</strong> Another description</li>
-    </ul>
-  `
-}
+# Start development server
+npm run dev
 ```
 
-3. Save the file and rebuild/deploy your site
+## Lessons Learned
 
-## Adding New Projects
+What did you learn while building this project? What would you do differently next time?
 
-Projects data should be added to a dedicated data file. If it doesn't exist yet:
+## 📊 Adding New Research Papers
 
-1. Create `src/data/projectsData.ts` with this structure:
+### Step 1: Create the Markdown File
 
-```typescript
-export interface Project {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  image: string;  // Path to project image
-  tags: string[];
-  demoUrl?: string;  // Optional demo link
-  githubUrl?: string;  // Optional GitHub repo link
-  details?: string;  // Optional HTML content for detailed project view
-}
+1. Navigate to `src/data/papers/`
+2. Create a new file: `your-paper-title.md`
+3. Use this template:
 
-export const allProjects: Project[] = [
-  {
-    id: 1,
-    slug: "project-name",
-    title: "Project Title",
-    description: "Short description of what this project does and technologies used",
-    image: "/images/projects/project-name.webp",  // Add your image to public/images/projects/
-    tags: ["react", "machine-learning", "typescript"],
-    demoUrl: "https://demo-link.com",
-    githubUrl: "https://github.com/yourusername/repo",
-    details: `
-      <h2>Project Overview</h2>
-      <p>Detailed description of your project...</p>
-      
-      <h2>Technologies Used</h2>
-      <ul>
-        <li>Technology 1</li>
-        <li>Technology 2</li>
-      </ul>
-      
-      <h2>Challenges & Solutions</h2>
-      <p>Explain interesting problems you solved...</p>
-    `
-  },
-  // Add more projects here
-];
+```markdown
+---
+title: "Your Research Paper Title"
+authors: ["Your Name", "Co-Author Name"]
+journal: "Journal Name"
+year: 2024
+volume: "12"
+pages: "123-145"
+doi: "10.1000/journal.2024.001"
+arxivUrl: "https://arxiv.org/abs/2024.001"
+pdfUrl: "path/to/paper.pdf"
+abstract: "Brief abstract of your research paper"
+keywords: ["machine learning", "natural language processing", "deep learning"]
+category: "machine-learning"
+status: "published"
+citations: 15
+slug: "your-paper-title"
+---
+
+# Your Research Paper Title
+
+## Abstract
+
+Your paper's abstract goes here. This should be a concise summary of your research, methodology, results, and conclusions.
+
+## 1. Introduction
+
+### 1.1 Background
+
+Provide background information and context for your research.
+
+### 1.2 Problem Statement
+
+Clearly define the problem you're addressing.
+
+### 1.3 Contributions
+
+List your main contributions:
+
+1. First contribution
+2. Second contribution
+3. Third contribution
+
+## 2. Related Work
+
+Discuss previous research in this area and how your work relates to or builds upon it.
+
+## 3. Methodology
+
+### 3.1 Approach
+
+Describe your research approach and methodology.
+
+### 3.2 Experimental Setup
+
+Detail your experimental setup, datasets used, and evaluation metrics.
+
+## 4. Results
+
+### 4.1 Experimental Results
+
+Present your results with tables and figures:
+
+| Model | Accuracy | F1-Score | Precision | Recall |
+|-------|----------|----------|-----------|--------|
+| Baseline | 0.85 | 0.83 | 0.84 | 0.82 |
+| Our Method | 0.92 | 0.91 | 0.93 | 0.89 |
+
+### 4.2 Analysis
+
+Analyze and discuss your results.
+
+## 5. Conclusion
+
+Summarize your findings and suggest future work.
+
+## References
+
+1. Author, A. (2023). "Title of Reference Paper." *Journal Name*, 10(2), 123-145.
+2. Author, B. (2022). "Another Reference." *Conference Proceedings*, 456-789.
+
+## Markdown Features Supported
+
+Your content management system supports all standard markdown features plus:
+
+### Basic Formatting
+- **Bold text** with `**text**`
+- *Italic text* with `*text*`
+- `Inline code` with backticks
+- ~~Strikethrough~~ with `~~text~~`
+
+### Headers
+```markdown
+# H1 Header
+## H2 Header
+### H3 Header
+#### H4 Header
 ```
 
-## Adding Research Papers
+### Lists
+```markdown
+- Unordered list item
+- Another item
+  - Nested item
 
-If you want to showcase academic papers:
-
-1. Create `src/data/papersData.ts`:
-
-```typescript
-export interface Paper {
-  id: number;
-  title: string;
-  authors: string[];
-  publication: string;  // Journal/Conference name
-  year: number;
-  abstract: string;
-  pdfUrl?: string;  // Link to PDF
-  doiUrl?: string;  // DOI link
-  tags: string[];
-}
-
-export const allPapers: Paper[] = [
-  {
-    id: 1,
-    title: "Your Paper Title",
-    authors: ["Your Name", "Co-author Name"],
-    publication: "Journal or Conference Name",
-    year: 2023,
-    abstract: "Brief abstract of your paper...",
-    pdfUrl: "https://link-to-pdf.com",
-    doiUrl: "https://doi.org/your-doi",
-    tags: ["machine-learning", "nlp"]
-  },
-  // Add more papers here
-];
+1. Ordered list item
+2. Another item
+   1. Nested item
 ```
 
-2. Create a new Papers page component in `src/pages/Papers.tsx` to display your papers
+### Links and Images
+```markdown
+[Link text](https://example.com)
+![Alt text](path/to/image.jpg)
+```
 
-## Images for Projects and Posts
+### Code Blocks
+````markdown
+```python
+def example():
+    return "Hello, World!"
+```
+````
 
-1. Place your images in the appropriate folders under `public/images/`:
-   - Blog post images: `public/images/blog/`
-   - Project images: `public/images/projects/`
-   - Profile or other images: `public/images/`
+### Tables
+```markdown
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+| Data 1   | Data 2   | Data 3   |
+```
 
-2. Reference images in your content using the path without "public": 
-   ```
-   /images/projects/your-image.webp
-   ```
+### Blockquotes
+```markdown
+> This is a blockquote
+> It can span multiple lines
+```
+
+### Horizontal Rules
+```markdown
+---
+```
+
+## Best Practices
+
+1. **File Naming**: Use kebab-case for file names (e.g., `my-blog-post.md`)
+2. **Automatic Slugs**: Filename becomes the slug, so choose meaningful names
+3. **Dates**: Use YYYY-MM-DD format for dates
+4. **Tags**: Use lowercase, hyphenated tags for consistency
+5. **Images**: Store images in `public/images/` and reference them with `/images/filename.jpg`
+6. **Content**: Write in clear, well-structured markdown for best rendering
+7. **Testing**: Simply create the file and refresh your browser - content appears instantly!
 
 ## Deployment
 
 After adding new content:
 
-1. Commit and push your changes to GitHub:
-```bash
-git add .
-git commit -m "Add new content"
-git push origin main
-```
+1. Test locally with `npm run dev`
+2. Build the project with `npm run build`
+3. Deploy using your preferred method
 
-2. Deploy your site:
-```bash
-npm run deploy
-```
-
-This will build your site and deploy it to GitHub Pages while preserving your custom domain.
+Your new content will be automatically loaded and displayed on your portfolio website!

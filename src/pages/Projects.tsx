@@ -5,82 +5,81 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ArrowUp, Search, Briefcase, User } from "lucide-react";
 import { Link } from "react-router-dom";
-
-import { getAllProjects, Project } from "@/lib/projects";
+import { loadProjects, getAllTechnologies, getProjectCategories } from "@/data/projectsLoader";
+import { Project } from "@/utils/markdownUtils";
+import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
 
 const Projects = () => {
-  const [allProjects, setAllProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTech, setSelectedTech] = useState("all");
-  const [selectedRole, setSelectedRole] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [allTechnologies, setAllTechnologies] = useState<string[]>([]);
+  const [allCategories, setAllCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
 
+  // Load projects data
   useEffect(() => {
-    const fetchProjects = async () => {
+    const loadData = async () => {
       try {
-        const projects = await getAllProjects();
-        setAllProjects(projects);
+        const [projectsData, technologies, categories] = await Promise.all([
+          loadProjects(),
+          getAllTechnologies(),
+          getProjectCategories()
+        ]);
+        
+        setProjects(projectsData);
+        setAllTechnologies(['all', ...technologies]);
+        setAllCategories(['all', ...categories]);
       } catch (error) {
-        console.error("Failed to fetch projects:", error);
+        console.error('Error loading projects data:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load projects. Please try again.",
+          variant: "destructive",
+        });
+      } finally {
+        setLoading(false);
       }
-      setIsLoading(false);
     };
 
-    fetchProjects();
+    loadData();
+  }, [toast]);
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else if (savedTheme === 'light') {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const allTechnologies = ["all", ...Array.from(new Set(allProjects.flatMap(project => project.technologies)))];
-  const allRoles = ["all", "Technical Lead", "Individual Contributor"];
-
-  const filteredProjects = allProjects.filter(project => {
+  const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.technologies.some(tech => tech.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesTech = selectedTech === "all" || project.technologies.includes(selectedTech);
-    const matchesRole = selectedRole === "all" || project.role === selectedRole;
-    return matchesSearch && matchesTech && matchesRole;
+    const matchesCategory = selectedCategory === "all" || project.category === selectedCategory;
+    return matchesSearch && matchesTech && matchesCategory;
   });
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-    if (isLoading) {
+  if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900 flex items-center justify-center">
-        <p className="text-lg text-gray-500 dark:text-slate-400">Loading projects...</p>
+      <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 flex justify-center items-center">
+        <p className="text-lg text-gray-600 dark:text-slate-400">Loading...</p>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
-      {/* Header */}
-      <header className="border-b border-gray-200 dark:border-slate-700 py-8">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Prashant Gupta
-              </Link>
-            </div>
-            <Link to="/">
-              <Button variant="outline">Back to Home</Button>
-            </Link>
-          </div>
-          <h1 className="text-4xl font-bold mt-4 mb-2">All Projects</h1>
-          <p className="text-lg text-gray-600 dark:text-slate-400">
-            A comprehensive collection of my data science and AI engineering projects
-          </p>
-        </div>
-      </header>
+      <Header />
+      
+      {/* Page Title */}
+      <section className="max-w-6xl mx-auto px-6 py-8">
+        <h1 className="text-4xl font-bold mb-2">All Projects</h1>
+        <p className="text-lg text-gray-600 dark:text-slate-400">
+          A comprehensive collection of my data science and AI engineering projects
+        </p>
+      </section>
 
       {/* Filters */}
       <section className="max-w-6xl mx-auto px-6 py-8">
@@ -106,21 +105,21 @@ const Projects = () => {
             ))}
           </select>
           <select
-            value={selectedRole}
-            onChange={(e) => setSelectedRole(e.target.value)}
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
             className="px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-800"
           >
-            {allRoles.map(role => (
-              <option key={role} value={role}>
-                {role === "all" ? "All Roles" : role}
+            {allCategories.map(category => (
+              <option key={category} value={category}>
+                {category === "all" ? "All Categories" : category}
               </option>
             ))}
           </select>
         </div>
 
         {/* Results count */}
-        <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
-          Showing {filteredProjects.length} of {allProjects.length} projects.
+        <p className="text-sm text-gray-600 dark:text-slate-400 mb-6">
+          Showing {filteredProjects.length} of {projects.length} projects
         </p>
 
         {/* Projects Grid */}
@@ -128,7 +127,14 @@ const Projects = () => {
           {filteredProjects.map((project) => (
             <Card key={project.id} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
+                <CardTitle className="text-xl">
+                  <Link 
+                    to={`/projects/${project.slug}`}
+                    className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    {project.title}
+                  </Link>
+                </CardTitle>
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -147,25 +153,51 @@ const Projects = () => {
                   </div>
                 </div>
                 
-                {/* Business Impact */}
-                <div>
-                  <h4 className="text-sm font-semibold mb-2 flex items-center">
-                    <Briefcase className="h-3 w-3 mr-2" />
-                    Business Impact
-                  </h4>
-                  <p className="text-sm text-gray-600 dark:text-slate-400">{project.businessImpact}</p>
+                {/* Category & Status */}
+                <div className="flex gap-4">
+                  <div>
+                    <h4 className="text-sm font-semibold mb-2 flex items-center">
+                      <Briefcase className="h-3 w-3 mr-2" />
+                      Category
+                    </h4>
+                    <Badge variant="secondary" className="text-xs capitalize">
+                      {project.category}
+                    </Badge>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-sm font-semibold mb-2 flex items-center">
+                      <User className="h-3 w-3 mr-2" />
+                      Status
+                    </h4>
+                    <Badge 
+                      variant={project.status === "completed" ? "default" : "outline"} 
+                      className="text-xs capitalize"
+                    >
+                      {project.status}
+                    </Badge>
+                  </div>
                 </div>
-                
-                {/* Role */}
-                <div>
-                  <h4 className="text-sm font-semibold mb-2 flex items-center">
-                    <User className="h-3 w-3 mr-2" />
-                    Role
-                  </h4>
-                  <Badge variant={project.role === "Technical Lead" ? "default" : "secondary"} className="text-xs">
-                    {project.role}
-                  </Badge>
-                </div>
+
+                {/* Project Links */}
+                {(project.githubUrl || project.liveUrl) && (
+                  <div className="flex gap-2 pt-2">
+                    {project.githubUrl && (
+                      <Button asChild size="sm" variant="outline">
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          GitHub
+                        </a>
+                      </Button>
+                    )}
+                    {project.liveUrl && (
+                      <Button asChild size="sm" variant="default">
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
