@@ -53,22 +53,22 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         </p>
         
         {/* Main action buttons */}
-        <div className="flex flex-col sm:grid sm:grid-cols-3 gap-3 sm:gap-4 max-w-xs sm:max-w-lg mx-auto mb-8 sm:mb-12">
-          <Button size="lg" variant="default" className="w-full px-3 py-2 h-auto" asChild>
-            <a href="mailto:prashantgpt91@gmail.com" className="flex items-center justify-center gap-2">
-              <Mail className="h-4 w-4" /> Contact
+        <div className="flex justify-center gap-4 mb-8 sm:mb-12">
+          <Button size="icon" variant="default" asChild>
+            <a href="mailto:prashantgpt91@gmail.com">
+              <Mail className="h-4 w-4" />
             </a>
           </Button>
           
-          <Button size="lg" variant="outline" className="w-full px-3 py-2 h-auto" asChild>
-            <a href="https://linkedin.com/in/prashantgpt91" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-              <Linkedin className="h-4 w-4" /> LinkedIn
+          <Button size="icon" variant="outline" asChild>
+            <a href="https://linkedin.com/in/prashantgpt91" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="h-4 w-4" />
             </a>
           </Button>
           
-          <Button size="lg" variant="outline" className="w-full px-3 py-2 h-auto" asChild>
-            <a href="https://twitter.com/prashantgpt91" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-              <Twitter className="h-4 w-4" /> Twitter
+          <Button size="icon" variant="outline" asChild>
+            <a href="https://twitter.com/prashantgpt91" target="_blank" rel="noopener noreferrer">
+              <Twitter className="h-4 w-4" />
             </a>
           </Button>
         </div>
