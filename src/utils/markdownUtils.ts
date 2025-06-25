@@ -11,6 +11,9 @@ export interface BlogPost {
   author: string;
   slug: string;
   content: string;
+  featured?: boolean;
+  demoUrl?: string;
+  githubUrl?: string;
 }
 
 export interface Project {

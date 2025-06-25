@@ -57,6 +57,7 @@ export async function getPaginatedBlogPosts(
   page: number = 1,
   itemsPerPage: number = PAGINATION_SIZES.MEDIUM,
   category?: string,
+  tag?: string,
   searchTerm?: string
 ): Promise<PaginationResult<Omit<BlogPost, 'content'>>> {
   let posts = await loadBlogSummaries();
@@ -64,6 +65,11 @@ export async function getPaginatedBlogPosts(
   // Filter by category if provided
   if (category && category !== 'all') {
     posts = posts.filter(post => post.category?.toLowerCase() === category.toLowerCase());
+  }
+  
+  // Filter by tag if provided
+  if (tag && tag !== 'all') {
+    posts = posts.filter(post => post.tags?.some(postTag => postTag.toLowerCase() === tag.toLowerCase()));
   }
   
   // Filter by search term if provided
@@ -75,7 +81,7 @@ export async function getPaginatedBlogPosts(
       post.tags?.some(tag => tag.toLowerCase().includes(term))
     );
   }
-  
+
   return paginateArray(posts, page, itemsPerPage);
 }
 

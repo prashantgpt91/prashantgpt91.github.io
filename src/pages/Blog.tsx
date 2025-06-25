@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { Search, Filter, Clock, User, Calendar } from "lucide-react";
+import { Search, Calendar, ExternalLink, User, Tag, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/Header";
 import { Pagination, PageSizeSelector } from "@/components/Pagination";
+import DateFilter, { DateRange } from "@/components/DateFilter";
+import FilterDropdown from "@/components/FilterDropdown";
 import { getPaginatedBlogPosts, getBlogCategories, getBlogTags } from "@/data/blogLoader";
 import { BlogPost } from "@/utils/markdownUtils";
 import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
@@ -17,15 +19,18 @@ const Blog = () => {
   // State management
   const [paginatedPosts, setPaginatedPosts] = useState<PaginationResult<Omit<BlogPost, 'content'>> | null>(null);
   const [categories, setCategories] = useState<string[]>([]);
-  const [allTags, setAllTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
+  const [allYears, setAllYears] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   
   // URL-based state
   const currentPage = parseInt(searchParams.get('page') || '1');
   const pageSize = parseInt(searchParams.get('size') || PAGINATION_SIZES.MEDIUM.toString());
   const selectedCategory = searchParams.get('category') || 'all';
+  const selectedTag = searchParams.get('tag') || 'all';
   const searchTerm = searchParams.get('search') || '';
-  const selectedTag = searchParams.get('tag') || '';
+  const dateStart = searchParams.get('dateStart') || '';
+  const dateEnd = searchParams.get('dateEnd') || '';
 
   // Load initial data
   useEffect(() => {
@@ -33,14 +38,20 @@ const Blog = () => {
       setLoading(true);
       try {
         const [postsResult, categoriesData, tagsData] = await Promise.all([
-          getPaginatedBlogPosts(currentPage, pageSize, selectedCategory, searchTerm || selectedTag),
+          getPaginatedBlogPosts(currentPage, pageSize, selectedCategory, selectedTag, searchTerm),
           getBlogCategories(),
           getBlogTags()
         ]);
         
         setPaginatedPosts(postsResult);
         setCategories(['all', ...categoriesData]);
-        setAllTags(tagsData);
+        setTags(['all', ...tagsData]);
+        
+        // Extract years from posts for date filtering
+        const years = Array.from(new Set(
+          postsResult.items.map(post => new Date(post.date).getFullYear().toString())
+        )).sort((a, b) => parseInt(b) - parseInt(a));
+        setAllYears(['all', ...years]);
       } catch (error) {
         console.error('Error loading blog data:', error);
       } finally {
@@ -49,7 +60,7 @@ const Blog = () => {
     };
 
     loadData();
-  }, [currentPage, pageSize, selectedCategory, searchTerm, selectedTag]);
+  }, [currentPage, pageSize, selectedCategory, selectedTag, searchTerm, dateStart, dateEnd]);
 
   // Update URL parameters
   const updateSearchParams = (updates: Record<string, string | number>) => {
@@ -67,15 +78,23 @@ const Blog = () => {
   };
 
   const handleSearch = (value: string) => {
-    updateSearchParams({ search: value, tag: '', page: 1 });
+    updateSearchParams({ search: value, page: 1 });
   };
 
   const handleCategoryChange = (category: string) => {
     updateSearchParams({ category, page: 1 });
   };
 
-  const handleTagClick = (tag: string) => {
-    updateSearchParams({ tag, search: '', page: 1 });
+  const handleTagChange = (tag: string) => {
+    updateSearchParams({ tag, page: 1 });
+  };
+
+  const handleDateRangeChange = (range: DateRange) => {
+    updateSearchParams({ 
+      dateStart: range.start || '', 
+      dateEnd: range.end || '', 
+      page: 1 
+    });
   };
 
   const handlePageChange = (page: number) => {
@@ -87,12 +106,20 @@ const Blog = () => {
   };
 
   const handlePostClick = (slug: string, event: React.MouseEvent) => {
-    // Prevent navigation if clicking on a tag
-    if ((event.target as HTMLElement).closest('.tag-badge')) {
+    // Prevent navigation if clicking on a badge or external link
+    if ((event.target as HTMLElement).closest('.badge-clickable, .external-link')) {
       return;
     }
     navigate(`/blog/${slug}`);
   };
+
+  // Count active filters
+  const activeFiltersCount = [
+    selectedCategory !== 'all' ? 1 : 0,
+    selectedTag !== 'all' ? 1 : 0,
+    dateStart || dateEnd ? 1 : 0,
+    searchTerm ? 1 : 0
+  ].reduce((sum, count) => sum + count, 0);
 
   if (loading) {
     return (
@@ -113,10 +140,10 @@ const Blog = () => {
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Blog
+            Blog Posts
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Insights, tutorials, and thoughts on software development, AI, and technology.
+            Insights, tutorials, and thoughts on machine learning, AI, software development, and technology.
           </p>
         </div>
 
@@ -126,27 +153,54 @@ const Blog = () => {
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
             <Input
-              placeholder="Search blog posts..."
+              placeholder="Search posts..."
               value={searchTerm}
               onChange={(e) => handleSearch(e.target.value)}
               className="pl-10"
             />
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
+          {/* Filter Row */}
+          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center flex-wrap">
+            {/* Category Filter */}
+            <FilterDropdown
+              label="Category"
+              options={categories}
+              selectedValue={selectedCategory}
+              onValueChange={handleCategoryChange}
+              placeholder="All Categories"
+              showCount={categories.length > 10}
+            />
+
+            {/* Tag Filter */}
+            <FilterDropdown
+              label="Tag"
+              options={tags}
+              selectedValue={selectedTag}
+              onValueChange={handleTagChange}
+              placeholder="All Tags"
+              showCount={tags.length > 10}
+            />
+
+            {/* Date Filter */}
+            <DateFilter
+              value={{ start: dateStart, end: dateEnd }}
+              onDateRangeChange={handleDateRangeChange}
+              years={allYears}
+              className="w-full sm:w-auto"
+            />
+
+            {/* Clear All Filters */}
+            {activeFiltersCount > 0 && (
               <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
+                variant="ghost"
                 size="sm"
-                onClick={() => handleCategoryChange(category)}
-                className="capitalize"
+                onClick={() => setSearchParams(new URLSearchParams())}
+                className="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
               >
-                <Filter className="h-3 w-3 mr-1" />
-                {category}
+                Clear all ({activeFiltersCount})
               </Button>
-            ))}
+            )}
           </div>
 
           {/* Page Size Selector */}
@@ -163,8 +217,9 @@ const Blog = () => {
         {paginatedPosts && (
           <div className="text-center mb-6 text-sm text-gray-600 dark:text-gray-400">
             {searchTerm && `Search results for "${searchTerm}" • `}
-            {selectedTag && `Tagged with "${selectedTag}" • `}
             {selectedCategory !== 'all' && `Category: ${selectedCategory} • `}
+            {selectedTag !== 'all' && `Tag: ${selectedTag} • `}
+            {(dateStart || dateEnd) && `Date filtered • `}
             {paginatedPosts.totalItems} posts found
           </div>
         )}
@@ -179,51 +234,102 @@ const Blog = () => {
                 onClick={(e) => handlePostClick(post.slug, e)}
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {new Date(post.date).toLocaleDateString()}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className="text-xs capitalize">
+                        {post.category}
+                      </Badge>
+                      {post.featured && (
+                        <Badge variant="default" className="text-xs bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                          Featured
+                        </Badge>
+                      )}
                     </div>
-                    {post.author && (
+                    <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
                       <div className="flex items-center gap-1">
-                        <User className="h-4 w-4" />
-                        {post.author}
+                        <Calendar className="h-3 w-3" />
+                        {new Date(post.date).toLocaleDateString()}
                       </div>
-                    )}
-                    {post.readTime && (
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {post.readTime}
-                      </div>
-                    )}
+                      {post.readTime && (
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          {post.readTime}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     {post.title}
-                  </h2>
+                  </h3>
                   
+                  {/* Author */}
+                  {post.author && (
+                    <div className="flex items-center gap-1 mb-3 text-sm text-gray-600 dark:text-gray-400">
+                      <User className="h-4 w-4" />
+                      <span>{post.author}</span>
+                    </div>
+                  )}
+                  
+                  {/* Excerpt */}
                   {post.excerpt && (
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
                       {post.excerpt}
                     </p>
                   )}
                   
+                  {/* Tags */}
                   {post.tags && post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                      {post.tags.map((tag) => (
+                    <div className="flex flex-wrap gap-1 mb-4 relative z-10">
+                      {post.tags.slice(0, 5).map((tag) => (
                         <Badge
                           key={tag}
-                          variant="secondary"
-                          className="tag-badge text-xs cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors"
+                          variant="outline"
+                          className="badge-clickable text-xs relative"
                           onClick={(e) => {
-                            e.preventDefault();
                             e.stopPropagation();
-                            handleTagClick(tag);
+                            handleTagChange(tag);
                           }}
                         >
+                          <Tag className="h-2 w-2 mr-1" />
                           {tag}
                         </Badge>
                       ))}
+                      {post.tags.length > 5 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{post.tags.length - 5}
+                        </Badge>
+                      )}
+                    </div>
+                  )}
+                  
+                  {/* External Links */}
+                  {(post.demoUrl || post.githubUrl) && (
+                    <div className="flex flex-wrap gap-3 mt-auto">
+                      {post.demoUrl && (
+                        <a
+                          href={post.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="external-link flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          Demo
+                        </a>
+                      )}
+                      {post.githubUrl && (
+                        <a
+                          href={post.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="external-link flex items-center gap-1 text-xs text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="h-3 w-3" />
+                          GitHub
+                        </a>
+                      )}
                     </div>
                   )}
                 </div>
@@ -233,17 +339,16 @@ const Blog = () => {
         ) : (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              {searchTerm || selectedTag ? 'No posts found matching your criteria.' : 'No blog posts available.'}
+              {activeFiltersCount > 0 ? 
+                'No posts found matching your criteria.' : 'No blog posts available.'}
             </p>
-            {(searchTerm || selectedTag || selectedCategory !== 'all') && (
+            {activeFiltersCount > 0 && (
               <Button
                 variant="outline"
-                onClick={() => {
-                  setSearchParams(new URLSearchParams());
-                }}
+                onClick={() => setSearchParams(new URLSearchParams())}
                 className="mt-4"
               >
-                Clear filters
+                Clear all filters
               </Button>
             )}
           </div>
