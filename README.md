@@ -76,6 +76,14 @@ Make sure you have Node.js and npm installed on your machine.
     ```
     Your local instance should now be running at `http://localhost:5173`.
 
+### Deployment
+
+To deploy the website to GitHub Pages, simply run the following command. This will build the project and push it to the `gh-pages` branch.
+
+```sh
+npm run deploy
+```
+
 ---
 
 ### Special Thanks
