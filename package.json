@@ -10,8 +10,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -c prashant.sh"
+    "predeploy": "npm run build && echo prashant.sh > dist/CNAME",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
