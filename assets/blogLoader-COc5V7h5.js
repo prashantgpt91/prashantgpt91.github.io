@@ -1,4 +1,4 @@
-import{p as y,P as b,a as u,s as g}from"./markdownUtils-BulHaVri.js";const v=`---
+import{p as y,P as b,a as u,s as g}from"./markdownUtils-D4R9h9U8.js";const v=`---
 title: "Building Scalable React Applications: Best Practices and Patterns"
 excerpt: "Learn essential patterns and best practices for building maintainable and scalable React applications that can grow with your team."
 date: "2024-03-20"
