@@ -16,9 +16,12 @@ const BlogPost = () => {
   const { toast } = useToast();
   const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
-  const [giscusTheme, setGiscusTheme] = useState<'light' | 'dark'>(
-    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
-  );
+  const [giscusTheme, setGiscusTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+    }
+    return 'light';
+  });
 
   useEffect(() => {
     const loadPost = async () => {
@@ -43,10 +46,13 @@ const BlogPost = () => {
 
   useEffect(() => {
     const handleThemeChange = () => {
-      setGiscusTheme((localStorage.getItem('theme') as 'light' | 'dark') || 'light');
+      const newTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+      setGiscusTheme(newTheme);
     };
     
+    // Listen for theme changes from the header
     window.addEventListener('theme-change', handleThemeChange);
+    // Listen for storage events (cross-tab theme changes)
     window.addEventListener('storage', handleThemeChange);
 
     return () => {
@@ -196,7 +202,7 @@ const BlogPost = () => {
         <section className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
           <h3 className="text-2xl font-bold mb-6">Comments & Reactions</h3>
           <Giscus
-            key={giscusTheme} // Re-mount component on theme change for robustness
+            key={`giscus-${giscusTheme}`} // Force remount on theme change
             repo="prashantgpt91/prashantgpt91.github.io"
             repoId="R_kgDONSu8aQ"
             category="Announcements"
@@ -204,7 +210,7 @@ const BlogPost = () => {
             mapping="pathname"
             strict="0"
             reactionsEnabled="1"
-            emitMetadata="0" // Set to 0 to avoid requesting metadata
+            emitMetadata="1" // Keep metadata enabled for better functionality
             inputPosition="top"
             theme={giscusTheme}
             lang="en"
