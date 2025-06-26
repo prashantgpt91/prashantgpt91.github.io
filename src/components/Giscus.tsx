@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface GiscusProps {
   repo: string;
   repoId: string;
   category: string;
   categoryId: string;
-  mapping: string;
+  mapping: 'pathname' | 'url' | 'title' | 'og:title' | 'specific' | 'number';
   term?: string;
-  strict?: string;
-  reactionsEnabled?: string;
-  emitMetadata?: string;
-  inputPosition?: string;
-  theme?: string;
-  lang?: string;
+  strict?: '0' | '1';
+  reactionsEnabled?: '0' | '1';
+  emitMetadata?: '0' | '1';
+  inputPosition?: 'top' | 'bottom';
+  theme?: 'light' | 'dark' | 'preferred_color_scheme' | `https://giscus.app/themes/custom/custom.css`;
+  lang?: 'en' | 'fr' | 'es' | 'de' | 'ja' | 'ko' | 'zh-CN' | 'zh-TW' | 'ru';
+  loading?: 'lazy';
 }
 
-export const Giscus = ({
+export const Giscus: React.FC<GiscusProps> = ({
   repo,
   repoId,
   category,
@@ -24,87 +25,56 @@ export const Giscus = ({
   term,
   strict = '0',
   reactionsEnabled = '1',
-  emitMetadata = '1',
+  emitMetadata = '0',
   inputPosition = 'top',
   theme = 'light',
-  lang = 'en'
-}: GiscusProps) => {
-  const [mounted, setMounted] = useState(false);
+  lang = 'en',
+  loading = 'lazy',
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Clean up any existing giscus elements first
-    const existingScript = document.querySelector('script[src="https://giscus.app/client.js"]');
-    if (existingScript) {
-      existingScript.remove();
-    }
+    if (!containerRef.current) return;
 
-    // Create a new script element
-    const script = document.createElement('script');
-    script.src = 'https://giscus.app/client.js';
-    script.setAttribute('data-repo', repo);
-    script.setAttribute('data-repo-id', repoId);
-    script.setAttribute('data-category', category);
-    script.setAttribute('data-category-id', categoryId);
-    script.setAttribute('data-mapping', mapping);
-    if (term) script.setAttribute('data-term', term);
-    script.setAttribute('data-strict', strict);
-    script.setAttribute('data-reactions-enabled', reactionsEnabled);
-    script.setAttribute('data-emit-metadata', emitMetadata);
-    script.setAttribute('data-input-position', inputPosition);
-    script.setAttribute('data-theme', theme);
-    script.setAttribute('data-lang', lang);
-    script.setAttribute('data-loading', 'lazy');
-    script.setAttribute('crossorigin', 'anonymous');
-    script.async = true;
-      
-    const giscusContainer = document.getElementById('giscus-container');
-    if (giscusContainer) {
-      // Clear the container before appending to avoid duplicates
-      giscusContainer.innerHTML = '';
-      giscusContainer.appendChild(script);
-    }
-      
-    setMounted(true);
-
-    // Clean up function to remove the script when component unmounts
-    return () => {
-      const giscusContainer = document.getElementById('giscus-container');
-      if (giscusContainer) {
-        giscusContainer.innerHTML = '';
-      }
+    const giscusScript = document.createElement('script');
+    const attributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': repo,
+      'data-repo-id': repoId,
+      'data-category': category,
+      'data-category-id': categoryId,
+      'data-mapping': mapping,
+      'data-term': term,
+      'data-strict': strict,
+      'data-reactions-enabled': reactionsEnabled,
+      'data-emit-metadata': emitMetadata,
+      'data-input-position': inputPosition,
+      'data-theme': theme,
+      'data-lang': lang,
+      'data-loading': loading,
+      crossOrigin: 'anonymous',
+      async: 'true',
     };
-    
-    // Separate effect for theme updates
-  }, [
-    repo,
-    repoId,
-    category,
-    categoryId,
-    mapping,
-    term,
-    strict,
-    reactionsEnabled, 
-    emitMetadata,
-    inputPosition,
-    lang
-  ]);
 
-  // Handle theme changes separately
+    Object.entries(attributes).forEach(([key, value]) => {
+      if (value) {
+        giscusScript.setAttribute(key, value);
+      }
+    });
+
+    // Clear the container and append the new script
+    containerRef.current.innerHTML = '';
+    containerRef.current.appendChild(giscusScript);
+
+  }, [repo, repoId, category, categoryId, mapping, term, strict, reactionsEnabled, emitMetadata, inputPosition, lang, loading]);
+
+  // Effect to update Giscus theme when the site's theme changes
   useEffect(() => {
-    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
     if (iframe) {
-      iframe.contentWindow?.postMessage(
-        {
-          giscus: {
-            setConfig: {
-              theme
-            }
-          }
-        },
-        'https://giscus.app'
-      );
+      iframe.contentWindow?.postMessage({ giscus: { setTheme: theme } }, 'https://giscus.app');
     }
   }, [theme]);
 
-  return <div id="giscus-container" className="mt-10"></div>;
+  return <div ref={containerRef} className="mt-10" />;
 };

@@ -16,7 +16,12 @@ const Header = () => {
   }, [darkMode]);
 
   const toggleTheme = () => {
-    setDarkMode(!darkMode);
+    setDarkMode(prevMode => {
+      const newMode = !prevMode;
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      window.dispatchEvent(new Event('theme-change'));
+      return newMode;
+    });
   };
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
