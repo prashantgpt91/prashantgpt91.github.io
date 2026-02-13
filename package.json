@@ -55,7 +55,7 @@
     "highlight.js": "^11.11.1",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
-    "markdown-it": "^14.1.0",
+    "markdown-it": "^14.1.1",
     "marked": "^15.0.12",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
