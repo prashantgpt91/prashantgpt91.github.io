@@ -4,11 +4,11 @@ import { Moon, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  // Initialize theme from localStorage, falling back to system preference
+  // Initialize theme from localStorage, defaulting to dark
   const [darkMode, setDarkMode] = useState(() => {
     const stored = localStorage.getItem('theme');
     if (stored) return stored === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true; // default to dark mode
   });
 
   // Apply theme on mount and when darkMode changes

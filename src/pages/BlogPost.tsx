@@ -18,9 +18,9 @@ const BlogPost = () => {
   const [loading, setLoading] = useState(true);
   const [giscusTheme, setGiscusTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+      return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
     }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const BlogPost = () => {
 
   useEffect(() => {
     const handleThemeChange = () => {
-      const newTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
+      const newTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
       setGiscusTheme(newTheme);
     };
     

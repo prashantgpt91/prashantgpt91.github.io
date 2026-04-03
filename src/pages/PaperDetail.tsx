@@ -6,6 +6,7 @@ import { ArrowLeft, ExternalLink, FileText, BookOpen } from "lucide-react";
 import { getPaper } from "@/data/papersLoader";
 import { Paper } from "@/utils/markdownUtils";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { Giscus } from "@/components/Giscus";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 
@@ -14,6 +15,25 @@ const PaperDetail = () => {
   const [paper, setPaper] = useState<Paper | null>(null);
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
+  const [giscusTheme, setGiscusTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
+    }
+    return 'dark';
+  });
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      const newTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
+      setGiscusTheme(newTheme);
+    };
+    window.addEventListener('theme-change', handleThemeChange);
+    window.addEventListener('storage', handleThemeChange);
+    return () => {
+      window.removeEventListener('theme-change', handleThemeChange);
+      window.removeEventListener('storage', handleThemeChange);
+    };
+  }, []);
 
   useEffect(() => {
     const loadPaper = async () => {
@@ -169,6 +189,25 @@ const PaperDetail = () => {
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <MarkdownRenderer content={paper.content} />
         </div>
+
+        {/* Comments & Reactions */}
+        <section className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
+          <h3 className="text-2xl font-bold mb-6">Comments & Reactions</h3>
+          <Giscus
+            key={`giscus-${giscusTheme}`}
+            repo="prashantgpt91/prashantgpt91.github.io"
+            repoId="R_kgDONSu8aQ"
+            category="Announcements"
+            categoryId="DIC_kwDONSu8ac4CkQVo"
+            mapping="pathname"
+            strict="0"
+            reactionsEnabled="1"
+            emitMetadata="1"
+            inputPosition="top"
+            theme={giscusTheme}
+            lang="en"
+          />
+        </section>
       </div>
     </div>
   );
