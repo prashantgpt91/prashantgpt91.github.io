@@ -1,4 +1,4 @@
-import{p as f,P as y,a as u}from"./markdownUtils-CkUh805U.js";const v=`---
+import{p as f,P as y,a as u}from"./markdownUtils-CkSFmX6g.js";const v=`---
 title: "AI-Powered Document Analyzer"
 description: "A comprehensive document analysis system using computer vision and NLP to extract, classify, and summarize information from various document types."
 technologies: ["Python", "PyTorch", "OpenCV", "FastAPI", "React", "Docker"]

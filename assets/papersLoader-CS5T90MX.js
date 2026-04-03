@@ -1,4 +1,4 @@
-import{p as y,P as v,a as m}from"./markdownUtils-CkUh805U.js";const _=`---
+import{p as y,P as v,a as m}from"./markdownUtils-CkSFmX6g.js";const _=`---
 title: "Efficient Attention Mechanisms for Large-Scale Language Models"
 authors: ["Prashant Gupta", "Dr. Sarah Chen", "Prof. Michael Rodriguez"]
 journal: "International Conference on Machine Learning (ICML)"
