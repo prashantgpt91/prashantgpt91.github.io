@@ -166,9 +166,9 @@ const ProjectDetail = () => {
           <Giscus
             key={`giscus-${giscusTheme}`}
             repo="prashantgpt91/prashantgpt91.github.io"
-            repoId="R_kgDONSu8aQ"
+            repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
             category="Announcements"
-            categoryId="DIC_kwDONSu8ac4CkQVo"
+            categoryId="DIC_kwDOBTqyu84Cr7SY"
             mapping="pathname"
             strict="0"
             reactionsEnabled="1"
