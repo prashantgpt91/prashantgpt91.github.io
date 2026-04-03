@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { getBlogPost } from "@/data/blogLoader";
 import { BlogPost as BlogPostType } from "@/utils/markdownUtils";
 import { Giscus } from "@/components/Giscus";
+import { GiscusReactions } from "@/components/GiscusReactions";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Header from "@/components/Header";
 
@@ -158,6 +159,9 @@ const BlogPost = () => {
           </p>
         </header>
 
+        {/* Reactions (top of post) */}
+        <GiscusReactions theme={giscusTheme} />
+
         {/* Article Content */}
         <MarkdownRenderer content={post.content} />
 
@@ -205,8 +209,8 @@ const BlogPost = () => {
             key={`giscus-${giscusTheme}`} // Force remount on theme change
             repo="prashantgpt91/prashantgpt91.github.io"
             repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
-            category="Announcements"
-            categoryId="DIC_kwDOBTqyu84Cr7SY"
+            category="General"
+            categoryId="DIC_kwDOBTqyu84Cr7SZ"
             mapping="pathname"
             strict="0"
             reactionsEnabled="1"

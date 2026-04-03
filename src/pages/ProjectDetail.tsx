@@ -7,6 +7,7 @@ import { getProject } from "@/data/projectsLoader";
 import { Project } from "@/utils/markdownUtils";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { Giscus } from "@/components/Giscus";
+import { GiscusReactions } from "@/components/GiscusReactions";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 
@@ -155,6 +156,9 @@ const ProjectDetail = () => {
           )}
         </header>
 
+        {/* Reactions (top of post) */}
+        <GiscusReactions theme={giscusTheme} />
+
         {/* Project Content */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <MarkdownRenderer content={project.content} />
@@ -167,8 +171,8 @@ const ProjectDetail = () => {
             key={`giscus-${giscusTheme}`}
             repo="prashantgpt91/prashantgpt91.github.io"
             repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
-            category="Announcements"
-            categoryId="DIC_kwDOBTqyu84Cr7SY"
+            category="General"
+            categoryId="DIC_kwDOBTqyu84Cr7SZ"
             mapping="pathname"
             strict="0"
             reactionsEnabled="1"
