@@ -118,8 +118,8 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Gradient text animations */
-.bg-gradient-to-r {
+/* Gradient text animations - scoped to avoid affecting all Tailwind gradients */
+.animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
 }
@@ -136,7 +136,51 @@ html {
   }
 }
 
-/* Custom scrollbar */
+/* Reduced motion: disable animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Safe area insets for notched devices (iPhone X+) */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Visible focus indicators for keyboard navigation */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: 0 0 0.5rem 0.5rem;
+  font-weight: 500;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Custom scrollbar - WebKit */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -152,4 +196,10 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--foreground));
+}
+
+/* Custom scrollbar - Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) hsl(var(--muted));
 }

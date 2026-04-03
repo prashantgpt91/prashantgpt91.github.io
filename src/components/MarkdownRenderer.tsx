@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import 'highlight.js/styles/github-dark.css';
 
 interface MarkdownRendererProps {
   content: string;
@@ -17,7 +15,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
     <div className={`prose prose-lg dark:prose-invert max-w-none ${className}`}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeRaw]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           // Custom code block rendering
           code({ node, inline, className, children, ...props }: any) {
@@ -26,8 +24,8 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
             
             if (!inline && language) {
               return (
-                <div className="relative">
-                  <div className="absolute top-2 right-2 text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded">
+                <div className="relative overflow-x-auto">
+                  <div className="absolute top-2 right-2 text-xs text-gray-400 bg-gray-800 px-2 py-1 rounded z-10">
                     {language}
                   </div>
                   <SyntaxHighlighter

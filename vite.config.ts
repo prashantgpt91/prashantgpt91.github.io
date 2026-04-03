@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => ({
           // UI library chunk - separate heavy UI libraries
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-tooltip', 'lucide-react'],
           // Content processing chunk - markdown and related libraries
-          content: ['gray-matter', 'marked', 'prismjs'],
+          content: ['gray-matter', 'react-markdown', 'react-syntax-highlighter'],
           // Utils chunk - smaller utilities
           utils: ['clsx', 'tailwind-merge', 'date-fns']
         }

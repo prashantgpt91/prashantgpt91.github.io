@@ -1,9 +1,9 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 // Route-based code splitting - industry standard approach
 const Index = lazy(() => import("./pages/Index"));
@@ -15,8 +15,6 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-const queryClient = new QueryClient();
-
 // Loading component for better UX
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950">
@@ -25,12 +23,16 @@ const LoadingSpinner = () => (
 );
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Suspense fallback={<LoadingSpinner />}>
+  <ErrorBoundary>
+  <TooltipProvider>
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
+      <Suspense fallback={<LoadingSpinner />}>
+        <main id="main-content">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/projects" element={<Projects />} />
@@ -43,10 +45,11 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </Suspense>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+        </main>
+      </Suspense>
+    </BrowserRouter>
+  </TooltipProvider>
+  </ErrorBoundary>
 );
 
 export default App;
