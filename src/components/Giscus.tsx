@@ -29,15 +29,18 @@ export const Giscus: React.FC<GiscusProps> = ({
   theme = 'dark',
   lang = 'en',
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const scriptContainerRef = useRef<HTMLDivElement>(null);
   const [loadState, setLoadState] = useState<'loading' | 'loaded' | 'error'>('loading');
   const initialThemeRef = useRef(theme);
 
   // Load Giscus script once on mount
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!scriptContainerRef.current) return;
 
-    containerRef.current.innerHTML = '';
+    // Clear only the script container (not React-managed DOM)
+    while (scriptContainerRef.current.firstChild) {
+      scriptContainerRef.current.removeChild(scriptContainerRef.current.firstChild);
+    }
     setLoadState('loading');
 
     const script = document.createElement('script');
@@ -61,11 +64,11 @@ export const Giscus: React.FC<GiscusProps> = ({
       setLoadState('error');
     };
 
-    containerRef.current.appendChild(script);
+    scriptContainerRef.current.appendChild(script);
 
     // Timeout: if iframe doesn't appear in 15s, show error
     const timeout = setTimeout(() => {
-      const iframe = containerRef.current?.querySelector('iframe.giscus-frame');
+      const iframe = scriptContainerRef.current?.querySelector('iframe.giscus-frame');
       if (!iframe) setLoadState('error');
     }, 15000);
 
@@ -83,13 +86,12 @@ export const Giscus: React.FC<GiscusProps> = ({
       clearTimeout(timeout);
       window.removeEventListener('message', handleMessage);
     };
-    // Only re-mount on config changes that require it (not theme)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [repo, repoId, category, categoryId, mapping, term, strict, reactionsEnabled, emitMetadata, inputPosition, lang]);
 
   // Theme switching via postMessage (no remount)
   useEffect(() => {
-    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    const iframe = scriptContainerRef.current?.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
     if (iframe) {
       iframe.contentWindow?.postMessage(
         { giscus: { setConfig: { theme } } },
@@ -99,7 +101,10 @@ export const Giscus: React.FC<GiscusProps> = ({
   }, [theme]);
 
   return (
-    <div ref={containerRef} className="mt-2">
+    <div className="mt-2">
+      {/* Script injection target - not managed by React */}
+      <div ref={scriptContainerRef} />
+      {/* React-managed status UI */}
       {loadState === 'loading' && (
         <div className="text-center text-gray-600 dark:text-gray-400 p-4 text-sm">
           Loading comments...
