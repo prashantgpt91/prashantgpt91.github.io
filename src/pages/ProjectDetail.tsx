@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ExternalLink, Github, Calendar, Tag } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { formatDateRange } from "@/utils/dateFormat";
 import { getProject } from "@/data/projectsLoader";
 import { Project } from "@/utils/markdownUtils";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -97,54 +98,35 @@ const ProjectDetail = () => {
 
         {/* Project Header */}
         <header className="mb-6">
-          <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-          <p className="text-xl text-gray-600 dark:text-slate-400 mb-6">{project.description}</p>
-
-          <div className="flex flex-wrap gap-4 mb-6">
-            <div className="flex items-center text-sm text-gray-600 dark:text-slate-400">
-              <Calendar className="w-4 h-4 mr-2" />
-              <span>{project.startDate} {project.endDate && `- ${project.endDate}`}</span>
-            </div>
-            <Badge variant={project.status === "completed" ? "default" : "outline"} className="capitalize">
-              {project.status}
-            </Badge>
-            <Badge variant="secondary" className="capitalize">
-              {project.category}
-            </Badge>
+          <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-slate-400 mb-3">
+            <span>{formatDateRange(project.startDate, project.endDate)}</span>
+            {(project.githubUrl || project.liveUrl) && (
+              <>
+                <span className="text-gray-300 dark:text-slate-600">|</span>
+                {project.githubUrl && (
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-slate-100 transition-colors">
+                    <Github className="w-3.5 h-3.5" />
+                    <span>Code</span>
+                  </a>
+                )}
+                {project.liveUrl && (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-gray-900 dark:hover:text-slate-100 transition-colors">
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>Demo</span>
+                  </a>
+                )}
+              </>
+            )}
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-sm font-semibold mb-2 flex items-center">
-              <Tag className="w-4 h-4 mr-2" />
-              Technologies Used
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <Badge key={index} variant="outline">{tech}</Badge>
-              ))}
-            </div>
-          </div>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">{project.title}</h1>
+          <p className="text-lg text-gray-600 dark:text-slate-400 mb-4">{project.description}</p>
 
-          {(project.githubUrl || project.liveUrl) && (
-            <div className="flex gap-4">
-              {project.githubUrl && (
-                <Button asChild variant="outline">
-                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-4 h-4 mr-2" />
-                    View Code
-                  </a>
-                </Button>
-              )}
-              {project.liveUrl && (
-                <Button asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </a>
-                </Button>
-              )}
-            </div>
-          )}
+          <div className="flex flex-wrap gap-1.5">
+            {project.technologies.map((tech, index) => (
+              <Badge key={index} variant="outline" className="text-xs font-normal">{tech}</Badge>
+            ))}
+          </div>
         </header>
 
         {/* Top engagement bar */}

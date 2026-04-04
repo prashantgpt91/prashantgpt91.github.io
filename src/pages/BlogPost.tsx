@@ -103,7 +103,7 @@ const BlogPost = () => {
             ))}
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4 bg-gradient-to-r from-gray-900 to-gray-600 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent">
             {post.title}
           </h1>
 
@@ -124,7 +124,7 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <p className="text-xl text-gray-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
             {post.excerpt}
           </p>
         </header>

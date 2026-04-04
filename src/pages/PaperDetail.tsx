@@ -97,7 +97,7 @@ const PaperDetail = () => {
 
         {/* Paper Header */}
         <header className="mb-6">
-          <h1 className="text-4xl font-bold mb-4">{paper.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-3">{paper.title}</h1>
 
           <p className="text-lg text-gray-600 dark:text-slate-400 mb-4">
             {paper.authors.join(", ")}
