@@ -8,6 +8,7 @@ import { Pagination, PageSizeSelector } from "@/components/Pagination";
 import DateFilter, { DateRange } from "@/components/DateFilter";
 import FilterDropdown from "@/components/FilterDropdown";
 import { getPaginatedPapers, getPaperCategories } from "@/data/papersLoader";
+import { CardSkeletonGrid } from "@/components/CardSkeleton";
 import { Paper } from "@/utils/markdownUtils";
 import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -120,26 +121,26 @@ const Papers = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-950">
+      <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+          <CardSkeletonGrid count={4} accent="teal" />
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen bg-background">
       <Header />
-      
-      <div className="container mx-auto px-4 py-8">
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             Research Papers
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto">
             Academic publications, research contributions, and papers in machine learning, AI, and computer science.
           </p>
         </div>
@@ -227,7 +228,7 @@ const Papers = () => {
             {paginatedPapers.items.map((paper) => (
               <article
                 key={paper.id}
-                className="bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer border-l-2 border-l-teal-500"
+                className="bg-card rounded-lg shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer border-l-2 border-l-teal-500"
                 onClick={(e) => handlePaperClick(paper.slug, e)}
               >
                 <div className="p-6">
@@ -259,7 +260,7 @@ const Papers = () => {
                     </div>
                   </div>
                   
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <h3 className="text-lg font-medium text-foreground mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                     {paper.title}
                   </h3>
                   
@@ -284,7 +285,7 @@ const Papers = () => {
                   
                   {/* Abstract */}
                   {paper.abstract && (
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-base line-clamp-3">
+                    <p className="text-muted-foreground mb-4 text-base line-clamp-3">
                       {paper.abstract}
                     </p>
                   )}
@@ -296,7 +297,7 @@ const Papers = () => {
                         <Badge
                           key={keyword}
                           variant="outline"
-                          className="badge-clickable text-xs"
+                          className="text-xs cursor-default"
                         >
                           {keyword}
                         </Badge>

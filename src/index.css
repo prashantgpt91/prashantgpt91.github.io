@@ -153,7 +153,7 @@ body {
 
 /* Visible focus indicators for keyboard navigation */
 :focus-visible {
-  outline: 2px solid hsl(var(--ring));
+  outline: 2px solid #3b82f6;
   outline-offset: 2px;
   border-radius: 4px;
 }

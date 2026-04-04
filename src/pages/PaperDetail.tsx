@@ -72,7 +72,7 @@ const PaperDetail = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-white dark:bg-slate-900 flex justify-center items-center">
-        <p className="text-lg text-gray-600 dark:text-slate-400">Loading...</p>
+        <p className="text-lg text-muted-foreground">Loading...</p>
       </div>
     );
   }
@@ -82,7 +82,7 @@ const PaperDetail = () => {
       <div className="min-h-screen bg-white dark:bg-slate-900 flex justify-center items-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4">Paper Not Found</h1>
-          <p className="text-gray-600 dark:text-slate-400 mb-6">The paper you're looking for doesn't exist.</p>
+          <p className="text-muted-foreground mb-6">The paper you're looking for doesn't exist.</p>
           <Link to="/papers">
             <Button>
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -95,7 +95,7 @@ const PaperDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <ReadingProgressBar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
@@ -109,7 +109,7 @@ const PaperDetail = () => {
         <header className="mb-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">{paper.title}</h1>
 
-          <p className="text-lg text-gray-600 dark:text-slate-400 mb-4">
+          <p className="text-lg text-muted-foreground mb-4">
             {paper.authors.join(", ")}
           </p>
 
@@ -166,23 +166,18 @@ const PaperDetail = () => {
           </div>
         </header>
 
-        {/* Top engagement bar */}
-        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mb-10">
-          <PostEngagementBar title={paper.title} />
-        </div>
-
         {/* Paper Content */}
         <div className="prose prose-lg dark:prose-invert max-w-none">
           <MarkdownRenderer content={paper.content} />
         </div>
 
         {/* Bottom engagement bar */}
-        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mt-12 mb-10">
+        <div className="border-y border-border py-1 mt-12 mb-10">
           <PostEngagementBar title={paper.title} />
         </div>
 
         {/* Comments */}
-        <section id="comments" className="pt-8 border-t border-gray-200 dark:border-slate-700">
+        <section id="comments" className="pt-8 border-t border-border">
           <h2 className="text-lg font-semibold mb-4">Comments</h2>
           <Giscus
             repo="prashantgpt91/prashantgpt91.github.io"

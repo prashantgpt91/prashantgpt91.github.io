@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface MarkdownRendererProps {
   content: string;
@@ -11,6 +11,18 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className = '' }) => {
+  const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+
+  const codeTheme = isDark ? oneDark : oneLight;
+
   // Strip leading h1 if it duplicates the page title (common in frontmatter + markdown)
   const cleanedContent = content.replace(/^\s*#\s+.+\n+/, '');
 
@@ -32,7 +44,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
                     {language}
                   </div>
                   <SyntaxHighlighter
-                    style={oneDark}
+                    style={codeTheme}
                     language={language}
                     PreTag="div"
                     className="rounded-lg !mt-0 !mb-4"

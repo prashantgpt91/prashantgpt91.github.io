@@ -76,7 +76,8 @@ const PostEngagementBar: React.FC<PostEngagementBarProps> = ({ title }) => {
             variant="ghost"
             size="sm"
             onClick={scrollToComments}
-            className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 gap-1.5 px-2.5"
+            aria-label="Jump to comments"
+            className="text-muted-foreground hover:text-foreground gap-1.5 px-2.5"
           >
             <MessageCircle className="h-4 w-4" />
             <span className="hidden sm:inline text-sm">Comment</span>
@@ -95,7 +96,8 @@ const PostEngagementBar: React.FC<PostEngagementBarProps> = ({ title }) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-slate-100 gap-1.5 px-2.5"
+                aria-label="Share this post"
+                className="text-muted-foreground hover:text-foreground gap-1.5 px-2.5"
               >
                 <Share2 className="h-4 w-4" />
                 <span className="hidden sm:inline text-sm">Share</span>

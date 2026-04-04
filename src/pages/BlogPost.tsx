@@ -70,7 +70,7 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Loading...</h1>
         </div>
@@ -80,7 +80,7 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Post Not Found</h1>
           <Link to="/blog">
@@ -92,7 +92,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <ReadingProgressBar />
       <article className="max-w-4xl mx-auto px-6 py-12">
@@ -118,7 +118,7 @@ const BlogPost = () => {
             {post.title}
           </h1>
 
-          <div className="flex items-center text-gray-600 dark:text-slate-400 space-x-6 mb-6">
+          <div className="flex items-center text-muted-foreground space-x-6 mb-6">
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-full mr-3 bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
                 {post.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
@@ -135,21 +135,16 @@ const BlogPost = () => {
             </div>
           </div>
 
-          <p className="text-base md:text-lg text-gray-600 dark:text-slate-400 leading-relaxed">
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {post.excerpt}
           </p>
         </header>
-
-        {/* Top engagement bar */}
-        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mb-10">
-          <PostEngagementBar title={post.title} />
-        </div>
 
         {/* Article Content */}
         <MarkdownRenderer content={post.content} />
 
         {/* Bottom engagement bar */}
-        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mt-12 mb-10">
+        <div className="border-y border-border py-1 mt-12 mb-10">
           <PostEngagementBar title={post.title} />
         </div>
 
@@ -160,8 +155,8 @@ const BlogPost = () => {
               {post.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
             </div>
             <div>
-              <h4 className="font-semibold text-gray-900 dark:text-slate-100">{post.author}</h4>
-              <p className="text-sm text-gray-600 dark:text-slate-400">Staff AI Engineer</p>
+              <h4 className="font-semibold text-foreground">{post.author}</h4>
+              <p className="text-sm text-muted-foreground">Staff AI Engineer</p>
             </div>
           </div>
         </footer>
@@ -170,7 +165,7 @@ const BlogPost = () => {
         <RelatedPosts currentSlug={slug || ''} category={post.category} tags={post.tags} />
 
         {/* Comments */}
-        <section id="comments" className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
+        <section id="comments" className="mt-12 pt-8 border-t border-border">
           <h2 className="text-lg font-semibold mb-4">Comments</h2>
           <Giscus
             repo="prashantgpt91/prashantgpt91.github.io"
