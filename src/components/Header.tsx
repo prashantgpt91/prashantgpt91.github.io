@@ -71,9 +71,6 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <Link to="/" className="px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10">
-            Home
-          </Link>
           <Link to="/projects" className="px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10">
             Projects
           </Link>
@@ -129,13 +126,6 @@ const Header = () => {
         }`}
       >
         <div className="px-2 pt-2 pb-4">
-          <Link
-            to="/"
-            className="block px-3 py-2 rounded-md text-base font-medium w-full text-left mb-1 hover:bg-gray-100 dark:hover:bg-slate-800"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Home
-          </Link>
           <Link
             to="/projects"
             className="block px-3 py-2 rounded-md text-base font-medium w-full text-left mb-1 hover:bg-gray-100 dark:hover:bg-slate-800"

@@ -17,18 +17,23 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="w-full max-w-3xl mx-auto px-6 animate-fade-in text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-5">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
           Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Prashant</span>
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-4 leading-relaxed">
-          I build and ship ML systems at scale — from research prototypes to
-          production pipelines serving millions. Over 10+ years I've worked across
-          NLP, computer vision, and data engineering as an engineer, scientist, and technical lead.
+        <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-3 leading-relaxed">
+          I architect and ship large-scale production ML systems end-to-end.
+          Over 10+ years, I've built and led cross-functional teams across the full
+          ML lifecycle — data pipelines, model training, serving, evaluation, and observability.
+        </p>
+
+        <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-6 leading-relaxed">
+          Currently focused on GenAI and agentic systems — multi-agent orchestration,
+          RAG, LLM fine-tuning, and retrieval-augmented reasoning at scale.
         </p>
 
         <p className="text-sm text-gray-500 dark:text-slate-500 mb-8">
-          ML Engineering &middot; NLP &middot; Computer Vision &middot; Data Systems &middot; Applied Research
+          ML Systems &middot; GenAI &amp; Agents &middot; NLP &middot; Computer Vision &middot; Edge AI &middot; Data Engineering
         </p>
 
         {/* Social links */}
