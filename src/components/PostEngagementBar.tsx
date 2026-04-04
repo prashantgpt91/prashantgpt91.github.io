@@ -1,4 +1,4 @@
-import { Heart, MessageCircle, Share2, Copy } from "lucide-react";
+import { MessageCircle, Share2, Copy, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -69,24 +69,6 @@ const PostEngagementBar: React.FC<PostEngagementBarProps> = ({ title }) => {
 
   return (
     <div className="flex items-center gap-1">
-      {/* React button */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={scrollToComments}
-            className="text-gray-600 dark:text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 gap-1.5 px-2.5"
-          >
-            <Heart className="h-4 w-4" />
-            <span className="hidden sm:inline text-sm">React</span>
-          </Button>
-        </TooltipTrigger>
-        <TooltipContent>Add a reaction</TooltipContent>
-      </Tooltip>
-
-      <Separator orientation="vertical" className="h-4 mx-1" />
-
       {/* Comment button */}
       <Tooltip>
         <TooltipTrigger asChild>
@@ -126,6 +108,12 @@ const PostEngagementBar: React.FC<PostEngagementBarProps> = ({ title }) => {
           <DropdownMenuItem onClick={handleCopyLink}>
             <Copy className="h-4 w-4 mr-2" />
             Copy Link
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank');
+          }}>
+            <Linkedin className="h-4 w-4 mr-2" />
+            LinkedIn
           </DropdownMenuItem>
           <DropdownMenuItem onClick={handleWhatsApp}>
             <WhatsAppIcon className="h-4 w-4 mr-2" />

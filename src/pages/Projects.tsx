@@ -261,7 +261,7 @@ const Projects = () => {
                         {project.status}
                       </Badge>
                       {project.featured && (
-                        <Badge variant="default" className="text-xs bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                        <Badge variant="default" className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
                           Featured
                         </Badge>
                       )}
@@ -281,7 +281,7 @@ const Projects = () => {
                   
                   {/* Description */}
                   {project.description && (
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm line-clamp-3">
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 text-base line-clamp-3">
                       {project.description}
                     </p>
                   )}

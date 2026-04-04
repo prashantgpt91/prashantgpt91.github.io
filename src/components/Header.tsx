@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   // Initialize theme from localStorage, defaulting to dark
@@ -25,6 +25,9 @@ const Header = () => {
       return newMode;
     });
   };
+
+  const location = useLocation();
+  const isActive = (path: string) => location.pathname.startsWith(path);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
@@ -71,13 +74,13 @@ const Header = () => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
-          <Link to="/projects" className="px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+          <Link to="/projects" className={`px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10 ${isActive('/projects') ? 'text-blue-600 font-medium' : ''}`}>
             Projects
           </Link>
-          <Link to="/papers" className="px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+          <Link to="/papers" className={`px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10 ${isActive('/papers') ? 'text-blue-600 font-medium' : ''}`}>
             Papers
           </Link>
-          <Link to="/blog" className="px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10">
+          <Link to="/blog" className={`px-3 py-2 rounded-lg transition-all duration-200 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10 ${isActive('/blog') ? 'text-blue-600 font-medium' : ''}`}>
             Blog
           </Link>
           <Button

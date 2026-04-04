@@ -158,7 +158,7 @@ const BlogPost = () => {
             </div>
             <div>
               <h4 className="font-semibold text-gray-900 dark:text-slate-100">{post.author}</h4>
-              <p className="text-sm text-gray-600 dark:text-slate-400">Data Scientist & AI Engineer</p>
+              <p className="text-sm text-gray-600 dark:text-slate-400">Staff AI Engineer</p>
             </div>
           </div>
         </footer>

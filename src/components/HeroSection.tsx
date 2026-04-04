@@ -21,19 +21,18 @@ const HeroSection = () => {
           Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Prashant</span>
         </h1>
 
-        <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-3 leading-relaxed">
-          I architect and ship large-scale production ML systems end-to-end.
-          Over 10+ years, I've built and led cross-functional teams across the full
-          ML lifecycle — data pipelines, model training, serving, evaluation, and observability.
-        </p>
-
         <p className="text-base sm:text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto mb-6 leading-relaxed">
-          Currently focused on GenAI and agentic systems — multi-agent orchestration,
-          RAG, LLM fine-tuning, and retrieval-augmented reasoning at scale.
+          I build ML systems that ship to production — clinical AI engines for real-time
+          patient monitoring, multi-agent GenAI systems with LangGraph, and edge inference
+          on RPi-class devices. Over 10+ years I've led teams across the full ML
+          lifecycle, from data pipelines and model training to serving and observability
+          at scale. Currently focused on GenAI, agentic orchestration, RAG, and
+          LLM fine-tuning. I also hold a published U.S. patent in non-invasive
+          physiological sensing.
         </p>
 
         <p className="text-sm text-gray-500 dark:text-slate-500 mb-8">
-          ML Systems &middot; GenAI &amp; Agents &middot; NLP &middot; Computer Vision &middot; Edge AI &middot; Data Engineering
+          ML Systems &middot; GenAI &amp; Agents &middot; NLP &middot; Computer Vision &middot; Edge AI &middot; MLOps &middot; Data Engineering
         </p>
 
         {/* Social links */}
