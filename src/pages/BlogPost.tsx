@@ -8,7 +8,6 @@ import { useToast } from "@/hooks/use-toast";
 import { getBlogPost } from "@/data/blogLoader";
 import { BlogPost as BlogPostType } from "@/utils/markdownUtils";
 import { Giscus } from "@/components/Giscus";
-import { GiscusReactions } from "@/components/GiscusReactions";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Header from "@/components/Header";
 
@@ -72,6 +71,12 @@ const BlogPost = () => {
         toast({
           title: "Link Copied",
           description: "Blog post link has been copied to clipboard",
+        });
+      }).catch(() => {
+        toast({
+          title: "Copy Failed",
+          description: "Could not copy link. Try selecting the URL manually.",
+          variant: "destructive",
         });
       });
     } else if (type === 'whatsapp') {
@@ -137,11 +142,9 @@ const BlogPost = () => {
           
           <div className="flex items-center text-gray-600 dark:text-slate-400 space-x-6 mb-8">
             <div className="flex items-center">
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face"
-                alt={post.author}
-                className="w-8 h-8 rounded-full mr-3"
-              />
+              <div className="w-8 h-8 rounded-full mr-3 bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                {post.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
+              </div>
               <span className="font-medium">{post.author}</span>
             </div>
             <div className="flex items-center">
@@ -159,8 +162,22 @@ const BlogPost = () => {
           </p>
         </header>
 
-        {/* Reactions (top of post) */}
-        <GiscusReactions theme={giscusTheme} />
+        {/* Reactions & Comments */}
+        <div className="mb-8">
+          <Giscus
+            repo="prashantgpt91/prashantgpt91.github.io"
+            repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
+            category="General"
+            categoryId="DIC_kwDOBTqyu84Cr7SZ"
+            mapping="pathname"
+            strict="0"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme={giscusTheme}
+            lang="en"
+          />
+        </div>
 
         {/* Article Content */}
         <MarkdownRenderer content={post.content} />
@@ -169,11 +186,9 @@ const BlogPost = () => {
         <footer className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
           <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-4">
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face"
-                alt={post.author}
-                className="w-12 h-12 rounded-full"
-              />
+              <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold">
+                {post.author.split(' ').map(n => n[0]).join('').slice(0, 2)}
+              </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-slate-100">{post.author}</h4>
                 <p className="text-sm text-gray-600 dark:text-slate-400">Data Scientist & AI Engineer</p>
@@ -202,24 +217,6 @@ const BlogPost = () => {
           </div>
         </footer>
         
-        {/* Comments Section with Giscus */}
-        <section className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700">
-          <h3 className="text-2xl font-bold mb-6">Comments & Reactions</h3>
-          <Giscus
-            key={`giscus-${giscusTheme}`} // Force remount on theme change
-            repo="prashantgpt91/prashantgpt91.github.io"
-            repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
-            category="General"
-            categoryId="DIC_kwDOBTqyu84Cr7SZ"
-            mapping="pathname"
-            strict="0"
-            reactionsEnabled="1"
-            emitMetadata="1" // Keep metadata enabled for better functionality
-            inputPosition="top"
-            theme={giscusTheme}
-            lang="en"
-          />
-        </section>
       </article>
     </div>
   );

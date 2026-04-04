@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface GiscusProps {
   repo: string;
@@ -26,18 +26,20 @@ export const Giscus: React.FC<GiscusProps> = ({
   reactionsEnabled = '1',
   emitMetadata = '0',
   inputPosition = 'top',
-  theme = 'light',
+  theme = 'dark',
   lang = 'en',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [loadState, setLoadState] = useState<'loading' | 'loaded' | 'error'>('loading');
+  const initialThemeRef = useRef(theme);
 
+  // Load Giscus script once on mount
   useEffect(() => {
     if (!containerRef.current) return;
 
-    // Clear any existing content
     containerRef.current.innerHTML = '';
+    setLoadState('loading');
 
-    // Create and configure the script
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', repo);
@@ -50,54 +52,72 @@ export const Giscus: React.FC<GiscusProps> = ({
     script.setAttribute('data-reactions-enabled', reactionsEnabled);
     script.setAttribute('data-emit-metadata', emitMetadata);
     script.setAttribute('data-input-position', inputPosition);
-    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-theme', initialThemeRef.current);
     script.setAttribute('data-lang', lang);
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
 
-    // Add error handling
     script.onerror = () => {
-      console.error('Failed to load Giscus script');
-    };
-
-    script.onload = () => {
-      console.log('Giscus script loaded successfully');
+      setLoadState('error');
     };
 
     containerRef.current.appendChild(script);
 
+    // Timeout: if iframe doesn't appear in 15s, show error
+    const timeout = setTimeout(() => {
+      const iframe = containerRef.current?.querySelector('iframe.giscus-frame');
+      if (!iframe) setLoadState('error');
+    }, 15000);
+
     // Listen for Giscus messages
     const handleMessage = (event: MessageEvent) => {
       if (event.origin !== 'https://giscus.app') return;
-      
-      console.log('Giscus message received:', event.data);
-      
-      // Handle successful login/interaction
-      if (event.data?.giscus?.discussion || event.data?.giscus?.type === 'login') {
-        console.log('User interacted with Giscus, scrolling to comments');
-        setTimeout(() => {
-          containerRef.current?.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-          });
-        }, 1000);
+      if (event.data?.giscus) {
+        setLoadState('loaded');
       }
     };
 
     window.addEventListener('message', handleMessage);
 
-    // Cleanup
     return () => {
+      clearTimeout(timeout);
       window.removeEventListener('message', handleMessage);
     };
-  }, [repo, repoId, category, categoryId, mapping, term, strict, reactionsEnabled, emitMetadata, inputPosition, theme, lang]);
+    // Only re-mount on config changes that require it (not theme)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [repo, repoId, category, categoryId, mapping, term, strict, reactionsEnabled, emitMetadata, inputPosition, lang]);
+
+  // Theme switching via postMessage (no remount)
+  useEffect(() => {
+    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (iframe) {
+      iframe.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme } } },
+        'https://giscus.app'
+      );
+    }
+  }, [theme]);
 
   return (
-    <div ref={containerRef} className="mt-10">
-      {/* Fallback content while loading */}
-      <div className="text-center text-gray-500 p-4">
-        Loading comments...
-      </div>
+    <div ref={containerRef} className="mt-2">
+      {loadState === 'loading' && (
+        <div className="text-center text-gray-600 dark:text-gray-400 p-4 text-sm">
+          Loading comments...
+        </div>
+      )}
+      {loadState === 'error' && (
+        <div className="text-center text-gray-600 dark:text-gray-400 p-4 text-sm">
+          Comments unavailable.{' '}
+          <a
+            href={`https://github.com/${repo}/discussions`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 dark:text-blue-400 underline"
+          >
+            View on GitHub
+          </a>
+        </div>
+      )}
     </div>
   );
 };
