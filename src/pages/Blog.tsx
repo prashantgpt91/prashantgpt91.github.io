@@ -12,11 +12,20 @@ import { CardSkeletonGrid } from "@/components/CardSkeleton";
 import { BlogPost } from "@/utils/markdownUtils";
 import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { updatePageMeta } from "@/utils/seo";
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    updatePageMeta({
+      title: 'Blog',
+      description: 'Insights, tutorials, and thoughts on machine learning, AI, GenAI, and software engineering by Prashant Gupta.',
+      path: '/blog',
+    });
+  }, []);
+
   // State management
   const [paginatedPosts, setPaginatedPosts] = useState<PaginationResult<Omit<BlogPost, 'content'>> | null>(null);
   const [categories, setCategories] = useState<string[]>([]);

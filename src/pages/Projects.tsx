@@ -12,11 +12,20 @@ import { CardSkeletonGrid } from "@/components/CardSkeleton";
 import { Project } from "@/utils/markdownUtils";
 import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { updatePageMeta } from "@/utils/seo";
 
 const Projects = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    updatePageMeta({
+      title: 'Projects',
+      description: 'ML systems, GenAI applications, and full-stack projects built by Prashant Gupta.',
+      path: '/projects',
+    });
+  }, []);
+
   // State management
   const [paginatedProjects, setPaginatedProjects] = useState<PaginationResult<Omit<Project, 'content'>> | null>(null);
   const [categories, setCategories] = useState<string[]>([]);

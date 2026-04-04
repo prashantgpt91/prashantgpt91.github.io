@@ -1,0 +1,54 @@
+# Prashant Gupta — Staff AI Engineer
+
+## Identity
+- Name: Prashant Gupta
+- Title: Staff AI Engineer at AarogyaTech
+- Location: Bengaluru, India
+- Website: https://prashant.sh
+- LinkedIn: https://linkedin.com/in/prashantgpt91
+- GitHub: https://github.com/prashantgpt91
+- Google Scholar: https://scholar.google.com/citations?user=fpqALOcAAAAJ&hl=en
+- Kaggle: https://www.kaggle.com/prashantgpt91
+- Patent: US-2025-0204794-A1
+
+## Summary
+Prashant Gupta is an ML engineering leader with 10+ years of experience architecting and shipping large-scale production ML systems end-to-end. He builds and leads cross-functional teams across the full ML lifecycle — from data pipelines and model training to serving, evaluation, and observability. Currently focused on GenAI and agentic systems, including multi-agent orchestration, RAG, LLM fine-tuning, and retrieval-augmented reasoning at scale.
+
+## Core Expertise
+- GenAI & Agentic Systems: Multi-agent orchestration with LangGraph, RAG pipelines, LLM fine-tuning, retrieval-augmented reasoning
+- Production ML Systems: End-to-end ML pipelines, model serving, evaluation, observability at scale
+- Edge AI: Model compression, quantized inference on RPi-class devices, hardware-aware optimization
+- NLP & Computer Vision: Text classification, OCR, object detection, conversational AI
+- Clinical AI & Health Tech: Real-time patient monitoring, disease-specific analytics, clinical insights engines
+- Data Engineering: PySpark, Snowflake, AWS Glue, Airflow, high-throughput ETL pipelines
+- MLOps: Distributed observability (Prometheus, Loki, Tempo, Grafana), CI/CD for ML
+
+## Key Achievements
+- Architected hybrid ML + rule-based clinical insights engine at AarogyaTech with 48% feature engagement
+- Led multi-agent clinical GenAI system using LangGraph with RAG evaluation pipelines and hallucination risk checks
+- Published U.S. patent (US-2025-0204794-A1) for non-invasive physiological sensing using transdermal optical imaging
+- Improved conversational AI (Abe AI) EM and F1 scores by 15% using LangChain and fine-tuned Llama-2 65B
+- Engineered data pipelines achieving 100K records/minute throughput with 0% data loss on AWS
+- Built ReceiptBot OCR framework achieving <2% character error rate
+
+## Career Timeline
+- Staff AI Engineer, AarogyaTech (Aug 2024 - Present)
+- Senior Scientist, Envestnet Yodlee / TCS (Jul 2018 - Aug 2024)
+- Machine Learning Engineer, StegoSOC / Cloudadic (Mar 2016 - Jul 2018)
+- Technical Analyst, Abyeti Technologies / Accolite Digital (Jul 2015 - Mar 2016)
+
+## Education
+- B.Tech + M.Tech (Dual Degree), Indian Institute of Information Technology, MP, India (2010-2015)
+- Focus: Data Mining, Multi-objective Optimization, AI, Machine Learning, Statistical Learning
+
+## Publications & Research
+- Multi-objective Optimization: NSGA-II and TDEA evolutionary algorithms for manufacturing scheduling
+- Graph-based Classification: WMkNN anomaly-resilient kNN variant (IEEE, 7 citations)
+- Large-scale Retrieval: Content-fingerprinting pipeline for YouTube video duplicate detection
+
+## This Website
+This is Prashant Gupta's personal portfolio at https://prashant.sh featuring:
+- Blog posts on machine learning, AI, and software engineering
+- Project showcases with technical details
+- Research papers and publications
+- Contact information and social links

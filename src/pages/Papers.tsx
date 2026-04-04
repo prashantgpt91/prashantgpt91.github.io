@@ -12,11 +12,20 @@ import { CardSkeletonGrid } from "@/components/CardSkeleton";
 import { Paper } from "@/utils/markdownUtils";
 import { PaginationResult, PAGINATION_SIZES } from "@/utils/paginationUtils";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { updatePageMeta } from "@/utils/seo";
 
 const Papers = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    updatePageMeta({
+      title: 'Research Papers',
+      description: 'Academic publications and research contributions in machine learning, AI, and computer science by Prashant Gupta.',
+      path: '/papers',
+    });
+  }, []);
+
   // State management
   const [paginatedPapers, setPaginatedPapers] = useState<PaginationResult<Omit<Paper, 'content'>> | null>(null);
   const [categories, setCategories] = useState<string[]>([]);

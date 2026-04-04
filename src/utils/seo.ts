@@ -21,6 +21,17 @@ export function updatePageMeta(opts: {
   setMeta('twitter:title', fullTitle, 'property');
   setMeta('twitter:description', description, 'property');
   setMeta('twitter:url', url, 'property');
+
+  // Update canonical URL
+  let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (canonical) {
+    canonical.href = url;
+  } else {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = url;
+    document.head.appendChild(canonical);
+  }
 }
 
 function setMeta(name: string, content: string, attr: 'name' | 'property' = 'name') {
