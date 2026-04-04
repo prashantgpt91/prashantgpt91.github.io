@@ -106,8 +106,9 @@ export const Giscus: React.FC<GiscusProps> = ({
       <div ref={scriptContainerRef} />
       {/* React-managed status UI */}
       {loadState === 'loading' && (
-        <div className="text-center text-gray-600 dark:text-gray-400 p-4 text-sm">
-          Loading comments...
+        <div className="space-y-3 py-4">
+          <div className="shimmer h-8 w-48 rounded-full" />
+          <div className="shimmer h-24 w-full rounded-lg" />
         </div>
       )}
       {loadState === 'error' && (

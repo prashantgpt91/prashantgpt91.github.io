@@ -12,6 +12,7 @@ interface RelatedPostsProps {
 
 const RelatedPosts = ({ currentSlug, category, tags }: RelatedPostsProps) => {
   const [posts, setPosts] = useState<Omit<BlogPost, "content">[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -29,14 +30,33 @@ const RelatedPosts = ({ currentSlug, category, tags }: RelatedPostsProps) => {
       });
       scored.sort((a, b) => b.score - a.score);
       setPosts(scored.slice(0, 3).map((s) => s.post));
+      setLoaded(true);
     };
     load();
   }, [currentSlug, category, tags]);
 
+  if (!loaded) {
+    return (
+      <section className="mt-12 pt-8 border-t border-border">
+        <div className="shimmer h-5 w-24 rounded mb-5" />
+        <div className="space-y-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-center gap-4 py-3">
+              <div className="flex-1 space-y-1.5">
+                <div className="shimmer h-4 w-3/4 rounded" />
+                <div className="shimmer h-3 w-1/3 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   if (posts.length === 0) return null;
 
   return (
-    <section className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
+    <section className="mt-12 pt-8 border-t border-border">
       <h2 className="text-lg font-semibold mb-5">More posts</h2>
       <div className="grid gap-4">
         {posts.map((post) => (

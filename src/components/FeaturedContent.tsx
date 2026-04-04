@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, FileText, FolderOpen, BookOpen } from "lucide-react";
 import { loadBlogSummaries } from "@/data/blogLoader";
@@ -21,6 +21,7 @@ const typeConfig = {
 
 const FeaturedContent = () => {
   const [items, setItems] = useState<FeaturedItem[]>([]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -85,9 +86,29 @@ const FeaturedContent = () => {
       }
 
       setItems(featured.slice(0, 4));
+      setLoaded(true);
     };
     load();
   }, []);
+
+  if (!loaded) {
+    return (
+      <section className="max-w-3xl mx-auto px-6 py-16">
+        <div className="shimmer h-4 w-24 rounded mb-6" />
+        <div className="space-y-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-center gap-4 py-4">
+              <div className="shimmer h-5 w-5 rounded shrink-0" />
+              <div className="flex-1 space-y-1.5">
+                <div className="shimmer h-4 w-3/4 rounded" />
+                <div className="shimmer h-3 w-1/2 rounded" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   if (items.length === 0) return null;
 

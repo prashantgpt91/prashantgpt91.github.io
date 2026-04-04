@@ -15,10 +15,16 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Loading component for better UX
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-950">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+// Route loading shimmer
+const LoadingShimmer = () => (
+  <div className="min-h-screen bg-background">
+    <div className="sticky top-0 z-40 h-[65px] border-b border-border bg-background" />
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 space-y-4">
+      <div className="shimmer h-8 w-2/3 rounded" />
+      <div className="shimmer h-5 w-full rounded" />
+      <div className="shimmer h-5 w-5/6 rounded" />
+      <div className="shimmer h-5 w-4/5 rounded" />
+    </div>
   </div>
 );
 
@@ -31,7 +37,7 @@ const App = () => (
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingShimmer />}>
         <main id="main-content">
           <Routes>
             <Route path="/" element={<Index />} />

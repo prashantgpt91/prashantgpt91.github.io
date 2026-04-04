@@ -12,6 +12,7 @@ import BackToTop from "@/components/BackToTop";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import { DetailSkeleton } from "@/components/CardSkeleton";
 import { updatePageMeta } from "@/utils/seo";
 
 const PaperDetail = () => {
@@ -71,8 +72,9 @@ const PaperDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-slate-900 flex justify-center items-center">
-        <p className="text-lg text-muted-foreground">Loading...</p>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <DetailSkeleton />
       </div>
     );
   }

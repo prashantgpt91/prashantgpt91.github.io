@@ -11,6 +11,7 @@ import BackToTop from "@/components/BackToTop";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Header from "@/components/Header";
 import ReadingProgressBar from "@/components/ReadingProgressBar";
+import { DetailSkeleton } from "@/components/CardSkeleton";
 import RelatedPosts from "@/components/RelatedPosts";
 import { updatePageMeta } from "@/utils/seo";
 
@@ -70,10 +71,9 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Loading...</h1>
-        </div>
+      <div className="min-h-screen bg-background text-foreground">
+        <Header />
+        <DetailSkeleton />
       </div>
     );
   }
