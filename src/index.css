@@ -113,10 +113,7 @@
   animation: fade-in 0.6s ease-out;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth scrolling handled by JS (smoothScroll.ts) for better easing control */
 
 /* Gradient text animations - scoped to avoid affecting all Tailwind gradients */
 .animate-gradient {

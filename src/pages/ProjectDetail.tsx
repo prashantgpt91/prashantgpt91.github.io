@@ -7,6 +7,8 @@ import { getProject } from "@/data/projectsLoader";
 import { Project } from "@/utils/markdownUtils";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { Giscus } from "@/components/Giscus";
+import PostEngagementBar from "@/components/PostEngagementBar";
+import BackToTop from "@/components/BackToTop";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 
@@ -41,7 +43,6 @@ const ProjectDetail = () => {
         setLoading(false);
         return;
       }
-
       try {
         const projectData = await getProject(slug);
         setProject(projectData);
@@ -56,7 +57,6 @@ const ProjectDetail = () => {
         setLoading(false);
       }
     };
-
     loadProject();
   }, [slug, toast]);
 
@@ -88,7 +88,7 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
       <Header />
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         {/* Back Button */}
         <Link to="/projects" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6">
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -96,20 +96,16 @@ const ProjectDetail = () => {
         </Link>
 
         {/* Project Header */}
-        <header className="mb-8">
+        <header className="mb-6">
           <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
           <p className="text-xl text-gray-600 dark:text-slate-400 mb-6">{project.description}</p>
-          
-          {/* Project Meta */}
+
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="flex items-center text-sm text-gray-600 dark:text-slate-400">
               <Calendar className="w-4 h-4 mr-2" />
               <span>{project.startDate} {project.endDate && `- ${project.endDate}`}</span>
             </div>
-            <Badge 
-              variant={project.status === "completed" ? "default" : "outline"}
-              className="capitalize"
-            >
+            <Badge variant={project.status === "completed" ? "default" : "outline"} className="capitalize">
               {project.status}
             </Badge>
             <Badge variant="secondary" className="capitalize">
@@ -117,7 +113,6 @@ const ProjectDetail = () => {
             </Badge>
           </div>
 
-          {/* Technologies */}
           <div className="mb-6">
             <h3 className="text-sm font-semibold mb-2 flex items-center">
               <Tag className="w-4 h-4 mr-2" />
@@ -125,14 +120,11 @@ const ProjectDetail = () => {
             </h3>
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech, index) => (
-                <Badge key={index} variant="outline">
-                  {tech}
-                </Badge>
+                <Badge key={index} variant="outline">{tech}</Badge>
               ))}
             </div>
           </div>
 
-          {/* Project Links */}
           {(project.githubUrl || project.liveUrl) && (
             <div className="flex gap-4">
               {project.githubUrl && (
@@ -155,8 +147,24 @@ const ProjectDetail = () => {
           )}
         </header>
 
-        {/* Reactions & Comments */}
-        <div className="mb-8">
+        {/* Top engagement bar */}
+        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mb-10">
+          <PostEngagementBar title={project.title} />
+        </div>
+
+        {/* Project Content */}
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          <MarkdownRenderer content={project.content} />
+        </div>
+
+        {/* Bottom engagement bar */}
+        <div className="border-y border-gray-200 dark:border-slate-700 py-1 mt-12 mb-10">
+          <PostEngagementBar title={project.title} />
+        </div>
+
+        {/* Comments */}
+        <section id="comments" className="pt-8 border-t border-gray-200 dark:border-slate-700">
+          <h2 className="text-lg font-semibold mb-4">Comments</h2>
           <Giscus
             repo="prashantgpt91/prashantgpt91.github.io"
             repoId="MDEwOlJlcG9zaXRvcnk4NzczMjkyMw=="
@@ -170,13 +178,9 @@ const ProjectDetail = () => {
             theme={giscusTheme}
             lang="en"
           />
-        </div>
+        </section>
 
-        {/* Project Content */}
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <MarkdownRenderer content={project.content} />
-        </div>
-
+        <BackToTop />
       </div>
     </div>
   );
