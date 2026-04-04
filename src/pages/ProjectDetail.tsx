@@ -12,6 +12,7 @@ import PostEngagementBar from "@/components/PostEngagementBar";
 import BackToTop from "@/components/BackToTop";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
+import { updatePageMeta } from "@/utils/seo";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -47,6 +48,13 @@ const ProjectDetail = () => {
       try {
         const projectData = await getProject(slug);
         setProject(projectData);
+        if (projectData) {
+          updatePageMeta({
+            title: projectData.title,
+            description: projectData.description,
+            path: `/projects/${slug}`,
+          });
+        }
       } catch (error) {
         console.error('Error loading project:', error);
         toast({

@@ -11,6 +11,7 @@ import PostEngagementBar from "@/components/PostEngagementBar";
 import BackToTop from "@/components/BackToTop";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
+import { updatePageMeta } from "@/utils/seo";
 
 const PaperDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,6 +47,13 @@ const PaperDetail = () => {
       try {
         const paperData = await getPaper(slug);
         setPaper(paperData);
+        if (paperData) {
+          updatePageMeta({
+            title: paperData.title,
+            description: paperData.abstract,
+            path: `/papers/${slug}`,
+          });
+        }
       } catch (error) {
         console.error('Error loading paper:', error);
         toast({

@@ -10,6 +10,7 @@ import PostEngagementBar from "@/components/PostEngagementBar";
 import BackToTop from "@/components/BackToTop";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Header from "@/components/Header";
+import { updatePageMeta } from "@/utils/seo";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -31,6 +32,13 @@ const BlogPost = () => {
       try {
         const blogPost = await getBlogPost(slug);
         setPost(blogPost);
+        if (blogPost) {
+          updatePageMeta({
+            title: blogPost.title,
+            description: blogPost.excerpt,
+            path: `/blog/${slug}`,
+          });
+        }
       } catch (error) {
         console.error('Error loading blog post:', error);
         setPost(null);

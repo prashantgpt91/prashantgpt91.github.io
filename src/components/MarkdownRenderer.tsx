@@ -11,6 +11,9 @@ interface MarkdownRendererProps {
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className = '' }) => {
+  // Strip leading h1 if it duplicates the page title (common in frontmatter + markdown)
+  const cleanedContent = content.replace(/^\s*#\s+.+\n+/, '');
+
   return (
     <div className={`prose prose-lg dark:prose-invert max-w-none ${className}`}>
       <ReactMarkdown
@@ -234,7 +237,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
           ),
         }}
       >
-        {content}
+        {cleanedContent}
       </ReactMarkdown>
     </div>
   );
