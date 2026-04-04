@@ -230,7 +230,7 @@ const Blog = () => {
             {paginatedPosts.items.map((post) => (
               <article
                 key={post.id}
-                className="bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+                className="bg-white dark:bg-slate-900 rounded-lg shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-md transition-shadow cursor-pointer border-l-2 border-l-blue-500"
                 onClick={(e) => handlePostClick(post.slug, e)}
               >
                 <div className="p-6">

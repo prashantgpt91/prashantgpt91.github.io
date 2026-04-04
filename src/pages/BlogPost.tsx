@@ -10,6 +10,8 @@ import PostEngagementBar from "@/components/PostEngagementBar";
 import BackToTop from "@/components/BackToTop";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import Header from "@/components/Header";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
+import RelatedPosts from "@/components/RelatedPosts";
 import { updatePageMeta } from "@/utils/seo";
 
 const BlogPost = () => {
@@ -92,6 +94,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
       <Header />
+      <ReadingProgressBar />
       <article className="max-w-4xl mx-auto px-6 py-12">
         {/* Article Header */}
         <header className="mb-6">
@@ -163,8 +166,11 @@ const BlogPost = () => {
           </div>
         </footer>
 
+        {/* Related Posts */}
+        <RelatedPosts currentSlug={slug || ''} category={post.category} tags={post.tags} />
+
         {/* Comments */}
-        <section id="comments" className="pt-8 border-t border-gray-200 dark:border-slate-700">
+        <section id="comments" className="mt-12 pt-8 border-t border-gray-200 dark:border-slate-700">
           <h2 className="text-lg font-semibold mb-4">Comments</h2>
           <Giscus
             repo="prashantgpt91/prashantgpt91.github.io"

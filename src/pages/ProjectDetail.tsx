@@ -12,6 +12,7 @@ import PostEngagementBar from "@/components/PostEngagementBar";
 import BackToTop from "@/components/BackToTop";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
+import ReadingProgressBar from "@/components/ReadingProgressBar";
 import { updatePageMeta } from "@/utils/seo";
 
 const ProjectDetail = () => {
@@ -97,6 +98,7 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100">
       <Header />
+      <ReadingProgressBar />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         {/* Back Button */}
         <Link to="/projects" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline mb-6">

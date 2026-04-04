@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Moon, Sun } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
-import { Link } from "react-router-dom";
+import FeaturedContent from "@/components/FeaturedContent";
 import Header from "@/components/Header";
 
 const Index = () => {
@@ -13,6 +10,7 @@ const Index = () => {
       {/* Main content - Only HeroSection */}
       <main>
         <HeroSection />
+        <FeaturedContent />
       </main>
       
       {/* Footer */}
